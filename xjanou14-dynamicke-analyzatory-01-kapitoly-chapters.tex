@@ -1,0 +1,648 @@
+%=========================================================================
+% (c) Michal Bidlo, Bohuslav Křena, 2008
+
+\chapter{Úvod}
+
+[TODO] S: motivace + aktualni stav + vlastni prinos
+[TODO obsah]: motivace, proc to vzniklo, co existuje, jaky je aktualni stav, co se deje v kazde kapitole
+ - idealne odstavec vlastni prinos, kde napisu co jsem konkretne udelal 
+
+%Testování softwaru je důležitou součástí jeho vývoje. Cílem testování je nalézt chyby, které se v~testovaném softwaru vytvořily během jeho návrhu, implementace nebo provozování. Jedním z~typů chyb jsou chyby vyskytující se v~paralelních programech. Tyto chyby se typicky mohou vyskytovat náhodně a velmi omezeně, a proto odhalení tohoto typu chyb není snadné. Pro testování paralelních programů se využívají speciální techniky, jako je například \textit{dynamická analýza}. Dynamickou analýzu provádějí tzv. \textit{dynamické analyzátory}, které jsou předmětem této práce.
+
+%V~této práci bude nejprve popsána problematika paralelních programů a chyb, které v~těchto programech mohou vznikat. Dále budou v~této práci popsány metody testování těchto programů, přičemž důraz bude kladen právě na dynamickou analýzu. Následně budou představeny nástroje, které lze pro takové testování použít, včetně nástroje \textit{SearchBestie}, pro který budou vybrané dynamické analyzátory implementovány. V~neposlední řadě budou popsány dynamické analyzátory, včetně dynamického analyzátoru \textit{kontraktů}, jehož návrh a implementace v~jazyce Java bude předmětem další práce.
+
+\chapter{Testování vícevláknových programů}
+
+[Poznamky z konzultace] technologie, metody v dane oblasti (testovani vicevlaknovych programu), jak se delaji dyn. analyz. v jave, roadrunner, searchbestie
+technologie, se kterymi prichazim do styku; metody v dane oblasti (testovani vicevlaknovych programu - zhruba popsat tuto oblast, kontrakty, java)\\
+1. jak se dela dynamicka analyza v jave\\
+2. popsat co to jsou kontrakty\\
+	+ popis roadrunneru a pouzitych technologii (searchbestie)\\
+
+... co to je vícevláknový program ...
+
+
+%Jak to bude vzpadat:
+%Testování vícevláknových programů\\
+%(co to je)\\
+%- soubeznost a relace HB\\
+%- logicky cas\\
+%- synchronizační nástroje\\
+%- chyby v synchronizaci (popis vice chyb včetně kontraktu)\\
+%- metody testování vícevláknových programů v jazyce Java (obecný popis všech metod v textu bez dalsich podnadpisu)\\
+%- dynamické analyzátory (popis Fastracku, Contract validatoru)\\
+%- nástroje pro testování (Searchbestie, Roadrunner)\\
+
+%Co mam:\\
+%Paralelni program\\
+%Soubeznost a relace Happens Before\\
+%Logicky cas\\
+%Synchronizacni nastroje\\
+%Chyby v synchronizaci\\
+
+%Metody testovani paralelnich programu
+%Staticka analyza
+%Dynamicka analyza
+%Deterministicke testovani
+%Zatezove testovani
+%Vkladani sumu
+
+%Nastroje pro testovani paralelnich programu
+%Searchbestie
+%Roadrunner
+%Dynamicke analyzatory - ??Fasttrack??, Analyzator kontraktu
+
+\section{Souběžnost a relace Happens-Before}
+\section{Logický čas}
+\section{Synchronizační nástroje}
+\section{Chyby v synchronizaci}
+... vcetne popisu kontraktu ...
+\section{Metody testování}
+\section{Dynamické analyzátory}
+... obecne o nekolika nastrojich ...
+\subsection{Fastrack}
+\subsection{Analyzátor kontraktů}
+\section{Nástroje pro testování Java programů}
+... obecne o nekolika typickych nastrojich ...
+\subsection{RoadRunner}
+\subsection{SearchBestie}
+
+\chapter{Návrh analyzátoru kontraktů}
+\section{Specifikace požadavků}
+
+[Poznamky z konzultace] S: co presne je mojim cilem udelat, kazda odrazka rika co to ma umet, ma to byt spustitelne v prikazove radce, contract - co to ma umet
+identifikovane odrazky (cislama, viceurovne - ne vic nez tri urovne) - kazda odrazka bude definovat co to ma umet. I z uzivatelskeho hlediska - napriklad ze to ma byt spustitelne z prikazove radky, ma to umet kontrakty (v odrazkach jak presne), dal ma to umet pracovat se search bestie.
+
+\section{Návrh implementace}
+
+[Poznamky z konzultace] Toto musi byt uplna kapitola, bude nejvetsi. Tady popisu kompletni navrh tak, aby to podle toho slo implementovat
+navrh celeho reseni - kazdou cast navrhnu tak jak by se to melo resit
+musi to byt uplne tak aby to nekdo mohl vzit a podle toho to mohl naimplementovat. Narazel by na nejake problemy a o tom bude ta dalsi kapitola.
+do navrhu same diagramy jak architekturalni, tak behavioralni (kdo s kym jak jedna - state chart nebo sequence diagram (je jedno kterym))
+
+\chapter{Implementace}
+
+Psat to "je to vyreseno"
+[Poznamky z konzultace] Implementacni detaily - jak je to vyreseno a problemy ktere vznikly. Strukturalni a behavioralni diagramy
+Co bylo zajimave, co sem jak musel vyresit kdyz nastaly nejake problemy
+
+\chapter{Testování}
+
+[Poznamky z konzultace] Cim vic testu, tim lip - bud kapitola, nebo priloha. Popsat samotny test co co znamena a pak vytvorit reprezentaci jednotlivych testu a ty tam dat. Idealne diagram + kratky popis. Vstupy + vystupy a jak to dopadlo.
+40 nebo i 100 ruznych testu - jak mi zbude cas
+Kdyz toho bude moc, tak to bude priloha, ale musi tam byt to, jak se to cte. Vymyslet reprezentaci jak budou ty testy reprezentovany v dokumentaci. Dat tam diagram a popsat co se tam deje. (co je na vstupu)
+
+\chapter{Závěr}
+
+[Poznamky z konzultace] Dalsi pokracovani v projektu, sebekritiky! (co to neumi, jak by se to melo upravit aby to umelo, kde je slaba stranka, neni to optimalizovane na velke programy atd.), cim vic se priznam, ze neco neni dodelane, tim lip
+Nedostatek je treba, ze se nevypousti ty metody z toho okna.
+
+\chapter{SP: 1. Testování paralelních programů}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+!!!! SEMESTRALNI PROJEKT !!!!\\
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+
+Dříve, než budou popisovány samotné dynamické analyzátory, kterými se tato práce zabývá, je nutné představit testování paralelních programů v~obecnějším pohledu. Tato kapitola se tedy zabývá obecně problematikou paralelních programů, představením základních chyb v~paralelních programech a vysvětlením některých pojmů, které budou důležité pro pochopení dalších částí této práce. Na některých místech budou uvedeny informace související s~jazykem Java, jelikož tento jazyk bude použit pro implementaci vybraných dynamických analyzátorů.
+
+\section{Paralelní program}\label{paralel-program}
+%Uvažujeme vícejádrový procesor...
+V~dnešní době nalezneme v~běžných počítačích procesory, které mají 2 nebo více jader. S~rostoucí popularitou těchto procesorů také roste popularita paralelních programů, které tyto jádra mohou současně využívat. Využívání více jader procesoru (při běhu jednoho paralelního programu) lze dosáhnout dvěma způsoby. Prvním způsobem je vytvořit více procesů. V~tomto kontextu lze proces chápat jako sekvenčně prováděný program ve vlastním adresovém prostoru. Nevýhodou tohoto řešení je rychlost přepínání kontextu a rychlost synchronizace mezi procesy. Typickým způsobem komunikace mezi vlákny je \textit{IPC} (Inter Process Communication) \cite{cite:IPC, cite:paralel-programming}.
+
+Druhý způsob, je použití jednoho procesu obsahujícího několik vláken\footnote{V jazyce Java je program chápán jako proces s~vlákny, přestože lze vytvořit i programy, které budou obsahovat více procesů. Nicméně každý proces obsahuje minimálně jedno vlákno \cite{cite:java}.}. V~tomto kontextu proces chápeme jako sadu souběžně prováděných vláken v~jednom adresovém prostoru a proces je tedy obálkou těchto vláken. Toto řešení přináší několik výhod. Zejména se jedná o~rychlost přepínání kontextu a synchronizace mezi vlákny. Další výhodou je sdílení prostředků (paměť, otevřené soubory, atd.), což je umožněno díky společnému adresovému prostoru vláken stejného procesu. Přestože použití vláken přináší řadu výhod, přináší také problémy, a to právě v~podobě souběžného přístupu ke zmíněným sdíleným prostředkům. Tento přístup musí být řízen pomocí tzv. \textit{synchronizace} \cite{cite:paralel-programming}.
+%Rozdíl mezi výše zmíněnými způsoby je znázorněn na obrázku \ref{}.
+%...obrazek...
+
+Základním požadavkem v~dnešních operačních systémech\footnote{Dnešními operačními systémy jsou myšleny multiprogramové operační systémy, kde uživatel požaduje souběžný běh více programů a tedy souběžný běh více procesů a vláken.} je souběžné provádění více programů. Vzhledem k~tomu, že počet procesů a vláken, které mají běžet souběžně, je většinou vyšší než počet fyzických jader počítače, musí být výpočetní čas procesoru rozprostřen mezi všechny tyto procesy a vlákna. Rozprostření výpočetního času zajišťuje \textit{plánovač}, který plánuje přepínání kontextu procesů a vláken. Plánovač je v~běžných počítačích typicky preemptivní\footnote{Při preemptivním plánování může být procesor procesu odebrán bez jeho přičinění (ukončení procesu, zahájení čekání, atd.).} a zohledňuje několik vlastností procesů a vláken, jako je například priorita, čas strávený na procesu, doba čekání, paměťové požadavky, atd. Díky plánovači a dalším zdrojům nedeterminismu (obsluha přerušení, blokující operace, atd.) je paralelní provádění programu také nedeterministické, tj. procesy a vlákna jsou různě \textit{proloženy}. Tento nedeterminismus způsobuje, že chyby vzniklé paralelním prováděním programu se v~jednom běhu mohou vyskytnout, zatímco v~jiném ne. Z~hlediska testování paralelních programů je tedy důležité najít takové proložení, při kterém se daná chyba vyskytne \cite{cite:OS1}. 
+
+%DAL PSAT O VLAKNECH.
+%V dalším textu bude uvažováno použití jednoho procesu s více vlákny, protože právě tento způsob je nebezpečný z hlediska souběžného přístupu vláken ke sdíleným prostředkům.  
+
+\section{Souběžnost a relace Happens before}\label{happens-before}
+
+V~paralelním programu je důležité určit pořadí jednotlivých událostí napříč procesy a vlákny. Protože výpočet jednotlivých procesů a vláken probíhá asynchronně, musí být zaveden způsob, jak pořadí těchto událostí určit. Vztah mezi dvěma událostmi, které se provedly ve stejném nebo různém procesu (vlákně) se nazývá \textit{relace kauzálního uspořádání} nebo taky relace \textit{Happens before} \cite{cite:HB}. Relace Happens before byla představena Lesliem Lamportem pro prostředí distribuovaných systémů, a~proto zde bude uvedena v~tomto obecnějším kontextu. Nicméně tato relace platí jak pro uspořádání událostí napříč vlákny, tak i procesy. V~této kapitole tedy budou uvažovány procesy a~vlákna za totožné. Následující vysvětlení této relace vychází ze zdrojů \cite{cite:HB,cite:PDI}.
+
+%cite http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf
+
+Paralelní program se skládá z~množiny $n$ asynchronních procesů ${p_1, p_2, ..., p_n}$. Procesy spolu navzájem mohou komunikovat pouze pomocí zasílání zpráv\footnote{Pod zasílám zpráv je možné si představit také komunikaci pomocí sdílené paměti, přístupu k~zámkům, atd. Pro jednoduchost bude veškerá tato komunikace zobecněna jako zasílání zpráv mezi procesy.}. Dále platí, že procesy nemohou sdílet svůj \textit{globální čas\footnote{Globání čas procesu je pohled daného procesu na globální čas v~paralelním programu. Každý proces může mít ve stejnou chvíli jiný pohled na globální čas.}} a výpočet procesů, včetně zasílání zpráv, probíhá asynchronně (předpokládejme, že každý proces běží na vlastním. Zprávu zaslanou procesem $p_i$ procesu $p_j$ označme jako $m_{ij}$. Vykonávání procesu se skládá ze sekvence atomických událostí. Události mohou být tří typů \cite{cite:PDI}:
+
+\begin{itemize}
+\item interní akce -- mění vnitřní stav procesu,
+\item odeslání zprávy $m$ (\textit{send($m$)}) -- mění vnitřní stav odesílajícího procesu,
+\item přijetí zprávy $m$ (\textit{recv($m$)}) -- mění vnitřní stav přijímajícího procesu.
+\end{itemize}
+
+Dále nechť $e^x_i$ označuje $x$-tou událost procesu $i$. Pak platí, že události v~procesu jsou lineárně uspořádány podle indexu $x$. Toto lineární uspořádání událostí procesu $i$ označme jako relaci $\rightarrow_i$ a~množinu všech akcí procesu $p_i$ označme jako $h_i$. Relace $\rightarrow_i$ značí kauzální závislost nad procesem $p_i$, tj. zápis $e^x_i \rightarrow_i e^y_i$ značí, že událost $e^x_i$ se stala před událostí $e^y_i$ v~procesu $p_i$. Dále definujme relaci $\rightarrow_{msg}$, která značí kauzální závislost mezi dvojicí událostí $send(m)$ a $recv(m)$.
+
+Nechť $H=\bigcup\limits_{i \, \in\, n} h_i$ značí množinu všech událostí vykonaných v~paralelním programu. Pak \textit{relace kauzálního uspořádání (tj. relace \textbf{Hapens Before})} $\rightarrow$ je definována následovně \cite{cite:PDI}:
+$$\forall e_i^x, \forall e_j^y \in H,\: e_i^x \rightarrow e_j^y \Leftrightarrow 
+\left\{
+	\begin{array}{ll}
+       e_i^x \rightarrow e_j^y,\quad pokud \quad i=j \wedge x < y \\
+       nebo\\
+       e_i^x \rightarrow_{msg} e_j^y \\
+       nebo\\
+       \exists e_k^z \in H:  e_i^x \rightarrow e_k^z \wedge  e_k^z \rightarrow e_j^y
+    \end{array}
+\right.$$
+
+Výše definovaná relace \textit{Happens before} umožňuje definovat uspořádání mezi dvěma událostmi. Pokud pro dvě události $e_i$ a $e_j$ platí $e_i \rightarrow e_j$, pak můžeme říct, že událost $e_i$ \textit{předchází} událost $e_j$.
+To znamená, že v~systému nemůže nastat situace, kdy by se událost $e_j$ stala před událostí $e_i$. Pokud pro stejné dvě události platí $e_i \centernot\rightarrow e_j$, pak událost $e_i$ \textit{nepředchází} událost $e_j$. Pro výše definované vztahy platí následující pravidla \cite{cite:PDI}:
+
+$$
+\begin{array}{lcr}
+e_i \centernot\rightarrow e_j & \centernot\implies & e_j \centernot\rightarrow e_j \\
+e_i \rightarrow e_j & \implies & e_j \centernot\rightarrow e_j
+\end{array}
+$$
+
+Posledním možným vztahem dvou událostí je \textit{souběžnost} (concurrency). Dvě události jsou souběžné, pokud platí \cite{cite:PDI}:
+$$e_i \centernot\rightarrow e_j \wedge e_i \centernot\rightarrow e_j.$$
+
+Tento vztah se značí jako $e_i \parallel e_j$. Z~hlediska odhalování chyb v~paralelních programech je tento vztah nejdůležitější. Pokud jsou dvě události souběžné (tj. konkurentní), pak nelze říci, která událost proběhne dříve. Může se stát, že při jednom spuštění bude nejprve provedena událost $e_i$ a~poté událost $e_j$, ale při jiném spuštění bude jejich pořadí opačné. Pokud budeme uvažovat reálný příklad, pak je tento problém například v~souběžném zápisu více vláken do jedné sdílené proměnné (viz. kapitola \ref{chyby}). 
+
+\section{Logický čas}\label{logic-time}
+
+V~předchozí kapitole bylo definováno uspořádání událostí v~jednotlivých procesech. Každé takové události je přiřazeno časové razítko, které značí čas procesu v~době provádění této události. Nejedná se ovšem o~běžný fyzický čas, ale o~čas \textit{logický} \cite{cite:HB}. Logický čas je dostačující k~určení uspořádání událostí a není nijak závislý na fyzickém čase.
+
+Systém logického času se skládá z~časové domény $T$ a logických hodin $C$, přičemž na množině $T$ je definována relace částečného uspořádání $<$, která není ničím jiným, než výše definovanou relací Happens before. Logické hodiny jsou funkce, která mapuje události $e$ z množiny všech událostí $H$ na prvky z~množiny $T$ ($C : H \rightarrow T$). Pomocí této funkce je možné určit relaci Happens before mezi dvěma událostmi $e_i$ a $e_j$ následovně:
+$$e_i \rightarrow e_j \implies C(e_i) < C(e_j)$$
+
+%Colin J. Fidge (February 1988). "Timestamps in Message-Passing Systems That Preserve the Partial Ordering" (PDF). In K. Raymond (Ed.). Proc. of the 11th Australian Computer Science Conference (ACSC'88). pp. 56–66. Retrieved 2009-02-13.
+%Mattern, F. (October 1988), "Virtual Time and Global States of Distributed Systems", in Cosnard, M., Proc. Workshop on Parallel and Distributed Algorithms, Chateau de Bonas, France: Elsevier, pp. 215–226
+
+Logický čas může být implementován následujícími způsoby \cite{cite:PDI}:
+\begin{itemize}
+\item \textit{Skalární čas} (Scalar time) -- proces si uchovává čas jako číslo $d$, které se po každé atomické události inkrementuje. Pokud proces odešle zprávu $m$, pak do zprávy vloží hodnotu čísla $d$. Při přijetí zprávy $m$ proces přečte hodnotu času vloženého do zprávy $d_{msg}$ a svoji hodnotu času $d$ upraví následovně: $d = \max(d, d_{msg})$.
+
+\item \textit{Vektorový čas} (Vector time) -- každý proces uchovává vektor $v$, který má $n$ položek ($n$ je počet procesů). Při provedení interní události proces $p_i$ inkrementuje hodnotu na pozici $v_i$, která označuje čas procesu $p_i$. Pokud proces odesílá zprávu, pak stejně jako u~skalárního času přidává do zprávy právě tento svůj čas. Pokud proces přijme zprávu od procesu $p_j$, pak aktualizuje hodnotu $v_j$, která značí povědomí procesu $p_i$ o~lokálním času procesu $p_j$.
+
+\item \textit{Maticový čas} (Matrix time) -- rozšíření vektorového času, kde každý proces uchovává čtvercovou matici řádu $n$. Matice obsahuje povědomí o~vektorovém čase každého procesu.  
+\end{itemize}
+
+% Kapitola synchronizace?
+% Synchronizace: zajištění kooperace mezi paralelně (souběžně) prováděnými procesy
+%sekce
+\section{Synchronizační nástroje}
+% Paralelni program je ...
+%Prubeh vykonavani je nedeterministicky(planovac, obsluda preruseni, blokujici operace). Synchronizuje se pomoci synchronizacnich primitiv (nizkourovnove na OS, na urovni prog. jazyka - monitor, zamek, atd) 
+%Vlakna maji svuj zasobnik, sdileji hladu, problem k pristupu k halde (sdilena pamet) 
+Při provádění paralelního programu nastávají situace, kdy je nutné procesy nebo vlákna vzájemně řídit (synchronizovat). Pro řízení souběžného přístupu procesů nebo vláken lze použít následující synchronizační prostředky\footnote{Pokud není uvedeno jinak, pak lze synchronizační prostředky použít jak pro procesy, tak pro vlákna.}:
+
+\begin{itemize}
+\item \textit{Semafor} -- může být \textit{binární}, nebo \textit{obecný}. Binární semafor obsahuje metody \texttt{init(value)}, \texttt{lock(value)} a \texttt{unlock()}. Proces čeká při zavolání metody \texttt{lock()}, dokud hodnota semaforu není 0 a~pak jej nastaví na 1. Metoda \texttt{unlock()} nastaví hodnotu semaforu na 0 a~odblokuje procesy čekající na metodě \texttt{lock()} stejného semaforu. Obecný semafor má oproti binárnímu kapacitu, která značí kolik jednotek zdroje chráněného semaforem je k~dispozici. Binární semafor je obecný semafor s~kapacitou 1. V~Javě je obecný semafor implementován třídou \texttt{java.util.concurrent.Semaphore} \cite{cite:OS2,cite:javad}.
+
+\item \textit{Mutex} -- binární semafor určený pro vzájemné vyloučení. Při zamknutí mutexu je uložen jeho vlastník a pouze tento vlastník jej může odemknout. V~Java SE neexistuje třída reprezentující mutex, nicméně lze pro tento účel upravit třídu \texttt{java.util.concurrent.Semaphore}  \cite{cite:OS2,cite:javad}.
+
+\item \textit{Bariéra} -- umožňuje sadě procesů počkat na všechny ostatní. V~Javě je implementována třídou \texttt{java.util.concurrent.CyclicBarrier} \cite{cite:javad}.
+
+\item \textit{Zámek} -- má podobný princip jako semafor, ale jedná se pouze o~sdílenou proměnnou a tudíž může řídit přístup pouze mezi vlákny, nikoli procesy  \cite{cite:OS1}.
+
+\item \textit{Monitor} -- abstraktní datový typ, ve kterém jsou sdílené proměnné dostupné pouze přes operace monitoru (včetně jejich inicializace). Tyto operace monitoru jsou vzájemně vyloučené. Monitor lze implementovat v~Javě například pomocí tříd \texttt{java.util.concurrent.locks.\-Condition} a \texttt{java.util.concurrent.locks.Lock}. Stejně tak lze použít klíčové slovo \texttt{synchronized} na libovolný objekt (\texttt{java.lang.Object}). Tento objekt obsahuje metody \texttt{wait()} (čekání) a \texttt{notify()} (upozornění ostatních, že již nemusí dále čekat) \cite{cite:OS2,cite:javad}.
+
+\end{itemize}
+
+Výše uvedené synchronizační prostředky představují pouze základní sadu synchronizačních nástrojů. Nicméně další takové nástroje jsou odvozeny právě z~těchto nástrojů. Jak bylo zmíněno, synchronizační nástroje slouží k~řízení souběžného přístupu. V~další sekci budou ukázány základní chyby, které mohou nastat, pokud není synchronizace provedena správně, nebo dokonce vůbec.
+
+%toto jako sekci a ty nize jako subsekce
+\section{Chyby v~synchronizaci}\label{chyby}
+
+%Chyby ve vicevlaknovych pristupech chyby bezpecnosti a zivosti (data race, atomicity violation, order violation, deadlock, missed signal, livelock, problem uvaznuti, porušení contractu)
+Jak již bylo zmíněno v~kapitole \ref{paralel-program}, chyby v~paralelních programech mohou v~jednom běhu nastat, zatímco v~jiném nemusí. Je to dáno proložením běhů jednotlivých vláken nebo procesů. V~následujícím textu budou prezentovány některé ze základních chyb tohoto typu včetně příkladů\footnote{Příklady budou psané v~pseudokódu vycházejícího z~jazyka Java.}, na kterých bude tento problém demonstrován. Příklady budou vysvětlovány nad vlákny, nicméně pro procesy je situace stejná. 
+
+\subsection{Uváznutí (deadlock)}
+
+Prvním chybou, která je zde představena je \textit{uváznutí}. Uváznutí je situace kdy vlákna čekají na stav, který by mohl nastat, pokud by jedno z~těchto vláken mohlo pokračovat. Vlákna jsou takto blokovány navždy \cite{cite:OS1,cite:OS2}.
+
+Uváznutí může nastat v~příkladu \ref{c:deadlock}, pokud 1. vlákno zamkne zámek \texttt{A} na řádku 6 a ve stejnou chvíli 2. vlákno uzamkne zámek \texttt{B} na tomtéž řádku. V~dalším kroku chce 1. vlákno uzamknout zámek \texttt{B}, ale ten je vlastněn 2. vláknem. Současně chce 2. vlákno uzamknout zámek \texttt{A}, ale ten je vlastněn 1. vláknem. Vlákna tedy čekají, než se zámky uvolní, což nemůže nikdy nastat. Pokud ovšem nastane takový průběh, že 1. vlákno získá oba zámky (řádky 6 a 7) a až poté chce 2. vlákno uzamknout zámek \texttt{B} (řádek 6), pak k~uváznutí nedojde, protože vlákno \texttt{A} dokončí práci a poté uvolní oba zámky. 2. vlákno pak může oba zámky získat. V~tomto příkladu byly popsány 2 průběhy. V~jednom k~chybě došlo a ve druhém ne. V~dalších příkladech už budou demonstrovány jen takové proložení, ve kterých k~chybě dojde. 
+
+\begin{lstlisting}[caption=Pseudokód příkladu uváznutí dvou vláken., frame=none, label={c:deadlock}, numbers=left, xleftmargin=1cm]
+Lock A = ...;
+Lock B = ...;
+
+// 1. vlakno			// 2. vlakno
+void run() {			void run() {
+  A.lock();			  B.lock();
+  B.lock();			  A.lock();
+  B.unlock();			  A.lock();
+  A.unlock();			  B.lock();
+}				}
+\end{lstlisting}
+
+\subsection{Blokování}
+
+Další chybou je \textit{blokování}, které nastává, pokud vlákno čeká na stav, který generuje jiné vlákno, a~toto čekání není nutné z~hlediska synchronizace. K~blokování také dochází pokud vlákno čeká na stav, který nemůže nikdy nastat \cite{cite:OS2}.
+
+V~příkladu \ref{c:block} může nastat situace, kdy jedno vlákno získá zámek \texttt{A} a už nikdy jej neuvolní. Druhé vlákno tak bude pořád blokováno.
+
+\begin{lstlisting}[caption=Pseudokód příkladu blokování dvou vláken., frame=none, label={c:block}, numbers=left, xleftmargin=1cm]
+Lock A = ...;
+
+// 1. vlakno			// 2. vlakno
+void run() {			void run() {
+  while(true)			  while(true)
+    A.lock();			    A.lock();
+}				}
+\end{lstlisting}
+
+\subsection{Stárnutí}
+
+\textit{Stárnutí} je podobný problém jako blokování, avšak čekání vlákna není shora omezeno. Vlákno čeká na splnění podmínky, která nemusí být nikdy platná v~okamžiku testování, ale může nastat situace, kdy platná bude. Pak je vlákno uvolněno a může pokračovat. Pokud by k~uvolnění nemohlo nikdy dojít, tak by se jednalo o~blokování \cite{cite:OS2}.
+
+\subsection{Časově závislá chyba nad daty}\label{data-race}
+
+K~\textit{časově závislé chybě nad daty} může dojít, pokud dochází k~souběžnému přístupu více vláken ke sdílené proměnné a alespoň jeden z~přístupů je zápis \cite{cite:OS2}.
+
+V~příkladu \ref{c:race} se nachází sdílená proměnná \texttt{value}, která reprezentuje aktuální hodnotu. Dále se zde nachází dvě vlákna, kde 1. vlákno zapisuje aktuální hodnoty a 2. vlákno vypisuje aktuální hodnoty na výstup. Pokud jsou obě vlákna spuštěny současně, pak může dojít ke dvěma výsledků. Na výstupu se objeví hodnota $5$ nebo $8$ podle toho, zda bude nejdříve aktuální hodnota vypsána, nebo aktualizována.
+
+\begin{lstlisting}[caption=Pseudokód příkladu časově závislé chyby nad daty., label={c:race}, frame=none, numbers=left, xleftmargin=1cm]
+int value = 5;
+
+// 1. vlakno			// 2. vlakno
+void run() {			void run() {
+  value = 8;			  print(value);
+}				}
+\end{lstlisting}
+
+\subsection{Porušení atomicity}%(citace http://www.jot.fm/issues/issue_2004_06/article5.pdf)
+K \textit{porušení atomicity} dojde, pokud vlákno získá stav nějaké sdílené proměnné, další výpočet vlákna závisí na tomto stavu a zárověň během tohoto výpočtu k~této proměnné může přistoupit jiné vlákno a její stav změnit \cite{cite:OS2}.
+
+Následující příklad vychází z~předchozího příkladu. K~porušení atomicity například dojde, pokud 2. vlákno přečte stav proměnné \texttt{value} a uloží si jej do proměnné \texttt{tmp}, následně 1. vlákno aktualizuje hodnotu \texttt{value} na hodnotu 8 a nakonec 1. vlákno provede také aktualizaci této proměnné, ale již na základě neplatného stavu uloženého v~proměnné \texttt{tmp}. Na výstupu se tak může objevit některá z~množiny hodnot: ${6, 8, 9}$.
+\begin{lstlisting}[caption=Pseudokód porušení atomicity., frame=none, numbers=left, xleftmargin=1cm]
+volatile int value = 5;
+
+// 1. vlakno			// 2. vlakno
+void run() {			void run() {
+  value = 8;			  int tmp = value;
+}				  value = tmp + 1;
+				  print(value);
+				}			
+\end{lstlisting}
+
+\subsection{Porušení kontraktu}
+
+Poslední zde uvedenou chybou je \textit{porušení kontraktu} \cite{cite:contract0}. Kontrakt je sekvence veřejných metod objektu, která musí být vykonána atomicky, s~ohledem na ostatní veřejné metody stejného objektu. Problematika kontraktů je dále rozebírána v~kapitole \ref{contract-basic}.
+
+\chapter{Metody testování paralelních programů}
+
+V~předchozí kapitole byla vysvětlena problematika paralelních programů a chyb, které se v~nich mohou vyskytovat. V~této kapitole proto budou popsány metody testování, pomocí kterých lze chyby v~paralelních programech odhalit. Největší důraz zde bude kladen na \textit{dynamickou analýzu} a~metodu \textit{vkládání šumu}, neboť tyto dvě metody souvisí s~dalšími částmi této práce.
+
+\section{Statická analýza}
+
+\textit{Statická analýza} zkoumá software bez jeho spouštění. Tato metoda je například používána pro hledání syntaktických chyb a je typicky spouštěna před překladem. Nicméně i tuto metodu je možné využít pro testování paralelních programů. Nevýhodou této analýzy je produkování velkého množství \textit{false alarmů}\footnote{\textit{False alarm} je varování, že se může vyskytnout chyba, přestože ve skutečnosti nikdy vzniknout nemůže.}, neboť statická analýza nemá k~dispozici informace o~konkrétních instancích objektů. Existují ovšem metody založené na provádění testovaného softwaru, které se tento problém snaží odstranit. Jednou z~nich je následující metoda \textit{dynamické analýzy} \cite{cite:advances}.
+
+\section{Dynamická analýza}\label{dynamic-analysis}
+
+\textit{Dynamická analýza} zkoumá software na základě jeho provádění, během kterého shromažďuje informace o~jeho běhu (události a jejich uspořádání, stavy zámků, vláken, paměťových míst, atd.). Kromě hlášení chyb, které v~daném běhu nastaly se dynamická analýza snaží extrapolovat nasbírané informace a odhalit chyby, které nenastaly. Přesto dynamická analýza nedokáže odhalit všechny chyby, ale pouze ty, které lze odvodit z~běhů, kterých byla svědkem. Z~tohoto důvodů bývá tato analýza spouštěna opakovaně a kombinována například s~metodou \textit{stochastického vkládání šumu} nebo \textit{deterministického testování}. Díky těmto metodám je zvyšován počet testovaných proložení programu, a tím i pravděpodobnost nalezení konkurentních chyb. Samotná analýza zatěžuje systém, což má podobný efekt jako vkládání šumu. Tento jev se označuje jako \textit{noise effect} a je třeba s~ním při analýze počítat. Dynamická analýza je většinou zaměřena pouze na určitý typ chyb a v~takovém případě sbírá pouze informace související s~tímto typem. U~různých typů dynamické analýzy se rozlišují dvě vlastnosti \textit{sound} a \textit{precise}. Pokud dynamická analýza splňuje první vlastnost, pak nemůže přehlédnout chybu. Pokud splňuje druhou vlastnost, pak neprodukuje false alarmy. Nicméně platí, že dynamická analýza nemusí splňovat ani jednu z~nich, tj. může přehlížet chyby a zároveň může produkovat false alarmy. Programy provádějící dynamickou analýzu se nazývají \textit{dynamické analyzátory} (viz. kapitola \ref{dynamic-analysators}) a jejich příkladem jsou: \textit{Eraser}, \textit{GoldiLocks}, \textit{FastTrack} nebo \textit{DJIT+} \cite{cite:advances,cite:eraser,cite:ft,cite:rr}.
+
+\section{Deterministické testování}
+
+Deterministické testovaní je metoda založená na opakovaném provádění testovaného softwaru, přičemž má plnou kontrolu nad jeho prováděním. K~tomuto účelu je použitý \textit{deterministický plánovač}, který je implementován například pomocí vkládání silného šumu. Cílem je otestovat co nejvíce možných proložení vláken. V~každém kroku provádění softwaru analyzátor zkoumá, jaké možnosti v~plánování mohou nastat a ty ukládá do stavového prostoru testovacích scénářů. Při dalších bězích se provádí další scénáře z~tohoto stavového prostoru, které se opět dále větví. Z~tohoto důvodu jsou zavedeny některé heuristiky, které omezují velikost stavového prostoru. Stavový prostor všech možných scénářů je příliš velký a u~větších programů by testování trvalo příliš dlouho. Často se tak využívá například testování, kdy plánovač nechává běžet vždy pouze jedno vlákno a ostatní nechává pozastavené, nebo je například omezen maximální počet přepnutí kontextu. Případ, kde se testují všechny proložení se nazývá \textit{full model checking} \cite{cite:advances}.
+
+\section{Zátěžové testování}
+
+\textit{Zátěžové testování} je založeno na principu vytvoření nejhoršího možného prostředí, ve kterém aplikace může běžet. V~souvislosti s~hledáním konkurentních chyb je to vytvoření velkého množství vláken, které budou navzájem soupeřit o~sdílené zdroje. Tímto přístupem mohou být odhaleny některé chyby, ale s~největší pravděpodobností se bude jednat o~chyby častěji se vyskytující. Vzhledem tomu, že proložení prováděné testovaným softwarem jsou náhodné, může toto testování způsobovat opakované provádění již prozkoumaných proložení, přestože existují jiné proložení, které otestovány nebyly. Další nevýhodou je značné zatížení jak testovaného softwaru, tak prostředí, kde testování běží \cite{cite:advances}.
+
+\section{Vkládání šumu}
+
+Tento typ testování vkládá šumu (\textit{noise}) \cite{cite:sum} do prováděného kódu, který opožďuje vlákna a tak může dojít k~proložení, které by jinak nastalo pouze velmi výjimečně. Stejně tak mohou být odhaleny chyby souběžného přístupu dvou instrukcí, které jsou v~kódu dostatečně daleko od sebe a za normálních okolností by nebylo prakticky možné, aby se vykonaly souběžně. Tato chyba může být odhalena vložením dostatečné \textit{silného}\footnote{\textit{Silným} šum pozastaví provádění vlákna na delší dobu.} šumu do jednoho z~vláken. Pomocí metody vkládání šumu může být prozkoumáno velké množství scénářů v~relativně krátké době. Náhodné vkládání šumu nemusí být příliš efektivní, protože může docházet k~vkládání na místa, které nijak neovlivňují proložení vláken a šum by tak pouze zatěžoval systém. Lepších výsledků je dosaženo v~případě použití některé heuristiky, která určuje vkládání šumu pouze na specifická místa v~kódu (\textit{noise seeding problem}) \cite{cite:advances}. Stejně důležitým faktorem, jako je umístění šumu, je i vkládání vhodného typu šumu (\textit{noise seeding problem}). Typ je dán sílou šumu a operací, která šum představuje \cite{cite:advances}.
+
+V~programovacím jazyce Java lze použít například funkce \cite{cite:javad}:
+\begin{itemize}
+\item \texttt{yield()} -- způsobí přepnutí kontextu (síla udává počet zavolání této funkce, než může vlákno pokračovat),
+\item \texttt{sleep()} -- blokuje (uspí) vlákno po zadanou dobu (síla šumu),
+\item \texttt{wait()} -- jako \texttt{sleep()} s~rozdílem, že vlákno čeká na objektu \textit{monitoru}.
+\end{itemize}
+
+
+\chapter{Nástroje pro testování paralelních programů}
+% model checker  Edmund M. Clarke; Orna Grumberg and Doron A. Peled (2000) "Model Checking", MIT Press, ISBN 0-262-03270-8 - pro model checker
+
+Pro testování paralelních programů v~jazyce Java existuje celá řada programů, a proto zde budou představeny především ty, jež souvisejí s~dynamickou analýzou, která je předmětem této práce. Jedním z~nejznámějších je \textit{Java Pathfinder} (JPF) \cite{cite:jpf}, který byl vyvinut v~\textit{NASA Ames Research Center}. JPF dokáže vykonávat testovaný program a ukládat, porovnávat a obnovovat stavy tohoto programu. Díky těmto vlastnostem je používaný jako tzv. \textit{model checker}, ale lze v~něm také nadefinovat dynamické analyzátory. Podobné nástroje jako JPF jsou například \textit{Bandera} nebo \textit{CBMC}, který byl původně vyvinut pro C/C++, ale rozšířen o~podporu jazyka Java.
+
+Dalším nástrojem je projket \textit{IBM ConTest} \cite{cite:IBM} sloužící pro instrumentaci a dynamickou analýzu Java programů. Tento nástroj je velmi podobný dalšímu nástroji \textit{RoadRuner} \cite{cite:rr} (viz. kapitola \ref{roadrunner}), který lze rovněž využít pro instrumentaci a dynamickou analýzu. V~neposlední řadě existuje nástroj \textit{Java Race Detector \& Healer}\footnote{Nástroj dostupný na adrese \url{http://www.fit.vutbr.cz/research/groups/verifit/tools/racedetect/}} vyvinutý výzkumnou skupinou VeriFIT, který slouží pro detekci časově závislých chyb. Tento projekt využívá pro instrumentaci programu zmíněný IBM ConTest.
+
+Jak bylo vysvětleno v~kapitole \ref{dynamic-analysis}, tak dynamická analýza nedokáže odhalit všechny chyby během jednoho běhu, a proto je nutné ji spouštět opakovaně. Pro tento účel slouží nástroj \textit{SearchBestie} \cite{cite:sb}, který byl opět vyvinut výzkumnou skupinou VeriFIT. SearchBestie společně s~nástrojem RoadRunner jsou využívány v~další části této práce a proto budou nyní popsány detailněji.
+
+\section{SearchBestie}\label{searchbestie}
+Platforma \textit{SearchBestie} \cite{cite:sb} je platforma určená pro hledání optimálních testů a jejich spouštění napsaná v~jazyce Java. Využívá techniky prohledávání stavového prostoru, jež tvoří kombinace parametrů, se kterými jsou jednotlivé testy spouštěny. Lze ji mimo jiné použít pro nalezení optimálních testů při testování vícevláknových aplikací, což je právě předmětem této práce. SearchBestie nejprve využívala nástroj IBMContest, který byl později nahrazen nástrojem RoadRunner (viz. \ref{roadrunner}). Jejím úkolem je hledat optimální parametry a s~nimi spouštět testování programu právě prostřednictvím nástroje RoadRunner. SearchBestie se skládá z~následujících modulů: %\cite{•}:%idealni dkumentaci
+
+\begin{itemize}
+\item \textit{Manager} -- řídí celý proces a nabízí pomocné funkcionality.
+\item \textit{Search} -- modul vybírá kombinaci parametrů a test, který má být v~příštím kroku vykonán.
+\item \textit{Executor} -- vykonává testy s~vybranými parametry a sbírá výsledky.
+\item \textit{Storage} -- ukládá výsledky testů.
+\item \textit{Analysis} -- analyzuje výsledky uložené modulem \textit{Storage}.
+\end{itemize}
+
+SearchBestie na vstupu přijímá konfigurační soubor, ve kterém jsou definovány mimo jiné parametry testování. Kombinace těchto parametrů vytváří stavový prostor možných testů. Možné parametry pro testování vícevláknových programů jsou:
+\begin{itemize}
+\item \textit{síla šumu},
+\item \textit{frekvence šumu},
+\item \textit{typ testu}.
+\end{itemize}
+
+Při dynamické analýze bude typ testu pořád stejný a tak stavový prostor bude obsahovat kombinace různé síly a frekvence šumu. Na základě těchto parametrů vkládá RoadRunner šum do testovaného programu. Samotné dynamické analyzátory tak nebudou vytvořeny v~platformě SearchBestie, nýbrž v~projektu RoadRunner, který je opakovaně volán ze SearchBestie. Součástí řešení ovšem musí být tzv. \textit{CoverProducer}, který bude zpracovávat výsledky jednotlivých běhů dynamické analýzy a generovat pokrytí daného testu (toto pokrytí ovlivňuje výběr parametrů pro další spuštění testu) \cite{cite:sb,cite:rr}.
+
+\section{RoadRunner}\label{roadrunner}
+\textit{RoadRunner} \cite{cite:rr} je framework navržený pro dynamickou analýzu vícevláknových Java programů, který je také napsán v~jazyce Java.
+\textit{RoadRunner} vkládá instrumentační kód do bytekódu testovaného programu, což umožňuje testovat programy i bez znalosti zdrojových kódů. Vložený instrumentační kód generuje \textit{tok událostí}, které nastávají v~testovaném programu. Těmito událostmi jsou například:
+\begin{itemize}
+\item události synchronizace na zámcích,
+\item přístup k~proměnným,
+\item vytvoření/sloučení vláken,
+\item vstup/výstup do/z metod a další.
+\end{itemize}
+
+Tok události je zpracováván pomocí \textit{nástrojů}, které mohou filtrovat události a je možné je skládat do tzv. \textit{řetězce nástrojů}. Tímto způsobem lze skládat složitější dynamické analyzátory z~jednodušších kroků, kde každý krok je reprezentován jednodušším nástrojem.
+
+%tool-specific udalostni handlery updatují instrumentační stav kazde operace v pozorovanem behu a muzou reportovat chyby
+
+\subsection{Nástroje frameworku RoadRunner}
+Nástroje jsou tedy stavební kameny všech analyzátorů implementovaných v~tomto frameworku. Při vytváření nástrojů je nutné rozšířit třídu obecného nástroje, tedy třídu \texttt{roadrunner.simple.Tool}. Tato třída definuje metody pro zpracování všech událostí (tzv. \textit{handlery událostí}) z~toku událostí. Každá tato metoda má jako parametr objekt reprezentující zachycenou událost. Pokud určitý nástroj nezpracovává události určitého typu, pak tyto události musí přeposlat dalšímu nástroji v~řetězci nástrojů.
+Tabulka \ref{t:rr:tools} obsahuje vybrané nástroje, které již jsou v~tomto frameworku implementovány.
+
+\begin{table}[!htb]
+\label{t:rr:tools}
+\centering
+\label{tab-readrunner}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Název nástroje} & \textbf{Popis}                                                                            \\ \hline
+ThreadLocal             & Filtruje přístup k~lokálním datům.                                                        \\ \hline
+ReadOnly                & Filtruje přístup k~datům určeným pouze pro čtení.                                         \\ \hline
+ProtectingLock          & Filtruje operace nad zámky, které jsou chráněný dalšími zámky.                            \\ \hline
+LockSet                 & Detekuje časově závislé chyby nad daty s~použitím LockSet algoritmu.                      \\ \hline
+EraserWithBarrier       & \begin{tabular}[c]{@{}l@{}}Detekuje časově závislé chyby nad daty s~použitím LockSet algoritmu\\ a analýzy bariér.\end{tabular}     \\ \hline
+HappensBefore           & \begin{tabular}[c]{@{}l@{}}Detekuje časově závislé chyby nad daty s~použitím algoritmu\\ VectorClock.\end{tabular}                  \\ \hline
+DJIT+                   & \begin{tabular}[c]{@{}l@{}}Detekuje časově závislé chyby nad daty s~použitím optimalizovaného\\ algoritmu VectorClock.\end{tabular} \\ \hline
+MultiRace               & \begin{tabular}[c]{@{}l@{}}Detekuje časově závislé chyby nad daty s~použitím hybridní\\ LockSet/VectorClock analýzy.\end{tabular}   \\ \hline
+Goldilocks              & \begin{tabular}[c]{@{}l@{}}Detekuje časově závislé chyby nad daty s~použitím rozšířeného LockSet\\ algorimu.\end{tabular}           \\ \hline
+FastTrack               & Detekuje časově závislé chyby nad daty s~použitím FastTrack algoritmu.                    \\ \hline
+\end{tabular}
+\caption{Tabulka obsahující vybrané implementované nástroje v~projektu RoadRunner \cite{cite:sb}}
+\end{table}
+
+%dopsat tool ktery vklada tool a vraci vysledek search bestie
+
+%RoadRunner dále umožňuje vytvářet a přiřazovat pomocné \textit{stavy} ke každému vláknu, objektu zámku a lokaci v paměti. Do těchto stavů mohou nástroje ukládat data důležitá pro konkrétní analýzu.
+Pro každý objekt \textit{Thread}, který využívá JVM pro reprezentaci vláken, vytváří \textit{Roadrunner} objekty typy \textit{ShadowThread}, které jim přiřadí\footnote{Objekt \textit{ShadowThread} obsahuje referenci na originální objekt \textit{Thread}}. Stejným způsobem vytváří také objekty \textit{ShadowLock} pro každý objekt použitý jako zámek a objekt typu \textit{ShadowVar} pro každou lokaci v~paměti. Poslední jmenovaný objekt je uložen v~tzv. \textit{shadow location}, která koresponduje s~každou lokací v~paměti. Zmíněné objekty pak mohou být využity pro uložení specifických informací důležitých pro konkrétní nástroj.
+%Tento přístup ovšem vede ke špatně čitelnému kódu a proto se v toolu nachazi Decoration class
+%Decorations jsou pouzite jak ohash mapa, ale klicem je samotna trida decoration (kvuli vyssi rychlosti) je pak rychlejsi get a set. value je pak taky trida decoration.
+Každý nástroj implementovaný v~\textit{RoadRunneru} by měl splňovat následující podmínky \cite{cite:rr}:
+\begin{enumerate}
+\item Každý handler události musí vyvolat stejný handler v~dalším nástroji v~řetězci.
+\item Pro identifikaci, který nástroj vlastní \textit{shadow location}, musí nástroj obsahovat \textit{shadow objekt} typu $T$ a dále může ukládat do \textit{shadow location} pouze objekty tohoto typu $T$.
+\item Metoda \texttt{makeShadowVar}\footnote{Metoda \texttt{makeShadowVar} je zavolána při prvním přístupu do paměti na danou lokaci. Tj. při prvním přístupu k~proměnné.} každého nástroje musí vracet objekt typu $T$.
+\item{Pokud je vyvolán \texttt{access} handler, tj. handler přístupu do paměti a \textit{shadow location} je vlastněna tímto nástrojem, tj. \textit{shadow location} obsahuje objekt typu $T$, pak nástroj musí provést jednu z~následujících možností:
+	\begin{itemize}
+	\item Udržet vlastnictví paměťového místa tím, že uloží/ponechá objekt typu $T$ v~\textit{shadow location}.
+	\item{Vzdá se vlastnictví paměťového místa pomocí metody \texttt{advance}, která nahradí \textit{shadow location} objektem typu $T_1$, kde $T_1$ značí typ \textit{shadow} objektu následujícího nástroje. \textit{Shadow location} už nikdy nesmí obsahovat objekt typu $T$.}
+	\end{itemize}
+}
+\item Pokud je vyvolán \texttt{access} handler a paměťové místo není vlastněno tímto nástrojem, pak musí nástroj zavolat \texttt{access} handler následujícího nástroje.
+\end{enumerate}
+
+Body 4. a 5. říkají, že \textit{shadow location} každého paměťového místa může modifikovat pouze nástroj, který je jeho aktuálním vlastníkem.
+
+Pro společné použití se \textit{SearchBestie} je v~\textit{RoadRunneru} implementován nástroj \texttt{NoiseGenerator}, který vkládá šum dle předaných parametrů a také nástroj \texttt{RRPlugin}, který navrací výsledek jednoho běhu testu zpět do \textit{SearchBestie}. Navrácení směřuje do modulu \textit{Executor} zmíněném v~kapitole \ref{searchbestie}.
+
+
+%\subsection{Race Detector & Healer}
+%Strucne popsat, ale pouziva IBM contest, takze se neda pouzit?
+\chapter{Dynamické analyzátory}\label{dynamic-analysators}
+
+Dynamické analyzátory jsou programy provádějící dynamickou analýzu, přičemž každý z~nich je zaměřen na hledání určitého typu chyb. Typickým problémem je hledání časově závislých chyb nad daty. Analyzátorů, které hledají tento typ chyb je hned celá řada. Nejjednodušším z~nich je algoritmus \textit{Eraser}, který zkoumá program s~pomocí množin zámků držených jednotlivými vlákny, přičemž princip tohoto algoritmu dále rozšiřuje další analyzátor \textit{Goldilocks}. Dalšími analyzátory jsou například \textit{DJIT+} nebo \textit{FastTrack}, které hledají chyby za pomoci vektorového času. Příkladem dynamického analyzátoru, který hledá jiný typ chyby může být analyzátor kontraktů. Právě tento analyzátor společně s~analyzátorem \textit{FastTrack} bude dále více popsán \cite{cite:ft,cite:eraser,cite:contract1}.
+
+\section{FastTrack}\label{fasttrack}
+
+\subsection{Popis analyzátoru}
+
+\textit{FastTrack} \cite{cite:ft} analyzátor patří do skupiny \textit{precizních}\footnote{Dynamický analyzátor je precizní, pokud splňuje vlastnost \textit{precise} (viz. kapitola \ref{dynamic-analysis})} analyzátorů a je určen pro odhalování časově závislých chyb nad daty. Využívá adaptivní reprezentaci relace Happens before, díky které dokáže významně zvýšit svou rychlost oproti jiným precizním analyzátorům, jako jsou například BasicVC nebo DJIT+. Běžné precizní dynamické analyzátory ukládají pro každé vlákno vektorový čas posledního zápisu do každé proměnné $x$. Vektorový čas je $n$-tice čísel, kde $n$ je počet vláken (viz. kapitola \ref{logic-time}). Všechny operace nad vektorovým časem mají tudíž složitost $O(n)$. Oproti tomu FastTrack může ukládat pouze informaci o~posledním zápisu do každé proměnné $x$ napříč všemi vlákny, a to v~případě, že všechny zápisy do proměnné $x$ jsou uspořádané relací Happens before. Tato informace, nazývaná \textit{epocha}, se skládá z~času posledního zápisu a identifikátoru vlákna, ve kterém zápis proběhl. Veškeré operace nad touto epochou je následně možné provést v~konstantním čase $O(1)$. Stejně jako pro zápis ukládá FastTrack informaci pouze o~posledním čtení každé proměnné $x$, pokud jsou opět všechny předchozí čtení uspořádány pomocí relace Happens before. Pokud nastane případ, kdy některé čtení nebo zápisy nejsou touto relací uspořádány, FastTrack ukládá informaci o~časech vykonání těchto operací pomocí vektorových hodin \cite{cite:ft}.
+
+Protože nutnost ukládat plný vektorový čas je pouze v~minimálním množství situací, dokáže FastTrack díky použití epoch snížit režii spojenou s~analýzou z~$O(n)$ až na $O(1)$. Jak bylo popsáno výše, FastTrack analyzátor ukládá informace o~posledním zápisu pomocí epochy. Vlákna ovšem pro reprezentaci logického času používají vektorový čas a proto je nutné tyto dvě formy umět porovnat. \textit{Epocha} je definována jako dvojice $c@t$, kde $c$ je logický čas vlákna $t$ a platí, že tato epocha předchází vektorový čas $V$ (označováno jako $c@t \preceq V$) v~relaci Happens before, jestliže platí $c\leq V(t)$ \cite{cite:ft}. 
+
+Analyzátor rozlišuje následující 3 typy situací, které mohou nastat při přístupu ke sdílené proměnné \cite{cite:ft}:
+\begin{itemize}
+\item čtení s~následným zápisem,
+\item zápis s~následným čtením,
+\item zápis následující dalším zápisem.
+\end{itemize}
+
+\subsection{Zápis následovaný čtením nebo zápisem}
+
+Detekování dvou konkurentních zápisů je pomocí porovnání epochy s~vektorovým časem jednoduché. Pokud označíme epochu posledního zápisu do proměnné $x$ jako $W_x$, pak ve chvíli následujícího zápisu do této proměnné v~čase $V$ stačí porovnat tento vektorový čas s~epochou $W_x$. Stejným způsobem lze také rozhodnout, zda mohlo dojít k~časově závislé chybě nad daty při zápisu následovaném čtením. Ve chvílí čtení proměnné $x$ v~čase $V$, se opět porovná tento vektorový čas s~epochou posledního zápisu $W_x$, tedy zda platí: $W_x \preceq V$. Pokud tato rovnost platí, pak nedošlo k~časově závislé chybě nad daty \cite{cite:ft}.
+
+\subsection{Čtení následované zápisem}
+
+Detekování možného souběžného přístupu při čtení s~následované zápisem není v~analyzátoru FastTrack tak jednoduché, jako předchozí dva případy. Důvodem je to, že jednotlivá čtení libovolné proměnné $x$ nemusejí být totálně uspořádána, jako tomu je u~zápisu\footnote{Pokud dojde k~porušení totálního uspořádání u~zápisu, pak byla nalezena časově závislá chyba nad daty.}. Pokud nastane případ, že některá čtení nejsou totálně uspořádána, pak je nutné uchovat celý vektorový čas tohoto čtení. Tento případ může nastat pouze v~případě, že je proměnná $x$ sdílena a čtení není chráněno zámkem. V~ostatních případech postačí uchování epochy. To zda došlo k~souběžnému přístupu lze opět určit podobně jako v~předchozích případech, ale může nastat stav, kdy budou porovnávány dva vektorové časy, konkrétně $R_x$ (čas posledního čtení proměnné $x$) a aktuální čas zápisu $V$. V~tomto případě bude porovnání časově nejnáročnější, nicméně k~této situaci dochází pouze velmi zřídka \cite{cite:ft}.
+
+
+\section{Analyzátor kontraktů}
+
+\subsection{Definice základního kontraktu}\label{contract-basic}
+
+\textit{Kontrakt} \cite{cite:contract0} byl původně definován jako sekvence příkazů s~definovanými podmínkami. Pokud je sekvence vykonána bez splnění těchto podmínek, dochází k~porušení tohoto kontraktu. \textit{Kontrakt pro souběžnost} \cite{cite:contract01} je oproti tomu protokol přístupu veřejných služeb modulu (tj. veřejných metod). Každý modul může mít definován vlastní kontrakt, který obsahuje množinu sekvencí služeb (metod). Podmínkou splnění kontraktu je atomické vykonání těchto sekvencí, pokud jsou vykonávány nad stejným objektem.
+
+Pro další popis je nutné zavést následující značení, které vychází z~článků \cite{cite:contract1} a \cite{cite:contract2}. Nechť je množina jmen veřejných metod modulu označena jako $\Sigma_M$, dále kontrakt jako množina klauzulí $R$, kde každá klauzule $\varrho \in R$ je regulární výraz nad $\Sigma_M$. K~porušení kontraktu dojde, pokud sekvence reprezentovaná kontraktem není provedena atomicky nad stejným objektem $o$, tj. sekvence kontraktu je proložena alespoň jednou metodou z~množiny $\Sigma_M$.
+
+Příkladem kontraktu (označme jej $\varrho_1$) může být sekvence metod \texttt{indefOf} a \texttt{get} nad objektem typu \textit{seznam}. Pokud by tato sekvence byla proložena například metodou \texttt{add}, která by vložila prvek na první místo seznamu, pak by index hledaného prvku vrácený metodou \texttt{indexOf} již nebyl platný a následné použití metody \texttt{get} by vrátilo jiný prvek seznamu. Tento kontrakt lze zapsat jako: $$\varrho_1: \texttt{indefOf} \quad \texttt{get}.$$
+
+
+%toto presunout na konec dalsi subsekce?
+%Porušení kontraktu lze odhalit pomocí statické nebo dynamické analýzy. %\textit{Statická analýza} se snaží formálně dokázat, že nemůže dojít k žádnému porušení kontraktu. Statická analýza tímto způsobem může odhalit všechny porušení kontraktu, nicméně na druhé straně může produkovat false alarmy, protože nemá přesné informace o konkretních objektech. Oproti tomu \textit{Dynamická analýza} neprodukuje false alarmy, protože má přesné informace o objektech, nad kterými dochází k volání metod z kontraktů. Na druhou stranu dynamická analýza nemusí odhalit všechny porušení kontraktu a to ty, které se nestaly v daném proložení a ani je nelze odvodit z tohoto proložení a dalších informací nashromážděných během běhu programu. Pokud se ovšem dynamická analýza použije společně s metodou \textit{vkládání šumu}, pak se množina neodhalených kontraktů minimalizuje.
+
+%%%%%% vlozeno %%%%%
+\subsection{Rozšíření kontraktu}\label{contract_def_ext}
+
+Rozšíření publikované v~\cite{cite:contract2} vychází z~předchozí definice kontraktů, přičemž spojuje kontrolu atomicity sekvencí kontraktů s~definicí metod, které tuto sekvenci nesmí porušit. Znamená to tedy, že sekvence metod musí být atomická pouze s~ohledem na proložení pouze určenou množinu metod. Dalším rozšířením je přidáním parametrů do jednotlivých metod. 
+
+Uvažujme nejprve \textit{rozšíření kontraktů o~parametry}. Pokud se znovu zaměříme na příklad kontraktu $\varrho_1$, pak je viditelné, že porušení kontraktu způsobí chybu pouze v~případě, kdy je návratová hodnota metody \texttt{indefOf} použita jako parametr metody \texttt{get}. Tento kontrakt s~rozšířením o~parametry lze zapsat jako:
+$$\varrho_1^\prime: X = \texttt{indefOf(\_)} \quad \texttt{get(X)}.$$
+
+Dále uvažujme \textit{rozšíření o~kontextové informace} (tj. rozšíření o~metody, které nesmí sekvenci kontraktu porušit). Uvažujme opět příklad kontraktu $\varrho_1$ a základní definicí kontraktu. Tato definice říká, že sekvence kontraktu nesmí být proložena žádnou metodou z~množiny veřejných metod modulu $\Sigma_M$. Uvažujme tedy například metody \texttt{indexOf} a \texttt{remove} z~množiny $\Sigma_M$. Pokud bude sekvence kontraktu $\varrho_1$ proložena voláním metody \texttt{indexOf}, pak k~žádné chybě nedojde. Pokud ovšem bude proložena voláním metody \texttt{remove}, pak k~chybě může dojít. Toto rozšíření tedy umožňuje definovat množinu sekvencí metod (sekvence těchto metod bude dále označována jako \textit{spoiler}), vůči kterým musí být sekvence kontraktu (dále označovaná jako \textit{target}) provedena atomicky \cite{cite:contract2}.
+
+Nechť je tedy $\mathbb{R}$ množina všech \textit{targetů}, kde každý target $\varrho \in \mathbb{R}$ je regulární výraz nad množinou $\Sigma_M$. Nechť $\mathbb{S}$ je množina \textit{spoilerů}, kde každý spoiler $\sigma \in \mathbb{S}$ je regulární výraz nad $\Sigma_M$. Dále označme abecedu všech targetů jako $\Sigma_R \subseteq \Sigma_M$ a všech spoilerů jako $\Sigma_S \subseteq \Sigma_M$. Pak \textit{kontrakt} je definován jako relace $\mathbb{C} \subseteq \mathbb{R} \times \mathbb{S}$, kde pro každý target je definována množina spoilerů, které mohou vyvolat porušení atomicity.
+
+K~porušení kontraktu dojde, pokud je nějaká sekvence prováděných metod $r$, odpovídající targetu $\varrho \in \mathbb{R}$ vykonána nad objektem $o$, plně proložena celou sekvencí metod $s$, odpovídající nějakému spoileru $\sigma \in \mathbb{C}(\varrho)$, která je vykonána nad stejným objektem $o$. Sekvence targetu $r$ je plně proložena sekvencí spoileru $s$ pokud začátek vykonávání $r$ začíná před začátkem vykonávání $s$~a~současně konec vykonávání $s$ předchází konec vykonávání $r$. \cite{cite:contract2}
+
+V~další části této práce budou uvažovány obě tyto rozšíření, přičemž značení kontraktu bude například pro výše zmiňovaný příklad následující:
+$$\varrho_1^{\prime\prime}: X = \texttt{indefOf(\_)} \quad \texttt{get(X)} \leftsquigarrow \texttt{remove(\_)}$$.
+
+Kontrakty lze detekovat jak na základě statické analýzy, tak na základě dynamické analýzy. Vzhledem k~tématu této práce zde bude popsána pouze dynamická analýza, která byla navržena jak pomocí LockSet algoritmu, tak pomocí relace Happens before. Tato dynamická analýza byla také implementována v~projektu ANaConDA, která zkoumá paralelní programy psané v~jazyce C/C++.
+
+
+\subsection{Dynamická analýza založena na LockSet algoritmu}
+
+Prvním možným způsobem detekce kontraktů pomocí dynamické analýzy je analýza založená na množině zámků držených jednotlivými vlákny (\textit{LockSet-based}), jejíž typickým představitelem je algoritmus Eraser. Díky tomuto typu dynamické analýzy je možné rozšířit proložení, které se událo, a tím nalézt porušení kontraktu, které se přímo nestaly. Tento způsob byl představen v~\cite{cite:contract1} a dokáže pracovat pouze ze základní definicí kontraktu.
+
+V~této analýze je nejdříve nutné detekovat kontrakty, které se vyskytují ve vykonávaném programu. Tohoto je dosaženo pomocí konečných automatů, kde pro každou sekvenci každého kontraktu je vytvořen odpovídající konečný automat. Každé vlákno obsahuje množinu instancí těchto automatů, kde instance odpovídá aktuálním nedokončeným sekvencím kontraktů, které se nachází v~aktuálním stavu programu. Pokud je zavolána metoda $m \in \varrho_M$, pak je nad každou instancí automatu proveden pokus o~postup do dalšího stavu pomocí této metody $m$ (tento krok je označován jako \textit{advance}). Pokud je nový stav automatu stavem konečným, pak je detekován výskyt sekvence kontraktu. Pokud je metoda $m$ metodou, kterou začíná některá sekvence kontraktu, pak je vytvořena nová instance kontraktu \cite{cite:contract1}.
+
+Pokud je sekvence kontraktu detekována, je nutné ověřit, zda byla prováděna atomicky. Pomocí informací o~zámcích, držených jednotlivými vlákny během provádění kontraktu, lze detekovat, zda byla celá sekvence chráněna alespoň jedním zámkem. Pokud byla chráněna alespoň jedním zámkem, pak je pravděpodobné, že byla provedena atomicky. Pravděpodobné to je proto, že může nastat případ, kdy tomu tak nebude. Konkretně se jedná o~situaci, kdy dojde k~proložení dvou sekvencí kontraktu nad stejným objektem ve dvou různých vláknech a obě tyto sekvence budou chráněny zámkem, ale tento zámek bude odlišný. Pokud nastane tento případ, mohou být sekvence prováděny souběžně, a tím dojde k~porušení kontraktu. Tato situace je diskutována v~článku \cite{cite:contract1} a jako řešení je navržena dynamická analýza založena na relaci Happens before.
+
+
+\subsection{Dynamická analýza založena na relaci Happens before}\label{contract-hb}
+
+Dynamická analýza založena na relaci Happens before, představena v~článku \cite{cite:contract2}, je navržena pro rozšířenou definici kontraktu s~kontextovými informacemi. Tato analýza využívá Happens before relaci (viz. \ref{happens-before}), kde jako komunikace mezi vlákny jsou uvažovány operace \texttt{acquire} a \texttt{release} nad stejnými zámky a operace \texttt{fork} a \texttt{join}. Tato analýza umožňuje detekci porušení kontraktů za běhu díky technice nazvané \textit{trace window}. Tento koncept umožňuje neuchovávat celou sekvenci všech provedených metod, nýbrž pouze podmnožiny této sekvence (dále označováno jako \textit{okno běhu}), která se postupně pohybuje v~průběhu vykonávání programu. Cílem tohoto konceptu je uchovávat okno o~co nejmenším počtu naposled vykonaných metod.
+% Definuje 3 podmínky kdy se jedná o instanci targetu
+Události se přidávají do okna běhu $v$~v~momentě, kdy se vyskytnou, a odebírají, pokud již nejsou potřeba. Odebírání je definováno tak, že všechny události z~určité instance targetu (spoileru) se mohou odebrat, pokud již nepatří do žádné jiné aktuálně sledované instance targetu nebo spoileru. Velikost okna tak závisí pouze na počtu instancí targetů a~spoilerů, nikoli na délce běhu programu. Aby bylo možné odstraňovat z~tohoto okna události, je nutné odstraňovat nepotřebné instance targetů a spoilerů. Pro odstraňování těchto instancí jsou definovány následující pravidla \cite{cite:contract2}: 
+
+\begin{itemize}
+\item Odstranění instance spoileru $s$ je bezpečné, pokud porušení kontraktu, které může být odhaleno pomocí instance $s$, lze také odhalit bez této instance $s$.
+%Toto pravidlo je formálně popsáno \textit{Lemmou 1} v citovanem dokumentu
+\item Pro každé vlákno a každý spoiler je nutné uchovávat pouze poslední instanci spoileru. %Lemma 2
+\item Pokud existují dvě instance $r_1$, $r_2$ targetu $\varrho \in \mathbb{R}$ takové, že $end(r_1) \rightarrow_{hb} start(r_2)$, pak je bezpečné odstranit instanci $r_1$, pokud $s$ začíná až za \textit{oknem běhu} nebo pokud $start(s) \rightarrow_{hb} start(r_1)$.%Lemma 3
+\item Pokud existují dvě instance $r_1$, $r_2$ targetu $\varrho \in \mathbb{R}$ takové, že $end(r_1) \rightarrow_{hb} start(r_2)$. Nechť $s$ je instance spoileru $\sigma \in \mathbb{S}$, kde $(\varrho, \sigma) \in \mathbb{C}$, pak je bezpečné odstranit instanci $r_1$ s~ohledem na $s$~pokud platí že $start(s) \in v \wedge end(s) \notin v$ a zároveň $start(s) \centernot\rightarrow_{hb} start(r_2)$. %Lemma 4
+\item Obecně platí, pro každý target $\varrho \in \mathbb{R}$ je uchováno $|T| + 1$ instancí, kde $T$ značí množinu běžících vláken v~\textit{okně běhu}. Pro každé vlákno musí být uchována jedna instance a také 1 navíc pro vlákno, které může být potencionálně vytvořeno.
+\end{itemize}
+
+\chapter{Návrh dynamických analyzátorů pro SearchBestie}
+
+Tato kapitola obsahuje popis návrhu dynamického analyzátoru kontraktů, který byl vybrán společně s~analyzátorem FastTrack dle požadavků výzkumné skupiny VeriFIT. Jak již bylo zmíněno v~kapitole \ref{searchbestie} a \ref{roadrunner}, tak dynamické analyzátory jsou implementovány jako nástroje v~projektu RoadRunner. Vzhledem k~tomu, že při studiu nástroje RoadRunner, bylo zjištěno, že FastTrack je již v~tomto frameworku implementovaný, bude zde popsán pouze návrh analyzátoru kontraktů. Nicméně studium implementace analyzátoru FastTrack bylo užitečné s~ohledem na návrh implementace analyzátoru kontraktů.
+
+\section{Analyzátor kontraktů}
+
+Analyzátor kontraktů, popsaný v~kapitole \ref{contract_def_ext}, bude implementovat rozšířenou definici kontraktu. Analyzátor bude implementován jako nástroj v~projektu RoadRunner, tj. hlavní třída \texttt{ContractTool} tohoto analyzátoru bude rozšiřovat třídu \texttt{Tool} nástroje \textit{RoadRunner}. Dynamický analyzátor bude redefinovat zejména následující metody:
+\begin{itemize}
+\item \texttt{create(...)}, \texttt{preJoin(...)} -- metody odchytávající události vytvoření a ukončení vlákna,
+\item \texttt{acquire(...)}, \texttt{release(...)} -- metody odchytávající události přístupu k~zámkům,
+\item \texttt{access(...)}, \texttt{volatileAccess(...)} -- metody odchytávající události přístupu k~paměti, 
+\item \texttt{enter(...)}, \texttt{exit(...)} -- metody odchytávající události vstupu a výstupu do/z metod.
+\end{itemize} 
+
+Dále bude tento dynamický analyzátor ukládat a využívat informace v~\textit{shadow} objektech. Do objektu \texttt{ShadowThread} bude přidáno pole obsahující sekvenci posledních vykonaných metod daným vláknem a v~objektu \texttt{ShadowVar}, uloženém v~\textit{shadow location} každého místa v~paměti, budou uloženy všechny instance targetů a spoilerů kontraktu, definovaném pro objekt uložený na tomto paměťovém místě. Instance targetů a spoilerů jednotlivých kontraktů musí podporovat metody s~parametry (a návratovou hodnotou) a proto objekty \texttt{Contract} (reprezentující zadaný kontrakt) a \texttt{Instance} (reprezentující instance targetů) budou mít níže popsanou strukturu.
+
+Struktura objektu \texttt{Contract} bude obsahovat následující parametry:
+%udelt jako tabulku
+\begin{itemize}
+\item \texttt{objectType} -- typ objektu, nad kterým je definován kontrakt,
+\item \texttt{target} -- sekvence metod targetu,
+\item \texttt{spoilers} -- seznam sekvencí metod spoilerů.
+\end{itemize}
+
+Struktura objektu \texttt{Instance} bude obsahovat následující parametry:
+\begin{itemize}
+\item \texttt{pattern} -- odkaz na target/spoiler, jehož je tento objekt instancí,
+\item \texttt{methodSequence} -- sekvence metod targetu/spoileru, které již byly zpozorovány,
+\item \texttt{position} -- pozice v~targetu/spoileru,
+\item \texttt{parameters} -- mapa parametrů v~metodách. Klíčem je definovaný název v~kontraktu a hodnotou dosazená hodnota při výskytu události.
+\end{itemize}
+
+Ve výše zmíněných objektech se vyskytují seznamy metod. Každá tato metoda bude reprezentována třídou \texttt{method}, která bude obsahovat mimo jiné názvy parametrů, které jsou uvedeny při definici kontraktu a které poté budou vytvářet klíče v~mapě \texttt{parameters} v~instancích targetů a~spoilerů.
+
+V~dynamickém analyzátoru budou využívány hlavně metody \texttt{enter(...)} a \texttt{exit(...)}. V~první jmenované metodě bude zjištěno, na jakém objektu byla metoda vykonána a bude provedena operace \textit{advance} na všech instancích targetu a spoilerů uložených v~\textit{shadow location} daného objektu. V~metodě \texttt{exit(...)} bude testováno, zda mezi instancemi targetů a spoilerů nedošlo, nebo nemohlo dojít, k~porušení kontraktu podle pravidel definovaných v~kapitole \ref{contract-hb}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\chapter{Úvod -- VZOR}
+% Abychom mohli napsat odborný text jasně a~srozumitelně, musíme splnit několik základních předpokladů:
+% \begin{itemize}
+% \item Musíme mít co říci,
+% \item musíme vědět, komu to chceme říci,
+% \item musíme si dokonale promyslet obsah,
+% \item musíme psát strukturovaně. 
+% \end{itemize}
+
+% Tyto a další pokyny jsou dostupné též na školních internetových stránkách \cite{fitWeb}.
+
+% Přehled základů typografie a tvorby dokumentů s využitím systému \LaTeX je 
+% uveden v~\cite{Rybicka}.
+
+% \section{Musíme mít co říci}
+% Dalším důležitým předpokladem dobrého psaní je {\it psát pro někoho}. Píšeme-li si poznámky sami pro sebe, píšeme je jinak než výzkumnou zprávu, článek, diplomovou práci, knihu nebo dopis. Podle předpokládaného čtenáře se rozhodneme pro způsob psaní, rozsah informace a~míru detailů.
+
+% \section{Musíme vědět, komu to chceme říci}
+% Dalším důležitým předpokladem dobrého psaní je psát pro někoho. Píšeme-li si poznámky sami pro sebe, píšeme je jinak než výzkumnou zprávu, článek, diplomovou práci, knihu nebo dopis. Podle předpokládaného čtenáře se rozhodneme pro způsob psaní, rozsah informace a~míru detailů.
+
+% \section{Musíme si dokonale promyslet obsah}
+% Musíme si dokonale promyslet a~sestavit obsah sdělení a~vytvořit pořadí, v~jakém chceme čtenáři své myšlenky prezentovat. 
+% Jakmile víme, co chceme říci a~komu, musíme si rozvrhnout látku. Ideální je takové rozvržení, které tvoří logicky přesný a~psychologicky stravitelný celek, ve kterém je pro všechno místo a~jehož jednotlivé části do sebe přesně zapadají. Jsou jasné všechny souvislosti a~je zřejmé, co kam patří.
+
+% Abychom tohoto cíle dosáhli, musíme pečlivě organizovat látku. Rozhodneme, co budou hlavní kapitoly, co podkapitoly a~jaké jsou mezi nimi vztahy. Diagramem takové organizace je graf, který je velmi podobný stromu, ale ne řetězci. Při organizaci látky je stejně důležitá otázka, co do osnovy zahrnout, jako otázka, co z~ní vypustit. Příliš mnoho podrobností může čtenáře právě tak odradit jako žádné detaily.
+
+% Výsledkem této etapy je osnova textu, kterou tvoří sled hlavních myšlenek a~mezi ně zařazené detaily.
+
+% \section{Musíme psát strukturovaně} 
+% Musíme začít psát strukturovaně a~současně pracujeme na co nejsrozumitelnější formě, včetně dobrého slohu a~dokonalého značení. 
+% Máme-li tedy myšlenku, představu o~budoucím čtenáři, cíl a~osnovu textu, můžeme začít psát. Při psaní prvního konceptu se snažíme zaznamenat všechny své myšlenky a~názory vztahující se k~jednotlivým kapitolám a~podkapitolám. Každou myšlenku musíme vysvětlit, popsat a~prokázat. Hlavní myšlenku má vždy vyjadřovat hlavní věta a~nikoliv věta vedlejší.
+
+% I k~procesu psaní textu přistupujeme strukturovaně. Současně s~tím, jak si ujasňujeme strukturu písemné práce, vytváříme kostru textu, kterou postupně doplňujeme. Využíváme ty prostředky DTP programu, které podporují strukturovanou stavbu textu (předdefinované typy pro nadpisy a~bloky textu). 
+
+
+% \chapter{Několik formálních pravidel}
+% Naším cílem je vytvořit jasný a~srozumitelný text. Vyjadřujeme se proto přesně, píšeme dobrou češtinou (nebo zpravidla angličtinou) a~dobrým slohem podle obecně přijatých zvyklostí. Text má upravit čtenáři cestu k~rychlému pochopení problému, předvídat jeho obtíže a~předcházet jim. Dobrý sloh předpokládá bezvadnou gramatiku, správnou interpunkci a~vhodnou volbu slov. Snažíme se, aby náš text nepůsobil příliš jednotvárně používáním malého výběru slov a~tím, že některá zvlášť oblíbená slova používáme příliš často. Pokud používáme cizích slov, je samozřejmým předpokladem, že známe jejich přesný význam. Ale i~českých slov musíme používat ve správném smyslu. Např. platí jistá pravidla při používání slova {\it zřejmě}. Je {\it zřejmé} opravdu zřejmé? A~přesvědčili jsme se, zda to, co je {\it zřejmé} opravdu platí? Pozor bychom si měli dát i~na příliš časté používání zvratného se. Například obratu {\it dokázalo se}, že... zásadně nepoužíváme. Není špatné používat autorského {\it my}, tím předpokládáme, že něco řešíme, nebo například zobecňujeme spolu se čtenářem. V~kvalifikačních pracích použijeme autorského {\it já} (například když vymezujeme podíl vlastní práce vůči převzatému textu), ale v~běžném textu se nadměrné používání první osoby jednotného čísla nedoporučuje.
+
+% Za pečlivý výběr stojí i~symbolika, kterou používáme ke {\it značení}. Máme tím na mysli volbu zkratek a~symbolů používaných například pro vyjádření typů součástek, pro označení hlavních činností programu, pro pojmenování ovládacích kláves na klávesnici, pro pojmenování proměnných v~matematických formulích a~podobně. Výstižné a~důsledné značení může čtenáři při četbě textu velmi pomoci. Je vhodné uvést seznam značení na začátku textu. Nejen ve značení, ale i~v~odkazech a~v~celkové tiskové úpravě je důležitá důslednost.
+
+% S tím souvisí i~pojem z~typografie nazývaný {\it vyznačování}. Zde máme na mysli způsob sazby textu pro jeho zvýraznění. Pro zvolené značení by měl být zvolen i~způsob vyznačování v~textu. Tak například klávesy mohou být umístěny do obdélníčku, identifikátory ze zdrojového textu mohou být vypisovány {\tt písmem typu psací stroj} a~podobně.
+
+% Uvádíme-li některá fakta, neskrýváme jejich původ a~náš vztah k~nim. Když něco tvrdíme, vždycky výslovně uvedeme, co z~toho bylo dokázáno, co teprve bude dokázáno v~našem textu a~co přebíráme z~literatury s~uvedením odkazu na příslušný zdroj. V~tomto směru nenecháváme čtenáře nikdy na pochybách, zda jde o~myšlenku naši nebo převzatou z~literatury.
+
+% Nikdy neplýtváme čtenářovým časem výkladem triviálních a~nepodstatných informací. Neuvádíme rovněž několikrát totéž jen jinými slovy. Při pozdějších úpravách textu se nám může některá dříve napsaná pasáž jevit jako zbytečně podrobná nebo dokonce zcela zbytečná. Vypuštění takové pasáže nebo alespoň její zestručnění přispěje k~lepší čitelnosti práce! Tento krok ale vyžaduje odvahu zahodit čas, který jsme jejímu vytvoření věnovali. 
+
+
+% \chapter{Nikdy to nebude naprosto dokonalé}
+% Když jsme už napsali vše, o~čem jsme přemýšleli, uděláme si den nebo dva dny volna a~pak si přečteme sami rukopis znovu. Uděláme ještě poslední úpravy a~skončíme. Jsme si vědomi toho, že vždy zůstane něco nedokončeno, vždy existuje lepší způsob, jak něco vysvětlit, ale každá etapa úprav musí být konečná.
+
+
+% \chapter{Typografické a~jazykové zásady}
+% Při tisku odborného textu typu {\it technická zpráva} (anglicky {\it technical report}), ke kterému patří například i~text kvalifikačních prací, se často volí formát A4 a~často se tiskne pouze po jedné straně papíru. V~takovém případě volte levý okraj všech stránek o~něco větší než pravý -- v~tomto místě budou papíry svázány a~technologie vazby si tento požadavek vynucuje. Při vazbě s~pevným hřbetem by se levý okraj měl dělat o~něco širší pro tlusté svazky, protože se stránky budou hůře rozevírat a~levý okraj se tak bude oku méně odhalovat.
+
+% Horní a~spodní okraj volte stejně veliký, případně potištěnou část posuňte mírně nahoru (horní okraj menší než dolní). Počítejte s~tím, že při vazbě budou okraje mírně oříznuty.
+
+% Pro sazbu na stránku formátu A4 je vhodné používat pro základní text písmo stupně (velikosti) 11 bodů. Volte šířku sazby 15 až 16 centimetrů a~výšku 22 až 23 centimetrů (včetně případných hlaviček a~patiček). Proklad mezi řádky se volí 120 procent stupně použitého základního písma, což je optimální hodnota pro rychlost čtení souvislého textu. V~případě použití systému LaTeX ponecháme implicitní nastavení. Při psaní kvalifikační práce se řiďte příslušnými závaznými požadavky.
+
+% Stupeň písma u~nadpisů různé úrovně volíme podle standardních typografických pravidel. 
+% Pro všechny uvedené druhy nadpisů se obvykle používá polotučné nebo tučné písmo (jednotně buď všude polotučné nebo všude tučné). Proklad se volí tak, aby se následující text běžných odstavců sázel pokud možno na {\it pevný rejstřík}, to znamená jakoby na linky s~předem definovanou a~pevnou roztečí.
+
+% Uspořádání jednotlivých částí textu musí být přehledné a~logické. Je třeba odlišit názvy kapitol a~podkapitol -- píšeme je malými písmeny kromě velkých začátečních písmen. U~jednotlivých odstavců textu odsazujeme první řádek odstavce asi o~jeden až dva čtverčíky (vždy o~stejnou, předem zvolenou hodnotu), tedy přibližně o~dvě šířky velkého písmene M základního textu. Poslední řádek předchozího odstavce a~první řádek následujícího odstavce se v~takovém případě neoddělují svislou mezerou. Proklad mezi těmito řádky je stejný jako proklad mezi řádky uvnitř odstavce.
+
+% Při vkládání obrázků volte jejich rozměry tak, aby nepřesáhly oblast, do které se tiskne text (tj. okraje textu ze všech stran). Pro velké obrázky vyčleňte samostatnou stránku. Obrázky nebo tabulky o~rozměrech větších než A4 umístěte do písemné zprávy formou skládanky všité do přílohy nebo vložené do záložek na zadní desce.
+
+% Obrázky i~tabulky musí být pořadově očíslovány. Číslování se volí buď průběžné v~rámci celého textu, nebo -- což bývá praktičtější -- průběžné v~rámci kapitoly. V~druhém případě se číslo tabulky nebo obrázku skládá z~čísla kapitoly a~čísla obrázku/tabulky v~rámci kapitoly -- čísla jsou oddělena tečkou. Čísla podkapitol nemají na číslování obrázků a~tabulek žádný vliv.
+
+% Tabulky a~obrázky používají své vlastní, nezávislé číselné řady. Z toho vyplývá, že v~odkazech uvnitř textu musíme kromě čísla udat i~informaci o~tom, zda se jedná o~obrázek či tabulku (například ``... {\it viz tabulka 2.7} ...''). Dodržování této zásady je ostatně velmi přirozené.
+
+% Pro odkazy na stránky, na čísla kapitol a~podkapitol, na čísla obrázků a~tabulek a~v~dalších podobných příkladech využíváme speciálních prostředků DTP programu, které zajistí vygenerování správného čísla i~v~případě, že se text posune díky změnám samotného textu nebo díky úpravě parametrů sazby. Příkladem takového prostředku v~systému LaTeX je odkaz na číslo odpovídající umístění značky v~textu, například návěští ($\backslash${\tt ref\{navesti\}} -- podle umístění návěští se bude jednat o~číslo kapitoly, podkapitoly, obrázku, tabulky nebo podobného číslovaného prvku), na stránku, která obsahuje danou značku ($\backslash${\tt pageref\{navesti\}}), nebo na literární odkaz ($\backslash${\tt cite\{identifikator\}}).
+
+% Rovnice, na které se budeme v~textu odvolávat, opatříme pořadovými čísly při pravém okraji příslušného řádku. Tato pořadová čísla se píší v~kulatých závorkách. Číslování rovnic může být průběžné v~textu nebo v~jednotlivých kapitolách.
+
+% Jste-li na pochybách při sazbě matematického textu, snažte se dodržet způsob sazby definovaný systémem LaTeX. Obsahuje-li vaše práce velké množství matematických formulí, doporučujeme dát přednost použití systému LaTeX.
+
+% Mezeru neděláme tam, kde se spojují číslice s~písmeny v~jedno slovo nebo v~jeden znak -- například {\it 25krát}.
+
+% Členicí (interpunkční) znaménka tečka, čárka, středník, dvojtečka, otazník a~vykřičník, jakož i~uzavírací závorky a~uvozovky se přimykají k~předcházejícímu slovu bez mezery. Mezera se dělá až za nimi. To se ovšem netýká desetinné čárky (nebo desetinné tečky). Otevírací závorka a~přední uvozovky se přimykají k~následujícímu slovu a~mezera se vynechává před nimi -- (takto) a~``takto''.
+
+% Pro spojovací a~rozdělovací čárku a~pomlčku nepoužíváme stejný znak. Pro pomlčku je vyhrazen jiný znak (delší). V~systému TeX (LaTeX) se spojovací čárka zapisuje jako jeden znak ``pomlčka'' (například ``Brno-město''), pro sázení textu ve smyslu intervalu nebo dvojic, soupeřů a~podobně se ve zdrojovém textu používá dvojice znaků ``pomlčka'' (například ``zápas Sparta -- Slavie''; ``cena 23--25 korun''), pro výrazné oddělení části věty, pro výrazné oddělení vložené věty, pro vyjádření nevyslovené myšlenky a~v~dalších situacích (viz Pravidla českého pravopisu) se používá nejdelší typ pomlčky, která se ve zdrojovém textu zapisuje jako trojice znaků ``pomlčka'' (například ``Další pojem --- jakkoliv se může zdát nevýznamný --- bude neformálně definován v~následujícím odstavci.''). Při sazbě matematického mínus se při sazbě používá rovněž odlišný znak. V~systému TeX je ve zdrojovém textu zapsán jako normální mínus (tj. znak ``pomlčka''). Sazba v~matematickém prostředí, kdy se vzoreček uzavírá mezi dolary, zajistí vygenerování správného výstupu.
+
+% Lomítko se píše bez mezer. Například školní rok 2008/2009.
+
+% Pravidla pro psaní zkratek jsou uvedena v~Pravidlech českého pravopisu \cite{Pravidla}. I~z~jiných důvodů je vhodné, abyste tuto knihu měli po ruce. 
+
+
+% \section{Co to je normovaná stránka?}
+% Pojem {\it normovaná stránka} se vztahuje k~posuzování objemu práce, nikoliv k~počtu vytištěných listů. Z historického hlediska jde o~počet stránek rukopisu, který se psal psacím strojem na speciální předtištěné formuláře při dodržení průměrné délky řádku 60 znaků a~při 30 řádcích na stránku rukopisu. Vzhledem k~zápisu korekturních značek se používalo řádkování 2 (ob jeden řádek). Tyto údaje (počet znaků na řádek, počet řádků a~proklad mezi nimi) se nijak nevztahují ke konečnému vytištěnému výsledku. Používají se pouze pro posouzení rozsahu. Jednou normovanou stránkou se tedy rozumí 60*30 = 1800 znaků. Obrázky zařazené do textu se započítávají do rozsahu písemné práce odhadem jako množství textu, které by ve výsledném dokumentu potisklo stejně velkou plochu.
+
+% Orientační rozsah práce v~normostranách lze v~programu Microsoft Word zjistit pomocí funkce {\it Počet slov} v~menu {\it Nástroje}, když hodnotu {\it Znaky (včetně mezer)} vydělíte konstantou 1800. Do rozsahu práce se započítává pouze text uvedený v~jádru práce. Části jako abstrakt, klíčová slova, prohlášení, obsah, literatura nebo přílohy se do rozsahu práce nepočítají. Je proto nutné nejdříve označit jádro práce a~teprve pak si nechat spočítat počet znaků. Přibližný rozsah obrázků odhadnete ručně. Podobně lze postupovat i~při použití OpenOffice. Při použití systému LaTeX pro sazbu je situace trochu složitější. Pro hrubý odhad počtu normostran lze využít součet velikostí zdrojových souborů práce podělený konstantou cca 2000 (normálně bychom dělili konstantou 1800, jenže ve zdrojových souborech jsou i~vyznačovací příkazy, které se do rozsahu nepočítají). Pro přesnější odhad lze pak vyextrahovat holý text z~PDF (např. metodou cut-and-paste nebo {\it Save as Text...}) a~jeho velikost podělit konstantou 1800. 
+
+
+% \chapter{Závěr}
+% Závěrečná kapitola obsahuje zhodnocení dosažených výsledků se zvlášť vyznačeným vlastním přínosem studenta. Povinně se zde objeví i zhodnocení z pohledu dalšího vývoje projektu, student uvede náměty vycházející ze zkušeností s řešeným projektem a uvede rovněž návaznosti na právě dokončené projekty.
+
+%=========================================================================
+%@INPROCEEDINGS{cite:contract2,
+%   author = {Carla Ferreira and Jan Fiedor and Joao Lourenco and Aleš Smrčka and Diogo G. Sousa and
+%	Tomáš Vojnar},
+%   title = {\it {Verifying Concurrent Programs Using Contracts}},
+%   booktitle = {Proceedings of ICST Conference},
+%   year = {2017},
+%   location = {Brno University of Technology, CZ},
+%   language = {english}
+%}
