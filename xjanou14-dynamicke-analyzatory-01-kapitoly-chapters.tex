@@ -18,8 +18,16 @@ technologie, se kterymi prichazim do styku; metody v dane oblasti (testovani vic
 1. jak se dela dynamicka analyza v jave\\
 2. popsat co to jsou kontrakty\\
 	+ popis roadrunneru a pouzitych technologii (searchbestie)\\
+Mozna by to chtelo cast nasledujiciho textu presunout do uvodu.
 
-... co to je vícevláknový program ...
+V~dnešní době nalezneme v~běžných počítačích procesory, které mají 2 nebo více jader. Aby jeden paralelní program mohl využívat více těchto jader současně, musí využívat jeden z následujících způsobů. Prvním způsobem je použití více procesů. V~tomto kontextu lze proces chápat jako sekvenčně provádný samostatný program ve vlastním adresovém prostoru. %Nevýhodou tohoto řešení je rychlost přepínání kontextu a rychlost synchronizace mezi procesy. Typickým způsobem komunikace mezi vlákny je \textit{IPC} (Inter Process Communication)
+\cite{cite:IPC, cite:paralel-programming}.
+
+Druhým způsobem je použití \textit{vícevláknového} programu, ve kterém se nachází pouze jeden proces obsahující několik vláken\footnote{V jazyce Java je program chápán jako proces s~vlákny, přestože lze vytvořit i programy, které budou obsahovat více procesů. Nicméně každý proces obsahuje minimálně jedno vlákno \cite{cite:java}.}. V~tomto kontextu proces chápeme jako obálku sady souběžně prováděných vláken v~jednom adresovém prostoru. Přestože použití vláken přináší řadu výhod, jako například vyšší rychlost přepínání kontextu a sdílení prostředků, přináší také problémy v~podobě souběžného přístupu k těmto sdíleným prostředkům. Tento přístup musí být řízen pomocí tzv. \textit{synchronizačních prostředků}, jinak může docházet k chybám způsobených paralelizací. \cite{cite:paralel-programming}. 
+%Rozdíl mezi výše zmíněnými způsoby je znázorněn na obrázku \ref{}.
+%...obrazek...
+
+Základním požadavkem v~dnešních operačních systémech\footnote{Dnešními operačními systémy jsou myšleny multiprogramové operační systémy, kde uživatel požaduje souběžný běh více programů a tedy souběžný běh více procesů a vláken.} je souběžné provádění více programů. Vzhledem k~tomu, že počet procesů a vláken, které mají běžet souběžně, je většinou vyšší než počet fyzických jader počítače, musí být výpočetní čas procesoru rozprostřen mezi všechny tyto procesy a vlákna. Rozprostření výpočetního času zajišťuje \textit{plánovač}, který plánuje přepínání kontextu procesů a vláken. Plánovač je typicky preemptivní\footnote{Při preemptivním plánování může být procesor procesu odebrán bez jeho přičinění (ukončení procesu, zahájení čekání, atd.).} a zohledňuje několik vlastností procesů a vláken, jako je například priorita, čas strávený na procesu, doba čekání nebo paměťové požadavky. Díky plánovači a dalším zdrojům nedeterminismu (obsluha přerušení, blokující operace, atd.) je paralelní provádění programu také nedeterministické, tj. procesy a vlákna mohou být různě \textit{proloženy}. Tento nedeterminismus způsobuje, že chyby vzniklé paralelním prováděním programu se v~jednom běhu mohou vyskytnout, zatímco v~jiném ne. Z~hlediska testování paralelních programů je tedy důležité ověřit, zda se chyba nevyskytuje v žádném možném proložení \cite{cite:OS1}.
 
 
 %Jak to bude vzpadat:
@@ -52,81 +60,13 @@ technologie, se kterymi prichazim do styku; metody v dane oblasti (testovani vic
 %Roadrunner
 %Dynamicke analyzatory - ??Fasttrack??, Analyzator kontraktu
 
-\section{Souběžnost a relace Happens-Before}
-\section{Logický čas}
-\section{Synchronizační nástroje}
-\section{Chyby v synchronizaci}
-... vcetne popisu kontraktu ...
-\section{Metody testování}
-\section{Dynamické analyzátory}
-... obecne o nekolika nastrojich ...
-\subsection{Fastrack}
-\subsection{Analyzátor kontraktů}
-\section{Nástroje pro testování Java programů}
-... obecne o nekolika typickych nastrojich ...
-\subsection{RoadRunner}
-\subsection{SearchBestie}
-
-\chapter{Návrh analyzátoru kontraktů}
-\section{Specifikace požadavků}
-
-[Poznamky z konzultace] S: co presne je mojim cilem udelat, kazda odrazka rika co to ma umet, ma to byt spustitelne v prikazove radce, contract - co to ma umet
-identifikovane odrazky (cislama, viceurovne - ne vic nez tri urovne) - kazda odrazka bude definovat co to ma umet. I z uzivatelskeho hlediska - napriklad ze to ma byt spustitelne z prikazove radky, ma to umet kontrakty (v odrazkach jak presne), dal ma to umet pracovat se search bestie.
-
-\section{Návrh implementace}
-
-[Poznamky z konzultace] Toto musi byt uplna kapitola, bude nejvetsi. Tady popisu kompletni navrh tak, aby to podle toho slo implementovat
-navrh celeho reseni - kazdou cast navrhnu tak jak by se to melo resit
-musi to byt uplne tak aby to nekdo mohl vzit a podle toho to mohl naimplementovat. Narazel by na nejake problemy a o tom bude ta dalsi kapitola.
-do navrhu same diagramy jak architekturalni, tak behavioralni (kdo s kym jak jedna - state chart nebo sequence diagram (je jedno kterym))
-
-\chapter{Implementace}
-
-Psat to "je to vyreseno"
-[Poznamky z konzultace] Implementacni detaily - jak je to vyreseno a problemy ktere vznikly. Strukturalni a behavioralni diagramy
-Co bylo zajimave, co sem jak musel vyresit kdyz nastaly nejake problemy
-
-\chapter{Testování}
-
-[Poznamky z konzultace] Cim vic testu, tim lip - bud kapitola, nebo priloha. Popsat samotny test co co znamena a pak vytvorit reprezentaci jednotlivych testu a ty tam dat. Idealne diagram + kratky popis. Vstupy + vystupy a jak to dopadlo.
-40 nebo i 100 ruznych testu - jak mi zbude cas
-Kdyz toho bude moc, tak to bude priloha, ale musi tam byt to, jak se to cte. Vymyslet reprezentaci jak budou ty testy reprezentovany v dokumentaci. Dat tam diagram a popsat co se tam deje. (co je na vstupu)
-
-\chapter{Závěr}
-
-[Poznamky z konzultace] Dalsi pokracovani v projektu, sebekritiky! (co to neumi, jak by se to melo upravit aby to umelo, kde je slaba stranka, neni to optimalizovane na velke programy atd.), cim vic se priznam, ze neco neni dodelane, tim lip
-Nedostatek je treba, ze se nevypousti ty metody z toho okna.
-
-\chapter{SP: 1. Testování paralelních programů}
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
-!!!! SEMESTRALNI PROJEKT !!!!\\
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
-
-Dříve, než budou popisovány samotné dynamické analyzátory, kterými se tato práce zabývá, je nutné představit testování paralelních programů v~obecnějším pohledu. Tato kapitola se tedy zabývá obecně problematikou paralelních programů, představením základních chyb v~paralelních programech a vysvětlením některých pojmů, které budou důležité pro pochopení dalších částí této práce. Na některých místech budou uvedeny informace související s~jazykem Java, jelikož tento jazyk bude použit pro implementaci vybraných dynamických analyzátorů.
-
-\section{Paralelní program}\label{paralel-program}
-%Uvažujeme vícejádrový procesor...
-V~dnešní době nalezneme v~běžných počítačích procesory, které mají 2 nebo více jader. S~rostoucí popularitou těchto procesorů také roste popularita paralelních programů, které tyto jádra mohou současně využívat. Využívání více jader procesoru (při běhu jednoho paralelního programu) lze dosáhnout dvěma způsoby. Prvním způsobem je vytvořit více procesů. V~tomto kontextu lze proces chápat jako sekvenčně prováděný program ve vlastním adresovém prostoru. Nevýhodou tohoto řešení je rychlost přepínání kontextu a rychlost synchronizace mezi procesy. Typickým způsobem komunikace mezi vlákny je \textit{IPC} (Inter Process Communication) \cite{cite:IPC, cite:paralel-programming}.
-
-Druhý způsob, je použití jednoho procesu obsahujícího několik vláken\footnote{V jazyce Java je program chápán jako proces s~vlákny, přestože lze vytvořit i programy, které budou obsahovat více procesů. Nicméně každý proces obsahuje minimálně jedno vlákno \cite{cite:java}.}. V~tomto kontextu proces chápeme jako sadu souběžně prováděných vláken v~jednom adresovém prostoru a proces je tedy obálkou těchto vláken. Toto řešení přináší několik výhod. Zejména se jedná o~rychlost přepínání kontextu a synchronizace mezi vlákny. Další výhodou je sdílení prostředků (paměť, otevřené soubory, atd.), což je umožněno díky společnému adresovému prostoru vláken stejného procesu. Přestože použití vláken přináší řadu výhod, přináší také problémy, a to právě v~podobě souběžného přístupu ke zmíněným sdíleným prostředkům. Tento přístup musí být řízen pomocí tzv. \textit{synchronizace} \cite{cite:paralel-programming}.
-%Rozdíl mezi výše zmíněnými způsoby je znázorněn na obrázku \ref{}.
-%...obrazek...
-
-Základním požadavkem v~dnešních operačních systémech\footnote{Dnešními operačními systémy jsou myšleny multiprogramové operační systémy, kde uživatel požaduje souběžný běh více programů a tedy souběžný běh více procesů a vláken.} je souběžné provádění více programů. Vzhledem k~tomu, že počet procesů a vláken, které mají běžet souběžně, je většinou vyšší než počet fyzických jader počítače, musí být výpočetní čas procesoru rozprostřen mezi všechny tyto procesy a vlákna. Rozprostření výpočetního času zajišťuje \textit{plánovač}, který plánuje přepínání kontextu procesů a vláken. Plánovač je v~běžných počítačích typicky preemptivní\footnote{Při preemptivním plánování může být procesor procesu odebrán bez jeho přičinění (ukončení procesu, zahájení čekání, atd.).} a zohledňuje několik vlastností procesů a vláken, jako je například priorita, čas strávený na procesu, doba čekání, paměťové požadavky, atd. Díky plánovači a dalším zdrojům nedeterminismu (obsluha přerušení, blokující operace, atd.) je paralelní provádění programu také nedeterministické, tj. procesy a vlákna jsou různě \textit{proloženy}. Tento nedeterminismus způsobuje, že chyby vzniklé paralelním prováděním programu se v~jednom běhu mohou vyskytnout, zatímco v~jiném ne. Z~hlediska testování paralelních programů je tedy důležité najít takové proložení, při kterém se daná chyba vyskytne \cite{cite:OS1}. 
-
-%DAL PSAT O VLAKNECH.
-%V dalším textu bude uvažováno použití jednoho procesu s více vlákny, protože právě tento způsob je nebezpečný z hlediska souběžného přístupu vláken ke sdíleným prostředkům.  
-
 \section{Souběžnost a relace Happens before}\label{happens-before}
 
-V~paralelním programu je důležité určit pořadí jednotlivých událostí napříč procesy a vlákny. Protože výpočet jednotlivých procesů a vláken probíhá asynchronně, musí být zaveden způsob, jak pořadí těchto událostí určit. Vztah mezi dvěma událostmi, které se provedly ve stejném nebo různém procesu (vlákně) se nazývá \textit{relace kauzálního uspořádání} nebo taky relace \textit{Happens before} \cite{cite:HB}. Relace Happens before byla představena Lesliem Lamportem pro prostředí distribuovaných systémů, a~proto zde bude uvedena v~tomto obecnějším kontextu. Nicméně tato relace platí jak pro uspořádání událostí napříč vlákny, tak i procesy. V~této kapitole tedy budou uvažovány procesy a~vlákna za totožné. Následující vysvětlení této relace vychází ze zdrojů \cite{cite:HB,cite:PDI}.
+V~paralelním programu je důležité určit pořadí jednotlivých událostí napříč procesy (vlákny). Protože výpočet jednotlivých procesů a vláken probíhá asynchronně, musí být zaveden způsob, jak pořadí těchto událostí určit. Vztah mezi dvěma událostmi, které se provedly ve stejném nebo různém procesu (vlákně) se nazývá \textit{relace kauzálního uspořádání} nebo taky relace \textit{Happens before} \cite{cite:HB}. Relace Happens before byla představena Lesliem Lamportem pro prostředí distribuovaných systémů, a~proto zde bude uvedena v~tomto obecnějším kontextu. Nicméně tato relace platí jak pro uspořádání událostí napříč vlákny, tak i procesy. V~této kapitole tedy budou uvažovány procesy a~vlákna za totožné. Následující vysvětlení této relace vychází ze zdrojů \cite{cite:HB,cite:PDI}.
 
 %cite http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf
 
-Paralelní program se skládá z~množiny $n$ asynchronních procesů ${p_1, p_2, ..., p_n}$. Procesy spolu navzájem mohou komunikovat pouze pomocí zasílání zpráv\footnote{Pod zasílám zpráv je možné si představit také komunikaci pomocí sdílené paměti, přístupu k~zámkům, atd. Pro jednoduchost bude veškerá tato komunikace zobecněna jako zasílání zpráv mezi procesy.}. Dále platí, že procesy nemohou sdílet svůj \textit{globální čas\footnote{Globání čas procesu je pohled daného procesu na globální čas v~paralelním programu. Každý proces může mít ve stejnou chvíli jiný pohled na globální čas.}} a výpočet procesů, včetně zasílání zpráv, probíhá asynchronně (předpokládejme, že každý proces běží na vlastním. Zprávu zaslanou procesem $p_i$ procesu $p_j$ označme jako $m_{ij}$. Vykonávání procesu se skládá ze sekvence atomických událostí. Události mohou být tří typů \cite{cite:PDI}:
+Paralelní program se skládá z~množiny $n$ asynchronních procesů ${p_1, p_2, ..., p_n}$. Procesy spolu navzájem mohou komunikovat pouze pomocí zasílání zpráv\footnote{Pod zasílám zpráv je možné si představit také komunikaci pomocí sdílené paměti, přístupu k~zámkům, atd. Pro jednoduchost bude veškerá tato komunikace zobecněna jako zasílání zpráv mezi procesy.}. Dále platí, že procesy nemohou sdílet svůj \textit{globální čas\footnote{Globání čas procesu je pohled daného procesu na celkový čas (tj. čas všech procesů) v~paralelním programu. Každý proces může mít ve stejnou chvíli jiný pohled na celkový čas.}} a výpočet procesů, včetně zasílání zpráv, probíhá asynchronně (předpokládejme, že každý proces běží na vlastním. Zprávu zaslanou procesem $p_i$ procesu $p_j$ označme jako $m_{ij}$. Vykonávání procesu se skládá ze sekvence atomických událostí. Události mohou být tří typů \cite{cite:PDI}:
 
 \begin{itemize}
 \item interní akce -- mění vnitřní stav procesu,
@@ -161,7 +101,7 @@ $$
 Posledním možným vztahem dvou událostí je \textit{souběžnost} (concurrency). Dvě události jsou souběžné, pokud platí \cite{cite:PDI}:
 $$e_i \centernot\rightarrow e_j \wedge e_i \centernot\rightarrow e_j.$$
 
-Tento vztah se značí jako $e_i \parallel e_j$. Z~hlediska odhalování chyb v~paralelních programech je tento vztah nejdůležitější. Pokud jsou dvě události souběžné (tj. konkurentní), pak nelze říci, která událost proběhne dříve. Může se stát, že při jednom spuštění bude nejprve provedena událost $e_i$ a~poté událost $e_j$, ale při jiném spuštění bude jejich pořadí opačné. Pokud budeme uvažovat reálný příklad, pak je tento problém například v~souběžném zápisu více vláken do jedné sdílené proměnné (viz. kapitola \ref{chyby}). 
+Tento vztah se značí jako $e_i \parallel e_j$. Z~hlediska odhalování chyb v~paralelních programech je tento vztah nejdůležitější. Pokud jsou dvě události souběžné (tj. konkurentní), pak nelze říci, která událost proběhne dříve. Může se stát, že při jednom spuštění bude nejprve provedena událost $e_i$ a~poté událost $e_j$, ale při jiném spuštění bude jejich pořadí opačné. Pokud budeme uvažovat reálný příklad, pak je tento problém například v~souběžném zápisu více vláken do jedné sdílené proměnné (viz kapitola \ref{chyby}). 
 
 \section{Logický čas}\label{logic-time}
 
@@ -285,27 +225,29 @@ void run() {			void run() {
 
 Poslední zde uvedenou chybou je \textit{porušení kontraktu} \cite{cite:contract0}. Kontrakt je sekvence veřejných metod objektu, která musí být vykonána atomicky, s~ohledem na ostatní veřejné metody stejného objektu. Problematika kontraktů je dále rozebírána v~kapitole \ref{contract-basic}.
 
-\chapter{Metody testování paralelních programů}
+... vcetne popisu kontraktu ... vice popsat
 
+
+\section{Metody testování}
 V~předchozí kapitole byla vysvětlena problematika paralelních programů a chyb, které se v~nich mohou vyskytovat. V~této kapitole proto budou popsány metody testování, pomocí kterých lze chyby v~paralelních programech odhalit. Největší důraz zde bude kladen na \textit{dynamickou analýzu} a~metodu \textit{vkládání šumu}, neboť tyto dvě metody souvisí s~dalšími částmi této práce.
 
-\section{Statická analýza}
+\subsection{Statická analýza}
 
 \textit{Statická analýza} zkoumá software bez jeho spouštění. Tato metoda je například používána pro hledání syntaktických chyb a je typicky spouštěna před překladem. Nicméně i tuto metodu je možné využít pro testování paralelních programů. Nevýhodou této analýzy je produkování velkého množství \textit{false alarmů}\footnote{\textit{False alarm} je varování, že se může vyskytnout chyba, přestože ve skutečnosti nikdy vzniknout nemůže.}, neboť statická analýza nemá k~dispozici informace o~konkrétních instancích objektů. Existují ovšem metody založené na provádění testovaného softwaru, které se tento problém snaží odstranit. Jednou z~nich je následující metoda \textit{dynamické analýzy} \cite{cite:advances}.
 
-\section{Dynamická analýza}\label{dynamic-analysis}
+\subsection{Dynamická analýza}\label{dynamic-analysis}
 
-\textit{Dynamická analýza} zkoumá software na základě jeho provádění, během kterého shromažďuje informace o~jeho běhu (události a jejich uspořádání, stavy zámků, vláken, paměťových míst, atd.). Kromě hlášení chyb, které v~daném běhu nastaly se dynamická analýza snaží extrapolovat nasbírané informace a odhalit chyby, které nenastaly. Přesto dynamická analýza nedokáže odhalit všechny chyby, ale pouze ty, které lze odvodit z~běhů, kterých byla svědkem. Z~tohoto důvodů bývá tato analýza spouštěna opakovaně a kombinována například s~metodou \textit{stochastického vkládání šumu} nebo \textit{deterministického testování}. Díky těmto metodám je zvyšován počet testovaných proložení programu, a tím i pravděpodobnost nalezení konkurentních chyb. Samotná analýza zatěžuje systém, což má podobný efekt jako vkládání šumu. Tento jev se označuje jako \textit{noise effect} a je třeba s~ním při analýze počítat. Dynamická analýza je většinou zaměřena pouze na určitý typ chyb a v~takovém případě sbírá pouze informace související s~tímto typem. U~různých typů dynamické analýzy se rozlišují dvě vlastnosti \textit{sound} a \textit{precise}. Pokud dynamická analýza splňuje první vlastnost, pak nemůže přehlédnout chybu. Pokud splňuje druhou vlastnost, pak neprodukuje false alarmy. Nicméně platí, že dynamická analýza nemusí splňovat ani jednu z~nich, tj. může přehlížet chyby a zároveň může produkovat false alarmy. Programy provádějící dynamickou analýzu se nazývají \textit{dynamické analyzátory} (viz. kapitola \ref{dynamic-analysators}) a jejich příkladem jsou: \textit{Eraser}, \textit{GoldiLocks}, \textit{FastTrack} nebo \textit{DJIT+} \cite{cite:advances,cite:eraser,cite:ft,cite:rr}.
+\textit{Dynamická analýza} zkoumá software na základě jeho provádění, během kterého shromažďuje informace o~jeho běhu (události a jejich uspořádání, stavy zámků, vláken, paměťových míst, atd.). Kromě hlášení chyb, které v~daném běhu nastaly se dynamická analýza snaží extrapolovat nasbírané informace a odhalit chyby, které nenastaly. Přesto dynamická analýza nedokáže odhalit všechny chyby, ale pouze ty, které lze odvodit z~běhů, kterých byla svědkem. Z~tohoto důvodů bývá tato analýza spouštěna opakovaně a kombinována například s~metodou \textit{stochastického vkládání šumu} nebo \textit{deterministického testování}. Díky těmto metodám je zvyšován počet testovaných proložení programu, a tím i pravděpodobnost nalezení konkurentních chyb. Samotná analýza zatěžuje systém, což má podobný efekt jako vkládání šumu. Tento jev se označuje jako \textit{noise effect} a je třeba s~ním při analýze počítat. Dynamická analýza je většinou zaměřena pouze na určitý typ chyb a v~takovém případě sbírá pouze informace související s~tímto typem. U~různých typů dynamické analýzy se rozlišují dvě vlastnosti \textit{sound} a \textit{precise}. Pokud dynamická analýza splňuje první vlastnost, pak nemůže přehlédnout chybu. Pokud splňuje druhou vlastnost, pak neprodukuje false alarmy. Nicméně platí, že dynamická analýza nemusí splňovat ani jednu z~nich, tj. může přehlížet chyby a zároveň může produkovat false alarmy. Programy provádějící dynamickou analýzu se nazývají \textit{dynamické analyzátory} (viz kapitola \ref{dynamic-analysators}) a jejich příkladem jsou: \textit{Eraser}, \textit{GoldiLocks}, \textit{FastTrack} nebo \textit{DJIT+} \cite{cite:advances,cite:eraser,cite:ft,cite:rr}.
 
-\section{Deterministické testování}
+\subsection{Deterministické testování}
 
 Deterministické testovaní je metoda založená na opakovaném provádění testovaného softwaru, přičemž má plnou kontrolu nad jeho prováděním. K~tomuto účelu je použitý \textit{deterministický plánovač}, který je implementován například pomocí vkládání silného šumu. Cílem je otestovat co nejvíce možných proložení vláken. V~každém kroku provádění softwaru analyzátor zkoumá, jaké možnosti v~plánování mohou nastat a ty ukládá do stavového prostoru testovacích scénářů. Při dalších bězích se provádí další scénáře z~tohoto stavového prostoru, které se opět dále větví. Z~tohoto důvodu jsou zavedeny některé heuristiky, které omezují velikost stavového prostoru. Stavový prostor všech možných scénářů je příliš velký a u~větších programů by testování trvalo příliš dlouho. Často se tak využívá například testování, kdy plánovač nechává běžet vždy pouze jedno vlákno a ostatní nechává pozastavené, nebo je například omezen maximální počet přepnutí kontextu. Případ, kde se testují všechny proložení se nazývá \textit{full model checking} \cite{cite:advances}.
 
-\section{Zátěžové testování}
+\subsection{Zátěžové testování}
 
 \textit{Zátěžové testování} je založeno na principu vytvoření nejhoršího možného prostředí, ve kterém aplikace může běžet. V~souvislosti s~hledáním konkurentních chyb je to vytvoření velkého množství vláken, které budou navzájem soupeřit o~sdílené zdroje. Tímto přístupem mohou být odhaleny některé chyby, ale s~největší pravděpodobností se bude jednat o~chyby častěji se vyskytující. Vzhledem tomu, že proložení prováděné testovaným softwarem jsou náhodné, může toto testování způsobovat opakované provádění již prozkoumaných proložení, přestože existují jiné proložení, které otestovány nebyly. Další nevýhodou je značné zatížení jak testovaného softwaru, tak prostředí, kde testování běží \cite{cite:advances}.
 
-\section{Vkládání šumu}
+\subsection{Vkládání šumu}
 
 Tento typ testování vkládá šumu (\textit{noise}) \cite{cite:sum} do prováděného kódu, který opožďuje vlákna a tak může dojít k~proložení, které by jinak nastalo pouze velmi výjimečně. Stejně tak mohou být odhaleny chyby souběžného přístupu dvou instrukcí, které jsou v~kódu dostatečně daleko od sebe a za normálních okolností by nebylo prakticky možné, aby se vykonaly souběžně. Tato chyba může být odhalena vložením dostatečné \textit{silného}\footnote{\textit{Silným} šum pozastaví provádění vlákna na delší dobu.} šumu do jednoho z~vláken. Pomocí metody vkládání šumu může být prozkoumáno velké množství scénářů v~relativně krátké době. Náhodné vkládání šumu nemusí být příliš efektivní, protože může docházet k~vkládání na místa, které nijak neovlivňují proložení vláken a šum by tak pouze zatěžoval systém. Lepších výsledků je dosaženo v~případě použití některé heuristiky, která určuje vkládání šumu pouze na specifická místa v~kódu (\textit{noise seeding problem}) \cite{cite:advances}. Stejně důležitým faktorem, jako je umístění šumu, je i vkládání vhodného typu šumu (\textit{noise seeding problem}). Typ je dán sílou šumu a operací, která šum představuje \cite{cite:advances}.
 
@@ -316,43 +258,22 @@ V~programovacím jazyce Java lze použít například funkce \cite{cite:javad}:
 \item \texttt{wait()} -- jako \texttt{sleep()} s~rozdílem, že vlákno čeká na objektu \textit{monitoru}.
 \end{itemize}
 
-
-\chapter{Nástroje pro testování paralelních programů}
+\section{Nástroje pro testování Java programů}
 % model checker  Edmund M. Clarke; Orna Grumberg and Doron A. Peled (2000) "Model Checking", MIT Press, ISBN 0-262-03270-8 - pro model checker
 
 Pro testování paralelních programů v~jazyce Java existuje celá řada programů, a proto zde budou představeny především ty, jež souvisejí s~dynamickou analýzou, která je předmětem této práce. Jedním z~nejznámějších je \textit{Java Pathfinder} (JPF) \cite{cite:jpf}, který byl vyvinut v~\textit{NASA Ames Research Center}. JPF dokáže vykonávat testovaný program a ukládat, porovnávat a obnovovat stavy tohoto programu. Díky těmto vlastnostem je používaný jako tzv. \textit{model checker}, ale lze v~něm také nadefinovat dynamické analyzátory. Podobné nástroje jako JPF jsou například \textit{Bandera} nebo \textit{CBMC}, který byl původně vyvinut pro C/C++, ale rozšířen o~podporu jazyka Java.
 
-Dalším nástrojem je projket \textit{IBM ConTest} \cite{cite:IBM} sloužící pro instrumentaci a dynamickou analýzu Java programů. Tento nástroj je velmi podobný dalšímu nástroji \textit{RoadRuner} \cite{cite:rr} (viz. kapitola \ref{roadrunner}), který lze rovněž využít pro instrumentaci a dynamickou analýzu. V~neposlední řadě existuje nástroj \textit{Java Race Detector \& Healer}\footnote{Nástroj dostupný na adrese \url{http://www.fit.vutbr.cz/research/groups/verifit/tools/racedetect/}} vyvinutý výzkumnou skupinou VeriFIT, který slouží pro detekci časově závislých chyb. Tento projekt využívá pro instrumentaci programu zmíněný IBM ConTest.
+Dalším nástrojem je projket \textit{IBM ConTest} \cite{cite:IBM} sloužící pro instrumentaci a dynamickou analýzu Java programů. Tento nástroj je velmi podobný dalšímu nástroji \textit{RoadRuner} \cite{cite:rr} (viz kapitola \ref{roadrunner}), který lze rovněž využít pro instrumentaci a dynamickou analýzu. V~neposlední řadě existuje nástroj \textit{Java Race Detector \& Healer}\footnote{Nástroj dostupný na adrese \url{http://www.fit.vutbr.cz/research/groups/verifit/tools/racedetect/}} vyvinutý výzkumnou skupinou VeriFIT, který slouží pro detekci časově závislých chyb. Tento projekt využívá pro instrumentaci programu zmíněný IBM ConTest.
 
 Jak bylo vysvětleno v~kapitole \ref{dynamic-analysis}, tak dynamická analýza nedokáže odhalit všechny chyby během jednoho běhu, a proto je nutné ji spouštět opakovaně. Pro tento účel slouží nástroj \textit{SearchBestie} \cite{cite:sb}, který byl opět vyvinut výzkumnou skupinou VeriFIT. SearchBestie společně s~nástrojem RoadRunner jsou využívány v~další části této práce a proto budou nyní popsány detailněji.
 
-\section{SearchBestie}\label{searchbestie}
-Platforma \textit{SearchBestie} \cite{cite:sb} je platforma určená pro hledání optimálních testů a jejich spouštění napsaná v~jazyce Java. Využívá techniky prohledávání stavového prostoru, jež tvoří kombinace parametrů, se kterými jsou jednotlivé testy spouštěny. Lze ji mimo jiné použít pro nalezení optimálních testů při testování vícevláknových aplikací, což je právě předmětem této práce. SearchBestie nejprve využívala nástroj IBMContest, který byl později nahrazen nástrojem RoadRunner (viz. \ref{roadrunner}). Jejím úkolem je hledat optimální parametry a s~nimi spouštět testování programu právě prostřednictvím nástroje RoadRunner. SearchBestie se skládá z~následujících modulů: %\cite{•}:%idealni dkumentaci
-
-\begin{itemize}
-\item \textit{Manager} -- řídí celý proces a nabízí pomocné funkcionality.
-\item \textit{Search} -- modul vybírá kombinaci parametrů a test, který má být v~příštím kroku vykonán.
-\item \textit{Executor} -- vykonává testy s~vybranými parametry a sbírá výsledky.
-\item \textit{Storage} -- ukládá výsledky testů.
-\item \textit{Analysis} -- analyzuje výsledky uložené modulem \textit{Storage}.
-\end{itemize}
-
-SearchBestie na vstupu přijímá konfigurační soubor, ve kterém jsou definovány mimo jiné parametry testování. Kombinace těchto parametrů vytváří stavový prostor možných testů. Možné parametry pro testování vícevláknových programů jsou:
-\begin{itemize}
-\item \textit{síla šumu},
-\item \textit{frekvence šumu},
-\item \textit{typ testu}.
-\end{itemize}
-
-Při dynamické analýze bude typ testu pořád stejný a tak stavový prostor bude obsahovat kombinace různé síly a frekvence šumu. Na základě těchto parametrů vkládá RoadRunner šum do testovaného programu. Samotné dynamické analyzátory tak nebudou vytvořeny v~platformě SearchBestie, nýbrž v~projektu RoadRunner, který je opakovaně volán ze SearchBestie. Součástí řešení ovšem musí být tzv. \textit{CoverProducer}, který bude zpracovávat výsledky jednotlivých běhů dynamické analýzy a generovat pokrytí daného testu (toto pokrytí ovlivňuje výběr parametrů pro další spuštění testu) \cite{cite:sb,cite:rr}.
-
-\section{RoadRunner}\label{roadrunner}
+\subsection{RoadRunner}\label{roadrunner}
 \textit{RoadRunner} \cite{cite:rr} je framework navržený pro dynamickou analýzu vícevláknových Java programů, který je také napsán v~jazyce Java.
 \textit{RoadRunner} vkládá instrumentační kód do bytekódu testovaného programu, což umožňuje testovat programy i bez znalosti zdrojových kódů. Vložený instrumentační kód generuje \textit{tok událostí}, které nastávají v~testovaném programu. Těmito událostmi jsou například:
 \begin{itemize}
 \item události synchronizace na zámcích,
 \item přístup k~proměnným,
-\item vytvoření/sloučení vláken,
+\item vytvoření/ukončení vláken,
 \item vstup/výstup do/z metod a další.
 \end{itemize}
 
@@ -360,7 +281,7 @@ Tok události je zpracováván pomocí \textit{nástrojů}, které mohou filtrov
 
 %tool-specific udalostni handlery updatují instrumentační stav kazde operace v pozorovanem behu a muzou reportovat chyby
 
-\subsection{Nástroje frameworku RoadRunner}
+%\subsection{Nástroje frameworku RoadRunner}
 Nástroje jsou tedy stavební kameny všech analyzátorů implementovaných v~tomto frameworku. Při vytváření nástrojů je nutné rozšířit třídu obecného nástroje, tedy třídu \texttt{roadrunner.simple.Tool}. Tato třída definuje metody pro zpracování všech událostí (tzv. \textit{handlery událostí}) z~toku událostí. Každá tato metoda má jako parametr objekt reprezentující zachycenou událost. Pokud určitý nástroj nezpracovává události určitého typu, pak tyto události musí přeposlat dalšímu nástroji v~řetězci nástrojů.
 Tabulka \ref{t:rr:tools} obsahuje vybrané nástroje, které již jsou v~tomto frameworku implementovány.
 
@@ -407,11 +328,51 @@ Každý nástroj implementovaný v~\textit{RoadRunneru} by měl splňovat násle
 
 Body 4. a 5. říkají, že \textit{shadow location} každého paměťového místa může modifikovat pouze nástroj, který je jeho aktuálním vlastníkem.
 
-Pro společné použití se \textit{SearchBestie} je v~\textit{RoadRunneru} implementován nástroj \texttt{NoiseGenerator}, který vkládá šum dle předaných parametrů a také nástroj \texttt{RRPlugin}, který navrací výsledek jednoho běhu testu zpět do \textit{SearchBestie}. Navrácení směřuje do modulu \textit{Executor} zmíněném v~kapitole \ref{searchbestie}.
+\subsection{SearchBestie}\label{searchbestie}
+Platforma \textit{SearchBestie} \cite{cite:sb} je platforma určená pro hledání optimálních testů a jejich spouštění napsaná v~jazyce Java. Využívá techniky prohledávání stavového prostoru, jež tvoří kombinace parametrů, se kterými jsou jednotlivé testy spouštěny. Lze ji mimo jiné použít pro nalezení optimálních testů při testování vícevláknových aplikací, čehož bude využito v této práci. SearchBestie nejprve využívala pro instrumentaci programů nástroj IBMContest, který byl později nahrazen nástrojem RoadRunner (viz \ref{roadrunner}). Jejím úkolem je hledat optimální parametry a s~nimi spouštět testování programu právě prostřednictvím nástroje RoadRunner. SearchBestie se skládá z~následujících modulů: %\cite{•}:%idealni dkumentaci
+
+\begin{itemize}
+\item \textit{Manager} -- řídí celý proces a nabízí pomocné funkcionality.
+\item \textit{Search} -- modul vybírá kombinaci parametrů a test, který má být v~příštím kroku vykonán.
+\item \textit{Executor} -- vykonává testy s~vybranými parametry a sbírá výsledky.
+\item \textit{Storage} -- ukládá výsledky testů.
+\item \textit{Analysis} -- analyzuje výsledky uložené modulem \textit{Storage}.
+\end{itemize}
+
+SearchBestie na vstupu přijímá konfigurační soubor, ve kterém jsou definovány mimo jiné parametry ovlivňující vkládání šumu. Kombinace těchto parametrů vytváří stavový prostor možných konfigurací testů, který SearchBestie postupně prochází. Tyto parametry jsou:
+
+\begin{itemize}
+\item \textit{NoiseFreqency} -- udávající sílu šumu.
+\item \textit{NoiseStrength} -- udávající frekvenci šumu.
+\item \textit{NoiseType} -- udávající typ vkládaného šumu.
+\end{itemize}
+
+Na základě jednotlivých konfigurací (tj. stavů) ve stavovém prostoru vkládá RoadRunner šum do testovaného programu a tím ovlivňuje možné proložení vláken.
+
+Ve vstupním souboru lze také definovat další parametry, mezi které patří:
+
+\begin{itemize}
+\item \textit{Searcheng} -- definuje, jakým způsobem se bude prohledávat stavový prostor.
+\item \textit{Executor} -- v tomto elementu se nachází nastavení pro modul \textit{Executor}. Je zde možné například nastavit maximální počet spuštění testů.
+\item \textit{Fitness} -- definuje výpočet fitness funkce.
+\item \textit{Javatest} -- tento element definuje jaký typ testu bude spuštěn a nastavení tohoto testu. Vzhledem k použití RoadRunneru se jedná o \textit{RoadRunnerTest} a nastavení všech parametrů, které jsou potřebné pro jeho spuštění. 
+\end{itemize}
+
+\subsection{Propojení SearchBestie a frameworku Roadrunner}\label{propojeni-sb-rr}
+
+Jak bylo zmíněno v předchozí kapitole, SearchBestie je nástroj určený pro hledání optimálních parametrů testů a jejich spouštění. Samotné testy jsou tedy prováděny samostatným nástrojem, kterým je v tomto případě RoadRunner. SearchBestie následně sbírá výsledky z těchto testů a na jejich základě vytváří stavový prostor. Pro propojení je důležitá zejména třída \textit{RRPlugin} v RoadRunneru, která musí být použita jako první nástroj v řetězci nástrojů. Tato třída obsahuje tzv. \textit{CoverProucery}, které zaznamenávají informace o chybách, vyskytujících se v testovaném programu. Při ukončení testu CoverProducery zapíší všechny nasbírané informace o chybách do výstupních souborů, které jsou následně načteny v Searchbestie a jejich obsah je dále zpracován. Každý takový CoverProducer může zaznamenávat různé informace a ty musejí být zpracovány různým způsobem. Z toho důvodu musí existovat odpovídající tzv. \textit{ResultItemCreator}, který dokáže tyto výsledky zpracovat.
+
+V diagramu ref{komunikace-obecna} je znázorněna zjednodušená vzájemná komunikace mezi těmito komponentami. SearchBestie nejprve spustí RoadRunner s patřičnými parametry pomocí metody \textit{performTest}. Následně RoadRunner spustí RRPlugin a další nástroje (včetně nástroje \textit{Tool}), zadané v parametrech. RRPlugin pro každý další nástroj vytvoří patřičný CoverProducer. Jakmile dojde k chybě, která byla detekována některým nástrojem (Tool), pak tento nástroj reportuje chybu odpovídajícímu CoverProduceru. Na konci testování jsou ukončovány jednotlivé nástroje a v této chvíli dá RRPlugin pokyn všem CoverProducerům, aby zapsaly všechny nasbírané informace do výstupního souboru. Jakmile SearchBestie dostane informaci o ukončení RoadRunneru, načte a zpracuje informace z výstupních souborů jednotlivých CoverProducerů.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/komunikace-v-systemu-obecna.pdf}
+    \caption{Komunikace v systému.}
+    \label{komunikace-obecna}
+\end{figure}
 
 
-%\subsection{Race Detector & Healer}
-%Strucne popsat, ale pouziva IBM contest, takze se neda pouzit?
+
 \chapter{Dynamické analyzátory}\label{dynamic-analysators}
 
 Dynamické analyzátory jsou programy provádějící dynamickou analýzu, přičemž každý z~nich je zaměřen na hledání určitého typu chyb. Typickým problémem je hledání časově závislých chyb nad daty. Analyzátorů, které hledají tento typ chyb je hned celá řada. Nejjednodušším z~nich je algoritmus \textit{Eraser}, který zkoumá program s~pomocí množin zámků držených jednotlivými vlákny, přičemž princip tohoto algoritmu dále rozšiřuje další analyzátor \textit{Goldilocks}. Dalšími analyzátory jsou například \textit{DJIT+} nebo \textit{FastTrack}, které hledají chyby za pomoci vektorového času. Příkladem dynamického analyzátoru, který hledá jiný typ chyby může být analyzátor kontraktů. Právě tento analyzátor společně s~analyzátorem \textit{FastTrack} bude dále více popsán \cite{cite:ft,cite:eraser,cite:contract1}.
@@ -420,7 +381,7 @@ Dynamické analyzátory jsou programy provádějící dynamickou analýzu, při�
 
 \subsection{Popis analyzátoru}
 
-\textit{FastTrack} \cite{cite:ft} analyzátor patří do skupiny \textit{precizních}\footnote{Dynamický analyzátor je precizní, pokud splňuje vlastnost \textit{precise} (viz. kapitola \ref{dynamic-analysis})} analyzátorů a je určen pro odhalování časově závislých chyb nad daty. Využívá adaptivní reprezentaci relace Happens before, díky které dokáže významně zvýšit svou rychlost oproti jiným precizním analyzátorům, jako jsou například BasicVC nebo DJIT+. Běžné precizní dynamické analyzátory ukládají pro každé vlákno vektorový čas posledního zápisu do každé proměnné $x$. Vektorový čas je $n$-tice čísel, kde $n$ je počet vláken (viz. kapitola \ref{logic-time}). Všechny operace nad vektorovým časem mají tudíž složitost $O(n)$. Oproti tomu FastTrack může ukládat pouze informaci o~posledním zápisu do každé proměnné $x$ napříč všemi vlákny, a to v~případě, že všechny zápisy do proměnné $x$ jsou uspořádané relací Happens before. Tato informace, nazývaná \textit{epocha}, se skládá z~času posledního zápisu a identifikátoru vlákna, ve kterém zápis proběhl. Veškeré operace nad touto epochou je následně možné provést v~konstantním čase $O(1)$. Stejně jako pro zápis ukládá FastTrack informaci pouze o~posledním čtení každé proměnné $x$, pokud jsou opět všechny předchozí čtení uspořádány pomocí relace Happens before. Pokud nastane případ, kdy některé čtení nebo zápisy nejsou touto relací uspořádány, FastTrack ukládá informaci o~časech vykonání těchto operací pomocí vektorových hodin \cite{cite:ft}.
+\textit{FastTrack} \cite{cite:ft} analyzátor patří do skupiny \textit{precizních}\footnote{Dynamický analyzátor je precizní, pokud splňuje vlastnost \textit{precise} (viz kapitola \ref{dynamic-analysis})} analyzátorů a je určen pro odhalování časově závislých chyb nad daty. Využívá adaptivní reprezentaci relace Happens before, díky které dokáže významně zvýšit svou rychlost oproti jiným precizním analyzátorům, jako jsou například BasicVC nebo DJIT+. Běžné precizní dynamické analyzátory ukládají pro každé vlákno vektorový čas posledního zápisu do každé proměnné $x$. Vektorový čas je $n$-tice čísel, kde $n$ je počet vláken (viz kapitola \ref{logic-time}). Všechny operace nad vektorovým časem mají tudíž složitost $O(n)$. Oproti tomu FastTrack může ukládat pouze informaci o~posledním zápisu do každé proměnné $x$ napříč všemi vlákny, a to v~případě, že všechny zápisy do proměnné $x$ jsou uspořádané relací Happens before. Tato informace, nazývaná \textit{epocha}, se skládá z~času posledního zápisu a identifikátoru vlákna, ve kterém zápis proběhl. Veškeré operace nad touto epochou je následně možné provést v~konstantním čase $O(1)$. Stejně jako pro zápis ukládá FastTrack informaci pouze o~posledním čtení každé proměnné $x$, pokud jsou opět všechny předchozí čtení uspořádány pomocí relace Happens before. Pokud nastane případ, kdy některé čtení nebo zápisy nejsou touto relací uspořádány, FastTrack ukládá informaci o~časech vykonání těchto operací pomocí vektorových hodin \cite{cite:ft}.
 
 Protože nutnost ukládat plný vektorový čas je pouze v~minimálním množství situací, dokáže FastTrack díky použití epoch snížit režii spojenou s~analýzou z~$O(n)$ až na $O(1)$. Jak bylo popsáno výše, FastTrack analyzátor ukládá informace o~posledním zápisu pomocí epochy. Vlákna ovšem pro reprezentaci logického času používají vektorový čas a proto je nutné tyto dvě formy umět porovnat. \textit{Epocha} je definována jako dvojice $c@t$, kde $c$ je logický čas vlákna $t$ a platí, že tato epocha předchází vektorový čas $V$ (označováno jako $c@t \preceq V$) v~relaci Happens before, jestliže platí $c\leq V(t)$ \cite{cite:ft}. 
 
@@ -439,8 +400,7 @@ Detekování dvou konkurentních zápisů je pomocí porovnání epochy s~vektor
 
 Detekování možného souběžného přístupu při čtení s~následované zápisem není v~analyzátoru FastTrack tak jednoduché, jako předchozí dva případy. Důvodem je to, že jednotlivá čtení libovolné proměnné $x$ nemusejí být totálně uspořádána, jako tomu je u~zápisu\footnote{Pokud dojde k~porušení totálního uspořádání u~zápisu, pak byla nalezena časově závislá chyba nad daty.}. Pokud nastane případ, že některá čtení nejsou totálně uspořádána, pak je nutné uchovat celý vektorový čas tohoto čtení. Tento případ může nastat pouze v~případě, že je proměnná $x$ sdílena a čtení není chráněno zámkem. V~ostatních případech postačí uchování epochy. To zda došlo k~souběžnému přístupu lze opět určit podobně jako v~předchozích případech, ale může nastat stav, kdy budou porovnávány dva vektorové časy, konkrétně $R_x$ (čas posledního čtení proměnné $x$) a aktuální čas zápisu $V$. V~tomto případě bude porovnání časově nejnáročnější, nicméně k~této situaci dochází pouze velmi zřídka \cite{cite:ft}.
 
-
-\section{Analyzátor kontraktů}
+\section{Analyzátor kontraktů}\label{contract-all}
 
 \subsection{Definice základního kontraktu}\label{contract-basic}
 
@@ -455,7 +415,7 @@ Příkladem kontraktu (označme jej $\varrho_1$) může být sekvence metod \tex
 %Porušení kontraktu lze odhalit pomocí statické nebo dynamické analýzy. %\textit{Statická analýza} se snaží formálně dokázat, že nemůže dojít k žádnému porušení kontraktu. Statická analýza tímto způsobem může odhalit všechny porušení kontraktu, nicméně na druhé straně může produkovat false alarmy, protože nemá přesné informace o konkretních objektech. Oproti tomu \textit{Dynamická analýza} neprodukuje false alarmy, protože má přesné informace o objektech, nad kterými dochází k volání metod z kontraktů. Na druhou stranu dynamická analýza nemusí odhalit všechny porušení kontraktu a to ty, které se nestaly v daném proložení a ani je nelze odvodit z tohoto proložení a dalších informací nashromážděných během běhu programu. Pokud se ovšem dynamická analýza použije společně s metodou \textit{vkládání šumu}, pak se množina neodhalených kontraktů minimalizuje.
 
 %%%%%% vlozeno %%%%%
-\subsection{Rozšíření kontraktu}\label{contract_def_ext}
+\subsection{Rozšíření kontraktu}\label{contract-def-ext}
 
 Rozšíření publikované v~\cite{cite:contract2} vychází z~předchozí definice kontraktů, přičemž spojuje kontrolu atomicity sekvencí kontraktů s~definicí metod, které tuto sekvenci nesmí porušit. Znamená to tedy, že sekvence metod musí být atomická pouze s~ohledem na proložení pouze určenou množinu metod. Dalším rozšířením je přidáním parametrů do jednotlivých metod. 
 
@@ -485,7 +445,7 @@ Pokud je sekvence kontraktu detekována, je nutné ověřit, zda byla prováděn
 
 \subsection{Dynamická analýza založena na relaci Happens before}\label{contract-hb}
 
-Dynamická analýza založena na relaci Happens before, představena v~článku \cite{cite:contract2}, je navržena pro rozšířenou definici kontraktu s~kontextovými informacemi. Tato analýza využívá Happens before relaci (viz. \ref{happens-before}), kde jako komunikace mezi vlákny jsou uvažovány operace \texttt{acquire} a \texttt{release} nad stejnými zámky a operace \texttt{fork} a \texttt{join}. Tato analýza umožňuje detekci porušení kontraktů za běhu díky technice nazvané \textit{trace window}. Tento koncept umožňuje neuchovávat celou sekvenci všech provedených metod, nýbrž pouze podmnožiny této sekvence (dále označováno jako \textit{okno běhu}), která se postupně pohybuje v~průběhu vykonávání programu. Cílem tohoto konceptu je uchovávat okno o~co nejmenším počtu naposled vykonaných metod.
+Dynamická analýza založena na relaci Happens before, představena v~článku \cite{cite:contract2}, je navržena pro rozšířenou definici kontraktu s~kontextovými informacemi. Tato analýza využívá Happens before relaci (viz \ref{happens-before}), kde jako komunikace mezi vlákny jsou uvažovány operace \texttt{acquire} a \texttt{release} nad stejnými zámky a operace \texttt{fork} a \texttt{join}. Tato analýza umožňuje detekci porušení kontraktů za běhu díky technice nazvané \textit{trace window}. Tento koncept umožňuje neuchovávat celou sekvenci všech provedených metod, nýbrž pouze podmnožiny této sekvence (dále označováno jako \textit{okno běhu}), která se postupně pohybuje v~průběhu vykonávání programu. Cílem tohoto konceptu je uchovávat okno o~co nejmenším počtu naposled vykonaných metod.
 % Definuje 3 podmínky kdy se jedná o instanci targetu
 Události se přidávají do okna běhu $v$~v~momentě, kdy se vyskytnou, a odebírají, pokud již nejsou potřeba. Odebírání je definováno tak, že všechny události z~určité instance targetu (spoileru) se mohou odebrat, pokud již nepatří do žádné jiné aktuálně sledované instance targetu nebo spoileru. Velikost okna tak závisí pouze na počtu instancí targetů a~spoilerů, nikoli na délce běhu programu. Aby bylo možné odstraňovat z~tohoto okna události, je nutné odstraňovat nepotřebné instance targetů a spoilerů. Pro odstraňování těchto instancí jsou definovány následující pravidla \cite{cite:contract2}: 
 
@@ -498,41 +458,1406 @@ Události se přidávají do okna běhu $v$~v~momentě, kdy se vyskytnou, a odeb
 \item Obecně platí, pro každý target $\varrho \in \mathbb{R}$ je uchováno $|T| + 1$ instancí, kde $T$ značí množinu běžících vláken v~\textit{okně běhu}. Pro každé vlákno musí být uchována jedna instance a také 1 navíc pro vlákno, které může být potencionálně vytvořeno.
 \end{itemize}
 
-\chapter{Návrh dynamických analyzátorů pro SearchBestie}
 
-Tato kapitola obsahuje popis návrhu dynamického analyzátoru kontraktů, který byl vybrán společně s~analyzátorem FastTrack dle požadavků výzkumné skupiny VeriFIT. Jak již bylo zmíněno v~kapitole \ref{searchbestie} a \ref{roadrunner}, tak dynamické analyzátory jsou implementovány jako nástroje v~projektu RoadRunner. Vzhledem k~tomu, že při studiu nástroje RoadRunner, bylo zjištěno, že FastTrack je již v~tomto frameworku implementovaný, bude zde popsán pouze návrh analyzátoru kontraktů. Nicméně studium implementace analyzátoru FastTrack bylo užitečné s~ohledem na návrh implementace analyzátoru kontraktů.
+%\subsection{Race Detector & Healer}
+%Strucne popsat, ale pouziva IBM contest, takze se neda pouzit?
 
-\section{Analyzátor kontraktů}
 
-Analyzátor kontraktů, popsaný v~kapitole \ref{contract_def_ext}, bude implementovat rozšířenou definici kontraktu. Analyzátor bude implementován jako nástroj v~projektu RoadRunner, tj. hlavní třída \texttt{ContractTool} tohoto analyzátoru bude rozšiřovat třídu \texttt{Tool} nástroje \textit{RoadRunner}. Dynamický analyzátor bude redefinovat zejména následující metody:
+\chapter{Návrh analyzátoru kontraktů}\label{navrh}
+
+[Poznamky z konzultace] Toto musi byt uplna kapitola, bude nejvetsi. Tady popisu kompletni navrh tak, aby to podle toho slo implementovat
+navrh celeho reseni - kazdou cast navrhnu tak jak by se to melo resit
+musi to byt uplne tak aby to nekdo mohl vzit a podle toho to mohl naimplementovat. Narazel by na nejake problemy a o tom bude ta dalsi kapitola.
+do navrhu same diagramy jak architekturalni, tak behavioralni (kdo s kym jak jedna - state chart nebo sequence diagram (je jedno kterym))
+
+V této kapitole bude popsán návrh dynamického analyzátoru kontraků, který odpovídá popisu ... . Jedná se tedy o analýzu kontraktů s parametry, přičemž pro detekci většího počtu chyb byl využitý princip vektorových hodin.
+
+\section{Specifikace požadavků}\label{spec}
+
+Samotný analyzátor je navržen jako nástroj ve frameworku RoadRunner (viz. ...následující kapitola...), nicméně musí být také upravena platforma SearchBestie, aby tento analyzátor byla schopná spustit a zpracovat jeho výsledky. Z tohoto důvodu budou v následujících požadavcích také požadavky spojené s touto integrací.
+
+\begin{enumerate}\itemsep0em
+%\item{Uživatelské požadavky}
+\item{Obecné požadavky}
+\begin{enumerate}
+	\item{Analyzátor musí být implementován projektu RoadRunner.}
+	\item{Roadrunner s analyzátorem musí být spustitelný z příkazové řádky.}
+	\item{Roadrunner s analyzátorem musí být spustitelný ze SearchBestie.}
+	\item{RoadRunneru musí uložit informace o nalezených chybách do výstupního souboru.}
+	\item{SearchBestie musí zpracovat tyto výstupní informace.}
+	\item{SearchBestie musí na základě nalezených chyb prohledávat stavový prostor parametrů testů.}
+\end{enumerate}
+
+\item{Funkční požadavky}
+\begin{enumerate}
+	\item{Analyzátor získá definici kontraktů z konfiguračního souboru.}
+	\item{Musí být definován formát konfiguračního souboru.}
+	\item{Cesta ke konfiguračnímu souboru bude předána analyzátoru jako parametr v příkazové řádce.}
+	\item{Cesta ke konfiguračnímu souboru bude předána SearchBestie ve vstupním souboru, která ji předá RoadRunneru.}
+	\item{Analyzátor musí být schopný zpracovat konfigurační soubor a uložit si kontrakty do vnitřní reprezentace.}
+
+	\item{Porušení kontraktu musí být detekováno v následujících případech:}
+		\begin{enumerate}
+			\item{Analyzátor musí být schopný detekovat porušení kontraktu, ke kterým skutečně došlo.}
+			\item{Analyzátor musí být schopný detekovat porušení kontraktu, ke kterým skutečně nedošlo, ale lze pomocí vektorových hodin odvodit, že k nim může dojít.}
+			\item{Analyzátor nesmí detekovat porušení kontraktu v žádném jiném případě (pokud k němu nedošlo).}
+		\end{enumerate}	
+
+	\item{Analyzátor musí podporovat kontrakty různých typů:
+		\begin{enumerate}
+			\item{K jednomu targetu může být zadán jeden spoiler.}
+			\item{K jednomu targetu může být zadáno více spoilerů.}
+			\item{Targetů může být zadáno v konfiguračním souboru více.}
+		\end{enumerate}
+	}
+	\item{Metody v targetech a spoilerech mohou být:
+		\begin{enumerate}
+			\item{Bez parametrů,}
+			\item{s parametry,}
+			\item{s návratovým parametrem.}
+		\end{enumerate}
+	}
+	\item{Metody musí být jednoznačně identifikovány pomocí fully qualified name..}
+	\item{Stejně označený parametr v sekvenci metod je považován za shodný parametr.}
+	\item{Stejně označený parametr v targetu a jemu připojeném spoileru musí být považován za shodný parametr.}
+	\item{Parametr zadaný znakem \texttt{\_} musí být ignorován.}
+\end{enumerate}
+
+\end{enumerate}
+
+[Poznamky z konzultace] S: co presne je mojim cilem udelat, kazda odrazka rika co to ma umet, ma to byt spustitelne v prikazove radce, contract - co to ma umet
+identifikovane odrazky (cislama, viceurovne - ne vic nez tri urovne) - kazda odrazka bude definovat co to ma umet. I z uzivatelskeho hlediska - napriklad ze to ma byt spustitelne z prikazove radky, ma to umet kontrakty (v odrazkach jak presne), dal ma to umet pracovat se search bestie.
+
+
+\section{Přehled částí systému}\label{prehled-casti-systemu}
+
+%... TODO diagram ... %stejny jako v propojeni-sb-rr
+
+Jak bylo zmíněno v kapitole, pro nový analyzátor je nutné vytvořit několik nových komponent. Konkrétně se jedná o samotný analyzátor (ContractTool) a jemu přidružený CoverProducer (konkrétně ContractCoverProducer), přičemž obě tyto části se budou nacházet v projektu RoadRunner. Dále je nutné vytvořit podporu tohoto nástroje v SearchBestie, kde se o zpracování nasbíraných výsledků bude starat ResultItemCreator (konkrétně ContractRICreator). Na diagramu \ref{komunikace-contract} je znázorněna komunikace mezi těmito komponentami, přičemž si lze všimnout, že tato komunikace odpovídá standardní komunikaci mezi SearchBestie a Roadrunnerem prezentované v kapitole \ref{propojeni-sb-rr}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/komunikace-v-systemu-contract.pdf}
+    \caption{Konkrétní komunikace mezi komponentami dynamického analyzátoru kontraktů a Searchbestie.}
+    \label{komunikace-contract}
+\end{figure}
+
+\section{Nástroj v Roadrunneru}\label{navrh-rr-nastroj}
+
+
+Nástroj ContractTool (dále jen CT) ve Frameworku Roadrunner je hlavní částí analýzy kontraktů, neboť se samotná analýza provádí právě zde. CT rozšiřuje třídu Tool frameworku Roadrunner, díky čemuž může zachytávat potřebné události. CT využívá události: init, exit, makeShadowVar, acquire, release, create, preStart a postJoin. První metoda (tj. init) je použita pro inicializaci nástroje, další dvě jmenované metody, exit a makeShadowVar, jsou důležité pro detekci porušení kontraktu (viz ...) a ostatní metody slouží pro práci s vektorovým časem (viz ...). CT dále definuje parametr \texttt{contractFile}, ve kterém musí být zadána cesta ke konfiguračnímu souboru kontraktů. Takto předaný konfigurační soubor je zpracován právě v metodě init za pomoci \textit{Parseru}.
+
+\subsubsection{Konfigurační soubor}\label{config-file}
+
+Parser slouží pro zpracování obsahu konfiguračního souboru, ve kterém se nachází definice kontraktu, a vytvoření ekvivalentní vnitřní reprezentace. Formát konfiguračního souboru vychází z notace použité v definici kontraktů (viz \ref{contract-all}) a lze jej popsat gramatikou \ref{gramatika}. Symbol \texttt{<method_name>} zastupuje tzv. \textit{fully qualified name}, které v Javě běžně využíváno pro jednoznačnou identifikaci. V gramatice se rovněž vyskytuje symbol \texttt{|}, který je symbolem terminálním, nikoli znakem oddělujícím dvě alternativní přepisovací pravidla. Dále gramatika definuje speciální parametr \texttt{\_}, který je použit pro ignorovaný parametr (viz \ref{spec}).
+
+\begin{lstlisting}[escapeinside={(*}{*)}, caption={Gramatika generujícíc validní konfigurační soubor.}, label={gramatika}]
+<contract> (*$\rightarrow$*) <target> <- { <spoilers> } <contract>
+<contract> (*$\rightarrow$*) (*$\epsilon$*)
+<spoilers> (*$\rightarrow$*) <spoiler> <spoilers'>
+<spoilers> (*$\rightarrow$*) <spoiler>
+<spoilers'> (*$\rightarrow$*) | <spoiler> <spoilers'>
+<spoilers'> (*$\rightarrow$*) (*$\epsilon$*)
+<target> (*$\rightarrow$*) <method sequence>
+<spoiler> (*$\rightarrow$*) <method sequence>
+<method sequence> (*$\rightarrow$*) <method> <method sequence>
+<method sequence> (*$\rightarrow$*) (*$\epsilon$*)
+<method> (*$\rightarrow$*) <ret parameter><method_name>(<parameters>)
+<parameters> (*$\rightarrow$*) <parameter><parameters'>
+<parameters> (*$\rightarrow$*) <parameter>
+<parameters> (*$\rightarrow$*) (*$\epsilon$*)
+<parameters'> (*$\rightarrow$*) ,<parameter><parameters'>
+<parameters'> (*$\rightarrow$*) (*$\epsilon$*)
+<ret parameter> (*$\rightarrow$*) <parameter>:
+<ret parameter> (*$\rightarrow$*) (*$\epsilon$*)
+<parameter> (*$\rightarrow$*) a-zA-Z0-9
+<parameter> (*$\rightarrow$*) _
+<method_name> (*$\rightarrow$*) a-zA-Z0-9.$
+\end{lstlisting}
+
+Příklad \ref{config-file} ukazuje obsahu souboru \texttt{test1}, který může být vygenerován výše zmíněnou gramatikou a je jedním ze souborů využitých při testování. V tomto souboru je definován kontrakt, kde targetem je sekvence dvou metod (m1 a m2) a spoilerem je jediná metoda (m1).
+
+\begin{lstlisting}[caption={Příklad konfiguračního souboru.},label={config-file}]
+cz.vutbr.fit.Test1$Subject.m1() cz.vutbr.fit.Test1$Subject.m2() <-
+{ cz.vutbr.fit.Test1$Subject.m1() }
+\end{lstlisting}
+
+Takto definovaný konfigurační soubor je zpracován Parserem do vnitřní reprezentace, která je popsána v následující kapitole.
+
+Pro předání cesty ke konfiguračnímu souboru do nástroje Roadrunner je nutné definovat nový parametr \texttt{-contractFile}, který je přidán jako tzv. \textit{Command line option} do nástroje ContractTool. Tento parametr je při spuštění nástroje ContractTool vždy vyžadován.
+
+\subsection{Vnitřní reprezentace}\label{vnitrni-rep}
+
+Analyzátor si musí uchovat definici kontraktu, která obsahuje definici targetů a jim asociovaných spoilerů. Tyto targety a spoilery jsou používány jako šablony, ze kterých se vytvářejí jejich instance. Targety a spoilery tedy obsahují neměnící se informace, kdežto jejich instance svůj obsah mění. Vztah těchto částí je znázorněn na diagramu \ref{class-diagram}
+
+\begin{sidewaysfigure}[!htbp]
+    \includegraphics[width=\textwidth]{obrazky-figures/class-diagram.pdf}
+    \caption{Diagram zobrazující třídy Target, Spoiler, Instance a jim přidružené.}
+    \label{class-diagram}
+\end{sidewaysfigure}
+
+Definici kontraktu reprezentuje třída Contract, která se v systému nachází vždy pouze jednou. Tato třída obsahuje instance tříd Target a Spoiler, které dědí od střídy MethodSequence. MethodSequence obsahuje sekvenci instancí třídy MethodTemplate, které reprezentují šablonu metody ze zadání. Tato třída obsahuje důležité informace o metodě, která má být dynamickým analyzátorem sledována. Jedná se o jméno metody, konkrétně \textit{fully qualified name}, jména parametrů a jméno návratového parametru\footnote{Jména parametrů nejsou skutečnými jmény parametrů, nýbrž jmény zástupnými, které slouží pro vyjádření vztahů, mezi více metodami. Více v kapitole ...reakce na prichod exit metody TODO ...}. Poslední nezmíněnou třídou je třída Instance, které reprezentuje instanci aktuálně rozpracovaného, nebo dokončeného, targetu nebo spoileru. Tato instance se mění při detekování vhodné metody, který je provedena v testovaném programu (viz kapitola ... reakce na příchod metody TODO...). Třída Instance obsahuje vektorový čas první a poslední metody v sekvenci metod, odkaz na šablonu této sekvence metod (tj. target nebo spoiler) a jména parametrů ze sekvence metod, společně s již přiřazenými hodnotami. Dále instance obsahuje atribut \textit{actualPos}, tj. index metody ze šablony, která byla jako poslední přijata\footnote{Atribut \textit{actualPos} ukazuje na poslední zpozorovanou událost ze sekvence metod šablony. Tj. pokud je instance vytvořena, je hodnota $actualPos = 0$ (ukazuje na první metodu), a pokud je instance dokončena, pak je hodnota $actualPos = length-1$, kde $length$ je počet metod v sekvenci dané šablony.}. Vztah mezi jmény parametrů a jejich hodnotami bude vysvětlen v následujících kapitolách, ovšem zde je důležité si uvědomit, že jména parametrů se nachází v šabloně metod (MethodTemplate), zatímco jejich hodnoty až v konkrétních instancích.
+
+Počet šablon (tj. tagetů a spoilerů) bude neměnný, ovšem počet jejich instancí bude v průběhu analýzy narůstat. Uložení těchto instancí je tedy navrženo tak, aby se mezi nimi dalo co nejrychleji vyhledávat, tj. instance, které spolu souvisejí, jsou uloženy vždy pohromadě a jsou odděleny od ostatních, které s nimi nesouvisí. K tomuto účelu je využita třída \textit{ShadowVar}, která umožňuje ukládat informace ke každému paměťovému místu (tj. ke každému objektu nebo proměnné). Konkrétně je použita instance třídy \textit{ObjectWindows}\footnote{Třída ObjectWindows dědí od třídy ShadowVar.}, která obsahuje přiřazení objektů \textit{Window} ke každému existujícímu vláknu. Instance této třídy je vytvořena při prvnímu přístupu k paměťovému místu, což je zajištěno v metodě \textit{makeShadowVar}.  Třída \textit{Window} je již třídou obsahující jednotlivé instance targetů a spoilerů. Tento vztah je reprezentován na diagramu \ref{class-object-windows}, kde jsou pro jednoduchost vynechány položky třídy Instance, která je plně zobrazena na diagramu \ref{class-diagram}.
+
+\begin{figure}[!htbp]
+    \includegraphics[width=\textwidth]{obrazky-figures/class-diagram-ow.pdf}
+    \caption{Diagram zobrazující třídu ObjectWindows a jí přidružené trídy.}
+    \label{class-object-windows}
+\end{figure}
+
+\subsection{Práce s šablonami a instancemi}\label{sablony-instance}
+
+V dynamickém analyzátoru se tedy vyskytují šablony targetů, spoilerů a jejich instance. V této kapitole bude popsáno, jak spolu souvisí a jak je s nimi pracováno.
+
+Při inicializaci samotného nástroje jsou vytvořeny všechny targety a spoilery z konfiguračního souboru. Následně je zahájena samotná dynamická analýza, která sleduje důležité události. V kontextu práce s šablonami a instancemi je důležitá pouze událost \textit{exit}, která informuje o ukončení vykonání metody $m_{event}$. Tato událost obsahuje informace o objektu, na kterém byla vykonána, identifikaci (tj. jméno metody), hodnoty parametrů, se kterými byla zavolána, a návratovou hodnotu této metody. Důvodem, proč je nutné použít metodu \textit{exit}, namísto metody \textit{enter}, je ten, že při zavolání metody \textit{enter} jsou k dispozici pouze hodnoty vstupních parametrů, ale nikoli návratová hodnota. Oproti tomu v metodě \textit{exit} tato návratová hodnota již známá je, a proto se při dynamické analýze kontraktů s parametry zachytávají vykonané metody až po jejich provedení - tedy v metodě \textit{exit}. Jakmile dojde k detekci této události, pak dynamický analyzátor provede následujících kroky:
+
+\begin{enumerate}
+\item{V případě, že metoda $m_{event}$ odpovídá první metodě $m_{first}$ některého targetu, nebo spoileru, pak vytvoří jeho novou instanci.}
+\item{V případě, že metoda $m_{event}$ odpovídá metodě $m_{expect}$, která je právě očekávána v některé instanci targetu nebo spoileru, pak provede krok \textit{advance} nad touto instancí.}
+\item{Pokud nedojde ani k jednomu z předchozích případů, pak je událost ignorována.}
+\end{enumerate}
+
+\subsection{Vytvoření nové instance}\label{new-instance}
+
+Pokud dojde k 1. kroku z předchozí kapitoly \ref{sablony-instance}, je vytvořena nová instance targetu nebo spoileru. V tomto kroku je také zmíněno, že metoda $m_{event}$ musí \textit{odpovídat} první metodě $m_{first}$ některého targetu nebo spoileru. V tomto případě tedy musí dojít k porovnání těchto metod, přičemž při vytváření nové instance ještě nejsou dostupné žádné informace o hodnotách parametrů, a tak je dostačující pouze následující porovnání:
+
+\begin{enumerate}
+\item{Metoda $m_{event}$ musí mít stejné jméno\footnote{K porovnávání dochází nad \textit{fully qualified} jménem metod} jako metoda $m_{first}$.}
+\item{Metoda $m_{event}$ musí mít stejný počet parametrů jako $m_{first}$.}
+\end{enumerate}
+
+Na první pohled by se mohlo zdát, že nedochází ke kontrole typů parametrů, a také výstupního parametru. Tato kontrola ovšem není možná, neboť v definici kontraktů se nacházejí pouze zástupná jména parametrů, ale nikoli jejich typy.
+
+Při vytvoření nové instance targetu nebo spoileru je utné provést následující kroky:
+
 \begin{itemize}
-\item \texttt{create(...)}, \texttt{preJoin(...)} -- metody odchytávající události vytvoření a ukončení vlákna,
-\item \texttt{acquire(...)}, \texttt{release(...)} -- metody odchytávající události přístupu k~zámkům,
-\item \texttt{access(...)}, \texttt{volatileAccess(...)} -- metody odchytávající události přístupu k~paměti, 
-\item \texttt{enter(...)}, \texttt{exit(...)} -- metody odchytávající události vstupu a výstupu do/z metod.
+\item{Přiřadit instanci odkaz na šablonu (target nebo spoiler), ze které je vytvářena.}
+\item{Aktuální index v sekvenci metod ($actualPos$) nastavit na hodnotu 0.}
+\item{Přiřadit instanci identifikátor vlákna, ve kterém byla metoda $m_{event}$ vyvolána.}
+\item{Přiřadit instance vektorový čas metody $m_{event}$, který bude značit začátek této instance.}
+\item{Vytvořit mapu parametrů $parameters$ ze sekvence metod šablony.}
+\item{Přiřadit hodnoty parametrů z metody $m_{event}$ k odpovídajícím klíčům mapy $parameters$.}
+\end{itemize}
+
+V kapitole \ref{vnitrni-rep} je zmíněno, že zástupné jména parametrů jsou uloženy v šablonách, ale jejich hodnoty v instancích. A právě poslední krok v předcházejícím výčtu se o toto uložení stará. Uložení je tedy realizováno tak, že v každé instanci existuje mapa $parameters$, kde klíče jsou zástupné jména parametrů, ze sekvence metod související šablony, a hodnoty jsou při inicializaci nastaveny na hodnotu \textit{Undefined}. Jakmile je detekována metoda $m_{event}$, pak jsou hodnoty jejích parametrů přiřazeny k patřičným klíčům v mapě $parameters$. V kontextu vytváření instance, budou hodnoty parametrů z metody $m_{event}$ vždy přiřaditelné. Ovšem pokud bude přijata jiná metoda než první, nemusejí být parametry přiřaditelné, a proto je nutné kontrolovat také jejich hodnoty (více v kapitole \ref{advance}). Pro lepší pochopení práce s mapou $parameteres$ je její inicializace vysvětlena na příkladu \ref{ex:map}. 
+
+\begin{exmp}\label{ex:map}
+Nechť existuje target se sekvencí metod: $m_1(X, Y) \quad m_2(Y, Z)$. Nechť je právě detekována událost \textit{exit} s metodou $m_1(5, 7)$. Vzhledem k tomu, že je metoda $m_1$ první metodou v sekvenci, bude vytvořena nová instance tohoto targetu podle výše uvedeného postupu. Při vytváření instance bude vytvořena mapa $parameters$, která bude mít následující obsah:
+\begin{lstlisting}
+paramaters = {
+	"X" = Undefined,
+	"Y" = Undefined,
+	"Z" = Undefined
+}
+\end{lstlisting}
+
+Následně budou do této mapy dosazeny hodnoty parametrů. V šabloně targetu jsou u metody $m_1$ uvedeny dva parametry se zástupnými jmény \textit{X} a \textit{Y}. Takže první hodnota (tj. 5) z detekované metody se přiřadí ke klíčí \textit{X} a druhá hodnota (tj. 7) ke klíčí \textit{Y}. Výsledkem tedy bude mapa $parameters$ s následujícím obsahem:
+
+\begin{lstlisting}
+paramaters = {
+	"X" = 5,
+	"Y" = 7,
+	"Z" = Undefined
+}
+\end{lstlisting}
+
+\end{exmp}
+
+\subsection{Krok advance}\label{advance}
+
+V předchozí kapitole bylo popsáno, jak probíhá vytvoření nové instance targetu nebo spoileru. V této kapitole bude, oproti tomu, ukázáno jako se instance v průběhu dynamické analýzy vyvíjí. Tento případ byl uveden jako 2. krok v kapitole \ref{sablony-instance}.
+
+Pro zjištění, zda je splněna podmínka z kroku č. 2 z kapitoly \ref{sablony-instance}, je opět nutné porovnat metody $m_{event}$ a $m_{expect}$, přičemž toto porovnání navíc obsahuje porovnání hodnot parametrů. Všechny parametry metody $m_{event}$ musejí být \textit{shodné} nebo \textit{dosaditelné} do parametrů metody $m_{expect}$, potažmo dané instance. V předchozí kapitole \ref{new-instance} bylo vysvětleno jak jsou hodnoty parametrů v instanci uloženy a bylo zde popsáno, že všechny parametry mají po vytvoření hodnotu \textit{Undefined}. Pokud tedy metoda $m_{event}$ byla volána s určitými hodnotami parametrů, pak platí, že pro všechny její parametry $p$ mohou nastat pouze tyto případy:
+
+\begin{enumerate}
+	\item V mapě $parameters$ nemá parametr $p$ ještě přiřazenu hodnotu.
+	\item Parametr $p$ má být ignorován.
+	\item V mapě $parameters$ má parametr $p$ již přiřazenu hodnotu a tato hodnota je totožná s hodnotou parametru $p$.
+	\item V mapě $parameters$ má parametr $p$ již přiřazenu hodnotu a tato hodnota není totožná s hodnotou parametru $p$.
+\end{enumerate}
+
+Pokud u všech parametrů metody $m_{event}$ nastanou situace z bodu 1., 2. nebo 3., pak jsou parametry považovány za \textit{shodné}. Pokud jsou navíc splněny obě podmínky z kapitoly \ref{new-instance}, pak je proveden krok \textit{advance} nad danou instancí targetu nebo spoileru.
+
+Krok \textit{advance} umožňuje instanci $i$ posunout se vpřed k jejímu dokončení. Pokud je metoda $m_{event}$ shodná s metodou $m_{expect}$ (tj. jsou splněny výše uvedené podmínky), pak je nad danou instancí $i$ proveden jeden z následující kroků:
+
+\begin{itemize}
+\item{Pokud $m_{expect}$ je volána s parametry, z jichž všechny již mají přiřazenu totožnou hodnotu v mapě $parameters$, pak dojde k inkrementaci hodnoty atributu $actualPos$ o hodnotu 1.}
+\item{Pokud $m_{expect}$ je volána s parametry, z nichž alespoň jeden nemá přiřazenu hodnotu v mapě $parameters$, pak dojde k vytvoření kopie $i_{new}$ dané instance $i$. Této nové instanci $i_new$ je přiřazen odkaz na rodičovskou instanci $i$, inkrementována hodnota atributu $actualPos$ o hodnotu 1 a aktualizována mapa $parametrs$ o nově získané hodnoty parametrů.}
+\end{itemize}
+
+Důvodem, proč se ve druhém případě vytváří nová instance, je právě dosazení parametrů. Tato situace je vysvětlena na následujícím příkladu \ref{ex2}.
+
+\begin{exmp}\label{ex2}
+Nechť je zadána definice kontraktu následovně:
+
+\begin{lstlisting}
+m1(X) m2(Y) <- { m3(X,Y) }
+\end{lstlisting}
+
+Pak se dynamický analyzátor bude snažit nalézt target se sekvencí metod \texttt{m1}, \texttt{m2}, které jsou volány s parametry \texttt{X} a \texttt{Y}. Zároveň se bude snažit nalézt spoiler, který obsahuje pouze samotnou metodu \texttt{m3}, která je ale volána s totožnými hodnotami \texttt{X} a \texttt{Y}. Na diagramu \ref{test-param-copy} je znázorněna situace, kdy je volána metoda \texttt{m2} dvakrát, pokaždé s jiným parametrem, a až druhé volání této metody vede k vytvoření targetu, který může být porušen zadaným spoilerem.
+
+Pro popis situace je zavedeno následující označení: \texttt{m1(0)} značí vykonaní metody \texttt{m1}, s parametrem \texttt{0}, \texttt{Instance\{T; MS: m1; PAR: X=0, Y=Undefined\}} značí instanci targetu (\texttt{T}) se sekvencí metod (\texttt{MS}) a parametry (\texttt{PAR}).
+
+V tuto chvíli bude popsáno pouze vytváření instancí targetu, nikoli spoileru, protože instance spoileru bude jediná: \texttt{Instance\{S; MS: m3; PAR: X=1, Y=2\}}. Instance targetu tedy budou vytvářeny/upravovány na základě provedených metod následovně:
+
+\begin{enumerate}
+\item \texttt{m1(1)}\\
+\texttt{Instance\{T; MS: m1; PAR: X=1, Y=Undefined\}}
+
+\item \texttt{m2(0)}\\
+\texttt{Instance\{T; MS: m1; PAR: X=1, Y=Undefined\}},\\
+\texttt{Instance\{T; MS: m1, m2; PAR: X=1, Y=0\}}
+
+\item \texttt{m2(2)}\\
+\texttt{Instance\{T; MS: m1; PAR: X=1, Y=Undefined\}},\\
+\texttt{Instance\{T; MS: m1, m2; PAR: X=1, Y=0\}},\\
+\texttt{Instance\{T; MS: m1, m2; PAR: X=1, Y=2\}}
+
+\end{enumerate}  
+
+V 1. kroku je vytvořena nová instance targetu. Ve 2. kroku je viditelné, že nedojde pouze ke kroku \textit{advance} nad existující instancí, ale je nejprve vytvořena kopie této instance, a až poté je vykonán krok \textit{advance} nad touto kopií. Tento krok je důležitý, protože nově vytvořená instance neodpovídá instanci spoileru, neboť má dosazeny jiné hodnoty parametrů, než se vyskytují ve spoileru. Když se v kroku 3. poté objeví vykonání metody m2 s jiným (tj. správným) parametrem, dojde opět k vytvoření kopie instance z kroku 1 a k provedení kroku \textit{advance} nad touto kopií. Tato nově vytvořená instance již odpovídá spoileru. Pokud by tedy nedošlo k vytvoření kopie instance v kroku 2, a pouze by se provedl krok \textit{advance}, pak by nebylo možné vytvořit správnou instanci ve 3 kroku.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/example-advance.pdf}
+    \caption{Příklad demonstrující vytváření a upravování instancí.}
+    \label{test-param-copy}
+\end{figure}
+
+\end{exmp}
+
+Pokud došlo ke kroku \textit{advance}, je nutné zkontrolovat, zda instance není ukončena. Tento případ nastane, pokud hodnota atributu $actualPos$ je o 1 menší, než počet metod v sekvenci šablony. Je-li instance dokončena, je nejprve přiřazen vektorový čas události $m_{event}$, který značí čas ukončení instance. Následně jsou hledány související dokončené protějšky\footnote{Protějškem je myšlen druhý z dvojice target-spoiler. Tj. Pokud dojde k ukončení instance targetu, pak jsou hledány související ukončené spoilery; pokud dojde k ukončení instance spoileru, pak jsou hledány související ukončené targety.} a konečně, dojde-li k případu, kdy je nalezen alespoň jeden protějšek, pak je na základě vektorových hodin zkontrolováno, zda jsou tyto dvě instance konkurentní. Pokud platí i poslední podmínka, došlo k detekci porušení kontraktu.
+
+\subsection{Vektorový čas}\label{vs-navrh}
+
+V několika posledních kapitolách byla několikrát zmíněna práce s vektorovými hodinami, bez většího vysvětlení. Tato kapitola tedy popisuje, jakým způsobem je navržena práce s těmito hodinami. Vektorové hodiny jsou důležité pro určení zda jsou dvě instance targetu a spoileru konkurentní, tj. zda se mohou vyskytnout v takovém proložení, aby došlo k jejich porušení (více viz \ref{contract-all}).
+
+Princip práce s vektorovým časem, který je použitý v dynamickém analyzátoru kontraktů, vychází z DJIT+ algoritmu \cite{cite:VC-anaconda}. Vektorový čas je udržován v každém vláknu a objektu, který je použitý jako zámek. V nástroji Roadrunner jsou pro jeho použití využity následující metody:
+
+\begin{description}
+\item[Create] V této metodě dochází k vytvoření instance vektorových hodin pro nové vlákno.
+\item[PreStart] V této metodě dochází k inkrementaci vektorových hodin obou vláken, tj. rodičovského i nově vytvořeného vlákna.
+\item[Acquire] Zde je aktualizován vektorový čas vlákna pomocí vektorového času zámku\footnote{Detailnější popis aktualizací vektorových časů je popsán ve zmíněném článku \cite{cite:VC-anakonda}.}.
+\item[Release] Zde je aktualizován vektorový čas zámku pomocí vektorového času vlákna. Dále je inkrementován čas vlákna v jeho vektorových hodinách.
+\item[PostJoin] V této metodě dochází k aktualizaci hodin rodičovského vlákna pomocí vektorového času ukončovaného vlákna. Dále proběhne inkrementace vektorových hodin rodičovského vlákna.
+\end{description}
+
+%Při každém vytvoření instance targetu nebo spoileru je této instanci přiřazen vektorový čas vlákna. Tato první časová značka označuje čas výskytu první metody, a tedy čas začátku kontraktu. Dále je vektorový čas rovněž ukládán při ukončení každé instance. Díky těmto dvou časovým značkám (začátku a konce) mohou být instance porovnávány a může být zjišťováno, zda nedošlo k porušení kontraktu.
+
+%potřeba zachytávat události: (init - rozparsování kontraktu), exit, acquire, release, makeShadowVar, create(creat CV), preStart(tick), postJoin
+
+%shadowthread je odekorovano vektorovymi hodinami stejne jako shadow lock. Vychazi to z DJIT+ algoritmu.
+
+%shadowVar kazdeho objektu ma objectsMapping( zde je mapovani shadowThread a Window, tj. pro kazde vklakno je zvlast okno, ktere obsahuje pouze metody provedene nad timto urcitym objektem)
+
+%Window obsahuje vsechny instance targetu a spoileru pro dany objekt
+
+%Struktura contractu, targetu, spoileru, co je ten "template", kde se ukladaji parametry
+
+\subsection{Informace o detekci porušení}
+
+V předchozích kapitolách bylo popsáno, jakým způsobem dojde k detekci porušení. V této kapitole jsou pouze definovány důležité parametry, které je potřeba sdělit na výstupu. Jako důležité informace jsou tedy vybrány:
+\begin{itemize}
+\item{Metoda, po které došlo k detekci porušení.}
+\item{Vlákno, ve kterém byla metoda vyvolána.}
+\item{Stacktrace vlákna, ve kterém byla metoda vyvolána.}
+\item{Instance targetu, který byl porušen.}
+\item{Instance spoileru, které jej porušil.}
+\end{itemize}
+
+\section{Podpora nástroje v SearchBestie}
+V kapitole \ref{navrh-rr-nastroj} byl popsán návrh nástroje \textit{ContractTool} ve frameworku Roadrunner. Tato kapitola popisuje návrh částí systému, díky kterým je možné tento nástroj používat z platformy SearchBestie. První částí je vytvoření tzv. \textit{cover produceru} pro analyzátor kontraktů. Další částí je úprava nástroje RRPlugin a poslední částí je vytvoření tzv. \textit{result item creatoru}\footnote{Komunikace mezi těmito částmi byla popsána v kapitole \ref{prehled-casti-systemu}}. Kromě vytvoření těchto částí je třeba navrhnout reprezentaci parametrů pro analyzátor kontraktů, které budou předány v konfiguračním souboru pro platformu SearchBestie.
+
+\subsection{Cover producer a úprava nástroje RRPlugin}\label{cover-producer-rr}
+
+\textit{ContractCoverProducer} (CCP) má za úkol sbírat informace o porušení kontraktů a po skončení testování tyto informace uložit do výstupního souboru. Tato třída je stejně jako \textit{ContractTool} součástí projektu Roadrunner a chyby jsou reportovány přímo z tohoto nástroje. K reportování chyb ovšem dochází pouze v případě, že je analyzátor spouštěn z prostředí SearchBeastie, tj. kromě nástroje ContractTool je v řetězci nástrojů také RRPlugin, který vytváří instanci této třídy. Pokud RRPlugin není v řetězci nástrojů při spuštění RoadRunneru, nedojde k vytvoření instance CCP a \textit{ContractTool} vypisuje nalezené chyby pouze na výstup.
+
+Struktura CCP je znázorněna na diagramu \ref{class-cover}. Důležité jsou především metody \textit{reportContractViolation} a \textit{writeResultToFile}. První zmíněná metoda slouží pro zaznamenání porušení kontraktu a druhá metoda slouží pro vytvoření výstupního souboru a zapsání výsledku. CCP si zaznamenává počet porušení jednotlivých targetů, které jsou identifikované pomocí přiděleného identifikátoru. Obsah výstupního souboru je navržen jako posloupnost čísel oddělených dvojtečkou:
+$$x_0 : x_1 : ... : x_{n-1}$$
+kde $x_i$ značí počet nalezených porušení targetu s identifikátorem $i$ a $n$ značí počet všech targetů v kontraktu. Takto formátovaný výstupní soubor je později zpracován třídou ContractRICreator, která je popsána v kapitole \ref{ricreator}.
+
+Výše popsaný CCP je vytvářen v nástroji RRPlugin tak, jako ostatní cover producery. Z tohoto důvodu musí být CCP také korektně ukončen v momentě, kdy dochází k ukončení nástroje RRPlugin. Proces vytvoření, běhu a ukončení CCP je znázorněn na diagramu \ref{komunikace-contract}.
+  
+\begin{figure}[!htbp]
+    \includegraphics[scale=1]{obrazky-figures/class-diagram-cover-producer.pdf}
+    \caption{Diagram zobrazující třídu ContractCoverProducer.}
+    \label{class-cover}
+\end{figure}  
+
+\subsection{ContractRICreator a úprava SearchBestie}\label{ricreator}
+Pro podporu analyzátoru kontraktů v platformě SearchBestie je nejprve třeba definovat nové parametry do vstupního XML konfiguračního souboru. Těmito novými parametry jsou:
+
+\begin{itemize}
+\item \texttt{<parameter key="contractFile"/>} -- Parametr definující cestu ke konfiguračnímu souboru kontraktu.
+\item \texttt{<parameter key="CTcontract"/>} -- Parametr povolující vytvoření cover produceru ContractCoverProducer.
 \end{itemize} 
 
-Dále bude tento dynamický analyzátor ukládat a využívat informace v~\textit{shadow} objektech. Do objektu \texttt{ShadowThread} bude přidáno pole obsahující sekvenci posledních vykonaných metod daným vláknem a v~objektu \texttt{ShadowVar}, uloženém v~\textit{shadow location} každého místa v~paměti, budou uloženy všechny instance targetů a spoilerů kontraktu, definovaném pro objekt uložený na tomto paměťovém místě. Instance targetů a spoilerů jednotlivých kontraktů musí podporovat metody s~parametry (a návratovou hodnotou) a proto objekty \texttt{Contract} (reprezentující zadaný kontrakt) a \texttt{Instance} (reprezentující instance targetů) budou mít níže popsanou strukturu.
+Tyto parametry jsou vnořeny do elementu \texttt{parameters}, díky čemuž jsou automaticky parsovány. Parametry, jejichž klíč začínající na prefix \textit{CT}, jsou považovány za parametry povolující cover producery a ostatní parametry jsou předávány Roadrunneru. Proto musí být klíč shodný jako parametr definovaný v kapitole \ref{config-file}. Pro parametr \textit{CTcontract} je ještě nutné přidat hodnotu výčtového typu (CONTRACT(...)) do třídy \textit{ConcurrencyCoverage}\footnote{Tato hodnota definuje prefixy pro výstupní soubory, názvy složek atd.}. Díky tomuto kroku je možné upravit fitness funkci, která se používá pro ohodnocení jednoho běhu například takto:
+ 
+\begin{lstlisting}
+<fitness class="cz.vutbr.fit.sbestie.search.fitness.FitnessExpression" name="MyFitness">
+	<parameters>
+		<parameter key="expression" value="CONTRACT" />
+	</parameters>
+</fitness>
+\end{lstlisting}
 
-Struktura objektu \texttt{Contract} bude obsahovat následující parametry:
+Takto definovaná fitness funkce se bude snažit maximalizovat počet nalezených porušení kontraktů porušení.
+
+Posledním krokem je vytvoření ContractResultItemCreatoru. Tato třída slouží ke zpracování výsledků z RoadRunneru (konkrétně z ContractCoverProduceru) a vytvoření výsledku, se kterým dokáže pracovat SearchBestie. Jako tento výsledek byla použita třída IntResultItem, která reprezentuje výsledek jednoho testu pouze číselnou hodnotou. ContractResultItemCreator tedy zpracuje sekvenci hodnot reprezentující počty nalezených porušení jednotlivých targetů, tyto výsledky sečte a vytvoří instanci třídy IntResultItem, do které uloží tuto sumu. Tento výsledek bude tedy reprezentovat počet všech nalezených porušení kontraktu, čehož je využito ve fitness funkci definované v předchozí kapitole.
+
+Na diagramu je znázorněna struktura třídy ContractResultItemCreator, která rozšiřuje třídu třídu \textit{ResultItItemCreator}, a je tedy nutné, zařadit výše popsanou funkcionalitu do správných metod této nadtřídy. Důležité jsou zejména metody \textit{acceptEvent} a \textit{afterTest}. První jmenovaná metoda slouží pro uložení názvu podsložky\footnote{V případě hledání porušení kontraktů je podsložka vždy \texttt{contract/}. Název této složky je definován ve výčtu \textit{ConcurrencyCoverage} zmíněněm výše.} a identifikátoru testu, který byl spuštěn. Druhá metoda je zavolána po skončení testu a je využita pro zpracování výstupního souboru z RoadRunneru. Výstupem této metody je popsaný číselný výsledek testu, reprezentovaný instancí třídy \textit{IntResultItem}.
+
+\begin{figure}[!htbp]
+    \includegraphics[width=\textwidth]{obrazky-figures/class-diagram-RI.pdf}
+    \caption{Diagram zobrazující třídu ContractResultItemCreator.}
+    \label{class-cover}
+\end{figure}
+
+\chapter{Implementace}
+
+Tato kapitole popisuje implementační detaily a řešení problémů, které při implementaci vznikly. Implementace přímo vychází z předchozí kapitoly \ref{navrh}.
+
+Porovnávání parametrů ??
+
+\section{Implementační problémy}
+
+Během implementace se vyskytlo několik problémů, které musely být nutně vyřešeny, jinak by nebylo možné tuto práci dokončit. Tato kapitola tedy popisuje tyto problémy a jejich řešení.
+
+Při návrhu dynamického analyzátoru ve frameworku RoadRunner bylo předpokládáno, že v metodách \textit{enter} a \textit{exit} jsou k dispozici hodnoty parametrů, se kterými byly metody zavolány, potažmo návratová hodnota metody. V průběhu implementace bylo ale zjištěno, že objekty, které jsou předány do zmíněných metod, obsahují pouze statické informace o těchto parametrech, tj. počet parametrů a jejich datové typy. Bylo tedy nutné upravit RoadRunner tak, aby hodnoty parametrů byly v metodách enter a exit k dispozici. Úpravy, které byly provedeny jsou posány v následujících kapitolách \ref{impl-params} a \ref{impl-ret-param}. 
+
+\subsection{Rozšíření RoadRunneru o parametry metod}\label{impl-prams}
+
+RoadRunner reprezentuje událost vstupu (i výstupu) objektem třídy MethodEvent. Instance této třídy je předána jako parametr, jak do metody \textit{enter}, tak i do metody \textit{exit} třídy Tool. Je tedy nutné rozšířit třídu MethodEvent o atribut, který obsahuje hodnoty parametrů. Tento parametr byl nazván \texttt{params} a je typu \texttt{Object[]}. Důvod, proč byl zvolen tento typ je, že v Javě se mohou vyskytovat jak primitivní, tak referenční datové typy. Všechny referenční datové typy rozšiřují třídu Object, takže mohou být v tomto poli uloženy. Primitivní datové typy třídu object nerozšiřují, nicméně, ke každému primitivnímu datovému typu existuje referenční datový typ. Převod primitivního datového typu na referenční se provádí pomocí metody \textit{valueOf} daného referenčního typu. Pokud tedy mají být uloženy všechny datové typy do jednoho pole, je nutné všechny typy převést na referenční a tyto referenční datové typy uložit do tohoto pole. Výsledkem tedy je pole, obsahující jak původní referenční datové typy, tak původně primitivní datové typy.
+
+Objekty třídy MethodEvent jsou generovány ve třídě \textit{RREventGenerator}, konkrétně v metodě \textit{enter}. Do této metody je nutné přidat další parametr \texttt{Object[] params}, ve kterém budou zaslány hodnoty parametrů. Uvnitř této metody probíhá vytvoření instance třídy \textit{MethodEnter}, které je třeba přiřadit hodnoty parametrů z parametru \texttt{params}. Tato metoda je vyvolávána staticky dle její deklarace ve třídě \textit{Constant}. Tento záznam je tedy třeba modifikovat a přidat parametr \texttt{params}. Vyvořená instance třídy \textit{MethodEvent} je předána prvnímu nástroji v řetězci nástrojů v metodě \textit{enter}. Zjednodušeně bude tedy upravená metoda \textit{enter} třídy \textit{RREventGenerator} vypadat následovně:
+
+\begin{lstlisting}
+public static void enter(final Object target, final int methodDataId, final ShadowThread td, Object[] params) {
+	...
+	final MethodEvent me = td.enter(target, methodData);
+	me.setParams(params);
+	...
+	firstTool.enter(me);
+
+}
+\end{lstlisting}
+
+Dalším krokem je získání hodnot parametrů, se kterými byla zavolána metoda v testovaném programu. K tomuto kroku je nutné nejprve uvést, jakým způsobem Roadrunner získává informace o testovaném programu. RoadRunner využívá knihovnu ASM\footnote{Knihovna ASM je dostupná na adrese \url{http://asm.ow2.org/}.}, která slouží pro manipulaci a analýzu Java bytekódu. Konkrétně se analýza a manipulace s metodami provádí ve třídě SyncAndMethodThunkInserter v metodě \textit{createMethodThunk}, kde je dostupný kontext vláken testovaného program (tj. zásobník, registry, atd.) prostřednictvím objektu \texttt{mv} typu \textit{MethodVisitor}\footnote{MethodVisitor je třída z knihovny ASM, sloužící k analýze a manipulaci s bytekódem souvisejícím s metodami.}. Odtud je dále volána metoda \textit{enter} třídy \textit{RREventGenerator}, přičemž k jejímu volání dochází ihned po vstupu do metody v testovaném programu. Metoda \textit{createMethodThunk} třídy \textit{SyncAndMethodThunkInserter} byla původně volána následujícím způsobem:
+
+\begin{lstlisting}[frame=none, numbers=left, xleftmargin=1cm]
+private void createMethodThunk(int access, String name, String desc, String signature, String[] exceptions, String wrappedMethodName, int maxLocals) {
+	...
+	MethodInfo m = method;
+	mv.push(m.getId());
+	mv.invokeStatic(Constants.THREAD_STATE_TYPE, Constants.CURRENT_THREAD_METHOD);
+	mv.invokeStatic(Constants.MANAGER_TYPE, Constants.ENTER_METHOD);
+	...
+}
+\end{lstlisting}
+
+Ve výše uvedeném kódu proběhne na řádku 4 uložení methodDataId na zásobník. Na řádku 5 dojde k vyvolání statické metody \textit{getCurrentShadowThread}, definované ve třídě Constants, která uloží na vrchol zásobníku objekt ShadowThread asiciovaný k aktuálnímu vláknu. Jako poslední proběhne na řádku 6 vyvolání statické metody \textit{enter} třídy \textit{RREventGenerator}. Pro správné vyvolání této metody, je nutné mít umístěny všechny její parametry na zásobníku, což ale není splněno, jelikož byl do této metody přidán parametr \texttt{Object[] params}. Z tohoto důvodu je mezi 5. a 6. řádek programu vložen kód, který na zásobník umístí pole obsahující hodnoty parametrů metody z testovaného programu. Upravená metoda \textit{createMethodThunk} je zobrazena v \ref{opcode-1}:
+
+\begin{lstlisting}[frame=none, numbers=left, xleftmargin=1cm, label=opcode-1, caption=Upravená metoda createMethodThunk zajišťující vytvoření pole hodnot parametrů volané metody.]
+private void createMethodThunk(int access, String name, String desc, String signature, String[] exceptions, String wrappedMethodName, int maxLocals) {
+	...
+	MethodInfo m = method;
+	mv.push(m.getId());
+	mv.invokeStatic(Constants.THREAD_STATE_TYPE, Constants.CURRENT_THREAD_METHOD);
+	
+	//////////////////////////////////////////////////////////////////////////////
+	// ZACATEK: vlozeny kod vytvarejici pole hodnoty parametru
+	//////////////////////////////////////////////////////////////////////////////
+	
+	Type[] paramTypes = Type.getArgumentTypes(method.getDescriptor());
+	int paramLength = paramTypes.length;
+
+	if(paramLength > 0) {
+		
+		// ulozeni velikosti pole parametru na zasobnik	
+		mv.visitIntInsn(Opcodes.BIPUSH, paramLength);
+		
+		// vytvoreni pole params o velikosti umistene na vrcholu zasobniku
+		mv.visitTypeInsn(Opcodes.ANEWARRAY, "java/lang/Object");
+		
+		// ulozeni tohoto pole do locals
+		mv.visitVarInsn(Opcodes.ASTORE, paramLength + PARAM_OFFSET);
+
+		Integer i = new Integer(0);
+		
+		// cyklus pres vsechny parametry dle jejich typu
+		for (Type type : paramTypes) {
+			
+			// ulozeni pole params na vrchol zasobniku
+			mv.visitVarInsn(Opcodes.ALOAD, paramLength + PARAM_OFFSET);
+			
+			// ulozeni idenxu na vrchol zasobniku
+			mv.visitIntInsn(Opcodes.BIPUSH, i);
+			
+			// zapouzdreni primitivnich typu a zduplikovani hodnoty i-teho parametru
+			// na vrchol zasobniku
+			i = boxAndVisitVariable(mv, i, type);
+
+			// ulozeni hodnoty parametru do pole params na index i 
+			mv.visitInsn(Opcodes.AASTORE);
+			i++;
+		}
+		
+		// ulozeni pole params na vrchol zasobniku			
+		mv.visitVarInsn(Opcodes.ALOAD, paramLength + PARAM_OFFSET);
+	} else {
+		// ulozeni hodnoy NULL na vrchol zasobniku
+		mv.visitInsn(Opcodes.ACONST_NULL);
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////
+	// KONEC: vlozeny kod vytvarejici pole hodnoty parametru
+	//////////////////////////////////////////////////////////////////////////////
+	
+	mv.invokeStatic(Constants.MANAGER_TYPE, Constants.ENTER_METHOD);
+	...
+}
+\end{lstlisting}
+
+V kódu výše je metoda \texttt{boxAndVisitVariable}, která provádí zapouzdření primitivních typů do referenčních datových typů. Hodnoty parametrů metody v testovaném programu jsou umístěny v \textit{locals} a proto tento převod musí probíhat opět na úrovni Java bytekódu. Kód této metody a je znázorněn v příkladu \ref{opcode-2}. Pokud hodnota parametru na indexu $i$ je primitivního typu, pak tento kód načte tuto hodnotu z locals a uloží ji na vrchol zásobníku. Poté zavolá metodu \textit{valueOf} odpovídajícího datového typu, která vytvoří hodnotu referenčního datového typu z hodnoty na vrcholu zásobníku a výsledek umístí opět na vrchol zásobníku. Pokud již parametr je referenčního datového typu, pak je pouze načten z locals na vrchol zásobníku. 
+
+\begin{lstlisting}[frame=none, numbers=left, xleftmargin=1cm, label=opcode-1, caption=Metoda zajišťující zapouzdření primitivních datových typů.]
+private Integer boxAndVisitVariable(RRMethodAdapter mv, Integer i, Type type) {
+		if (type.equals(Type.BOOLEAN_TYPE)) {
+			mv.visitVarInsn(Opcodes.ILOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Boolean", "valueOf", "(Z)Ljava/lang/Boolean;", false);
+		} else if (type.equals(Type.BYTE_TYPE)) {
+			mv.visitVarInsn(Opcodes.ILOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Byte", "valueOf", "(B)Ljava/lang/Byte;", false);
+		} else if (type.equals(Type.CHAR_TYPE)) {
+			mv.visitVarInsn(Opcodes.ILOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Character", "valueOf", "(C)Ljava/lang/Character;", false);
+		} else if (type.equals(Type.SHORT_TYPE)) {
+			mv.visitVarInsn(Opcodes.ILOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Short", "valueOf", "(S)Ljava/lang/Short;", false);
+		} else if (type.equals(Type.INT_TYPE)) {
+			mv.visitVarInsn(Opcodes.ILOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Integer", "valueOf", "(I)Ljava/lang/Integer;", false);
+		} else if (type.equals(Type.LONG_TYPE)) {
+			mv.visitVarInsn(Opcodes.LLOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Long", "valueOf", "(J)Ljava/lang/Long;", false);
+			i++;
+		} else if (type.equals(Type.FLOAT_TYPE)) {
+			mv.visitVarInsn(Opcodes.FLOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Float", "valueOf", "(F)Ljava/lang/Float;", false);
+		} else if (type.equals(Type.DOUBLE_TYPE)) {
+			mv.visitVarInsn(Opcodes.DLOAD, i + 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Double", "valueOf", "(D)Ljava/lang/Double;", false);
+			i++;
+		} else {
+			mv.visitVarInsn(Opcodes.ALOAD, i + 1);
+		}
+		return i;
+	}
+\end{lstlisting}
+
+Výše uvedeným způsobem je docíleno zduplikování hodnot parametrů volané metody a jejich postupnému předání až do metody \textit{enter} jednotlivých nástrojů. Dálším krokem je obdobným způsobem získat a předat návratovou hodnotu z metod testovaného programu.
+
+\subsection{Rozšíření RoadRunneru o návratový parametr}\label{impl-ret-pram}
+
+Rozšíření o návratovou hodnotu metod je provedeno stejným způsobem jako rozšíření a parametry popsaný v předchozí kapitole \ref{impl-prams}.
+
+Nejprve je třeba přidat atribut \texttt{Object returnValue} do třídy MethodEvent. Dalším krokem je přidat stejný parametr do metody \textit{exit} ve třídě \textit{RREventGenerator}, ve které proběhne (stejně jako v metodě \textit{enter} téže třídy) vytvoření instance třídy \textit{MethodEvent} a přiřazení parametru \texttt{returnValue} této instanci. Tato metoda je stejně jako metoda \textit{enter} volána z metody \textit{createMethodThunk}, kde musí být návratová hodnota také stejným způsobem získána. Vzhledem k tomu, že kód získání návratové hodnoty je téměř stejný jako kód získání ostatních parametrů, není zde uveden, nicméně je dohledatelný ve zdrojových souborech.
+
+
+Psat to "je to vyreseno"
+[Poznamky z konzultace] Implementacni detaily - jak je to vyreseno a problemy ktere vznikly. Strukturalni a behavioralni diagramy
+Co bylo zajimave, co sem jak musel vyresit kdyz nastaly nejake problemy
+
+-implementacni problemy
+- v cem je to implementovane, ceho se vyuziva
+- jak se spousti (priklady)
+
+
+\section{Implementační detaily}
+
+
+\chapter{Testování}
+
+\section{Jednotkové testování}
+
+\section{Testování dynamického analyzátoru ve frameworku RoadRunner}
+
+Následující testy jsou popsány jednotným způsobem, a proto bude tato reprezentace nejprve vysvětlena. Každý test se skládá z textového popisu a sekvenčního diagramu. Součástí textového popisu jsou následující položky:
+\textit{kategorie}, \textit{popis}, \textit{kontrakt}, \textit{očekávaný} a \textit{skutečný výsledek}. \textit{Kategorie} udává na co se daný test zaměřuje, přičemž u jednoho testu může být kategorií více. Kategorie jsou:
+
+\begin{description}
+\item{\textit{JEDNODUCHÝ KONTRAKT} -- Testování probíhá pouze na jednoduchých kontraktech.}
+\item{\textit{SLOŽITĚJŠÍ KONTRAKT} -- Testování probíhá pouze na složitějších kontraktech.}
+\item{\textit{VEKTOROVÝ ČAS} -- K odhalení porušení je nutné použití vektorového času.}
+\item{\textit{VÍCE OBJEKTŮ} -- Metody targetů a spoilerů jsou volány na více objektů stejných typů.}
+\item{\textit{VÍCE SPOILERŮ} -- K jednomu targetu je definováno více spoilerů.}
+\item{\textit{VÍCE VLÁKEN} -- Metody targetl a spoilerů jsou volány z více vláken.}
+\item{\textit{IGNOROVÁNÍ OSTATNÍCH METOD} -- V programu se nachází volání metod, které je nutné ignorovat.}
+\item{\textit{NEDOKONČENÉ SEKVENCE} -- V programu se vyskytují nedokončené sekvence metod.}
+\item{\textit{PARAMETRY} -- Kontrakty jsou zadány s parametry.}
+\item{\textit{RŮZNÉ TYPY PARAMETRŮ} -- V metodách se vyskytují parametry různých typů.}
+\item{\textit{IGNOROVÁNÍ PARAMETRŮ} -- V kontraktu je zadán parametr \texttt{\_}, která je nutné ignorovat.}
+\item{\textit{VÍCE PARAMETRŮ} -- V metodách se vyskytuje více parametrů.}
+\item{\textit{NÁVRATOVÝ PARAMETR} -- V kontraktu je zadán návratový parametr.}
+\end{description}
+
+\textit{Popis} uvádí detailnější informace o důvodu porušení (nebo neporušení) kontraktu. Položka \textit{kontrakt} uvádí definici kontraktu, který je hledán a poslední dvě položky (\textit{očekávaný} a \textit{skutečný výsledek}) uvádějí, kolik porušení kontraktů mělo být nalezeno a kolik jich bylo skutečné nalezeno.
+
+Na sekvenčním diagramu je znázorněna testovaná situace. Vyskytují se zda vlákna targetů (\textit{Target thread n}), vlákna spoilerů (Spoiler thread n) a objekty (Object n), na které jsou jednotlivé metody volány\footnote{Písmeno n v názvu vláken a objektů značí jejich číslo}. Metody objektů jsou volány z vláken a to buď synchronizovaně nebo bez synchronizace. Synchronizovaným voláním\footnote{Synchonizované a nesynchronizované volání metody je na diagramech rozlišeno pomocí typu šipky a také klíčovým slovem synchronized.} je myšleno volání metod zapouzdřené do vhodné synchronizace, tj. uzamknutí zámku před voláním první metody v sekvenci a uvolnění zámku po provedení poslední metody v sekvenci. Takovéto volání metod je znozorněno na digramu ...TODO.... Pokud je navrácena návratová hodnota v takto prováděné sekvenci metod, pak je to znázorněno pomocí popisu hrany. Tj. například v příklad ...TODO... je návratová hodnota metody \texttt{m2} hodnota 5, což je zapsáno jako: \texttt{5 = m2()} ...TODO upravit...
+Volání metody bez použití synchronizace je zobrazena na diagramu ...TODO... Pokud dojde k takovému volání, není zaručeno pořadí volání mezi voláním metod z různých vlákne. Jediná situace, kdy je zaručeno pořadí vykonávání metod napříč různými vlákny je tedy případ, kdy obě vlákna použijí synchronizaci nad stejným objektem (tj. zámkem).
+
+V příkladech se také vyskytuje uspaní vláken na určitou dobu z důvodu nasimulování různého proložení (volání \textit{sleep}).
+
+
+
+\subsection*{Test 1}
+
+\begin{itemize}
+\item Kategorie: JEDNODUCHÝ KONTRAKT.
+\item Popis: Obě vlákna využívají korektní synchronizaci.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test1.pdf}
+    %\caption{Test 1.}
+    \label{test1}
+\end{center}
+
+\subsection*{Test 2}
+
+\begin{itemize}
+\item Kategorie: JEDNODUCHÝ KONTRAKT.
+\item Popis: Vlákno $S$ volá metodu \textit{m1} bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test2.pdf}
+    %\caption{Test 2.}
+    \label{test2}
+\end{center}
+
+\subsection*{Test 3}
+\begin{itemize}
+\item Kategorie: JEDNODUCHÝ KONTRAKT.
+\item Popis: Vlákno $T$ volá metody \textit{m1} a \textit{m2} bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test3.pdf}
+    %\caption{Test 3.}
+    \label{test3}
+\end{center}
+
+\subsection*{Test 4}
+\begin{itemize}
+
+\item Kategorie: JEDNODUCHÝ KONTRAKT.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test4.pdf}
+    %\caption{Test 4.}
+    \label{test4}
+\end{center}
+
+\subsection*{Test 5}
+\begin{itemize}
+
+\item Kategorie: JEDNODUCHÝ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace. Pomocí uspání vláken, je spoiler v čase vykonán mezi první a poslední metodou targetu. K detekování není nutný vektorový čas.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test5.pdf}
+    %\caption{Test 5.}
+    \label{test5}
+\end{center}
+
+\subsection*{Test 6}
+\begin{itemize}
+\item Kategorie: JEDNODUCHÝ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace. Pomocí uspání vláken, je spoiler v čase vykonán dříve, než je vykonána první metoda targetu. K detekování je nutný vektorový čas.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test6.pdf}
+    %\caption{Test 6.}
+    \label{test6}
+\end{center}
+\subsection*{Test 7}
+
+\begin{itemize}
+\item Kategorie: JEDNODUCHÝ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace. Pomocí uspání vláken, je celý target v čase vykonán dříve, než první metoda spoileru. K detekování je nutný vektorový čas.
+\item Kontrakt: \texttt{m1() m2() <- { m1() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test7.pdf}
+    %\caption{Test 7.}
+    \label{test7}
+\end{center}
+\subsection*{Test 8}
+
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test8.pdf}
+    %\caption{Test 8.}
+    \label{test8}
+\end{center}
+
+\subsection*{Test 9}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Vlákno $s$ volá všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test9.pdf}
+    %\caption{Test 9.}
+    \label{test9}
+\end{center}
+
+\subsection*{Test 10}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Vlákno $t$ volá všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test10.pdf}
+    %\caption{Test 10.}
+    \label{test10}
+\end{center}
+
+\subsection*{Test 11}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace. Pomocí uspání vláken, je target v čase vykonán mezi první a poslední metodou spoileru. K detekování je nutný vektorový čas.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3() }}
+
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test11.pdf}
+    %\caption{Test 11.}
+    \label{test11}
+\end{center}
+
+\subsection*{Test 12}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Vlákno $t$ volá všechny metody za použití správné synchronizace. Metoda \textit{m2} vlákna $s$ volá první metodu za použití synchronizace, ale druhou nikoli. K porušení kontraktu nedochází, neboť spoiler nemůže být celý vložen v targetu.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3() }}
+
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test12.pdf}
+    %\caption{Test 12.}
+    \label{test12}
+\end{center}
+
+\subsection*{Test 13}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Obě vlákna volají všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test13.pdf}
+    %\caption{Test 13.}
+    \label{test13}
+\end{center}
+
+\subsection*{Test 14}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Vlákno $S$ volá všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test14.pdf}
+    %\caption{Test 14.}
+    \label{test14}
+\end{center}
+
+\subsection*{Test 15}
+\begin{itemize}
+\item Kategorie: SLOŽITĚJŠÍ KONTRAKT, VEKTOROVÝ ČAS.
+\item Popis: Vlákno $T$ volá všechny metody bez synchronizace.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test15.pdf}
+    %\caption{Test 15.}
+    \label{test15}
+\end{center}
+\subsection*{Test 16}
+\begin{itemize}
+\item Kategorie: IGNOROVÁNÍ OSTATNÍCH METOD.
+\item Popis: Ve vlákně $T$ i $S$ vznikne více instancí targetů a spoilerů. Testuje se ignorování ostatních metod.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 4 nalezených porušení.
+
+\item Skutečný výsledek: 4 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test16.pdf}
+    %\caption{Test 16.}
+    \label{test16}
+\end{center}
+
+\subsection*{Test 17}
+\begin{itemize}
+\item Kategorie: NEDOKONČENÉ SEKVENCE.
+\item Popis: Target ve vlákně $T$ není dokončen - chybí poslední metoda.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test17.pdf}
+    %\caption{Test 17.}
+    \label{test17}
+\end{center}
+\subsection*{Test 18}
+\begin{itemize}
+\item Kategorie: NEDOKONČENÉ SEKVENCE.
+\item Popis: Spoiler ve vlákně $S$ není dokončen - chybí první metoda.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test18.pdf}
+    %\caption{Test 18.}
+    \label{test18}
+\end{center}
+
+\subsection*{Test 19}
+\begin{itemize}
+\item Kategorie: NEDOKONČENÉ SEKVENCE.
+\item Popis: Spoiler ve vlákně $S$ není dokončen - chybí poslední metoda.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test19.pdf}
+    %\caption{Test 19.}
+    \label{test19}
+\end{center}
+\subsection*{Test 20}
+\begin{itemize}
+\item Kategorie:NEDOKONČENÉ SEKVENCE.
+\item Popis: Spoiler ve vlákně $S$ není dokončen - chybí prostřední metoda.
+\item Kontrakt: \texttt{m1() m2() m3() m4() m5() <- { m1() m3() m1()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test20.pdf}
+    %\caption{Test 20.}
+    \label{test20}
+\end{center}
+
+\subsection*{Test 21}
+\begin{itemize}
+\item Kategorie: VÍCE OBJEKTŮ.
+\item Popis: Target ve vlákně $T$ je volán na objekt $o_1$, ale spoiler ve vlákně $S$ je volán na objekt $o_2$.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test21.pdf}
+    %\caption{Test 21.}
+    \label{test21}
+\end{center}
+
+\subsection*{Test 22}
+\begin{itemize}
+\item Kategorie: VÍCE OBJEKTŮ.
+\item Popis: Spoiler ve vlákně $S$ volá první metodu \textit{m2} na objekt $o_1$, ale druhou metodu \textit{m3} na objekt $o_2$.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test22.pdf}
+    %\caption{Test 22.}
+    \label{test22}
+\end{center}
+
+\subsection*{Test 23}
+\begin{itemize}
+\item Kategorie: VÍCE OBJEKTŮ.
+\item Popis: Target ve vlákně $T$ volá první metodu \textit{m2} a poslední metodu \textit{m3} na objekt $o_1$, ale druhou metodu \textit{m2} na objekt $o_2$.
+\item Kontrakt: \texttt{m1() m2() m3() <- { m2() m3()}}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test23.pdf}
+    %\caption{Test 23.}
+    \label{test23}
+\end{center}
+
+\subsection*{Test 24}
+\begin{itemize}
+\item Kategorie: VÍCE SPOILERŮ.
+\item Popis: Je provedena pouze jedna definice spoileru. Dojde k nalezení 2 porušení, neboť spoiler i target mohou být nalezeny jako ve vlákně $T$, tak i $S$. 
+\item Kontrakt: \texttt{m1() m2() m3() <- { m1() m3() | m2() m4() | m5() }}
+\item Očekávaný výsledek: 2 nalezených porušení.
+
+\item Skutečný výsledek: 2 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test24.pdf}
+    %\caption{Test 24.}
+    \label{test24}
+\end{center}
+
+\subsection*{Test 25}
+\begin{itemize}
+\item Kategorie: VÍCE SPOILERŮ.
+\item Popis: Dojde k nalezení 2 různých spoilerů (\textit{m1() m3()} a \textit{m5()}) ve vlákne $S$. 
+\item Kontrakt: \texttt{m1() m2() m3() <- { m1() m3() | m2() m4() | m5() }}
+\item Očekávaný výsledek: 3 nalezených porušení.
+
+\item Skutečný výsledek: 3 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test25.pdf}
+    %\caption{Test 25.}
+    \label{test25}
+\end{center}
+
+\subsection*{Test 26}
+\begin{itemize}
+\item Kategorie: VÍCE SPOILERŮ, VÍCE VLÁKEN.
+\item Popis: Dojde k nalezení 2 různých spoilerů (\textit{m1() m3()} a \textit{m5()}) ve vláknech $S1$ a $S12$. 
+\item Kontrakt: \texttt{m1() m2() m3() <- { m1() m3() | m2() m4() | m5() }}
+\item Očekávaný výsledek: 2 nalezených porušení.
+
+\item Skutečný výsledek: 2 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test26.pdf}
+    %\caption{Test 26.}
+    \label{test26}
+\end{center}
+
+\subsection*{Test 27}
+\begin{itemize}
+\item Kategorie: VÍCE SPOILERŮ, VÍCE VLÁKEN.
+\item Popis: Nedojde k nalezení žádného spoileru, neboď spoiler musí být vykonán v jednom vlákně. 
+\item Kontrakt: \texttt{m1() m2() m3() <- { m1() m3() | m2() m4() | m5() }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test27.pdf}
+    %\caption{Test 27.}
+    \label{test27}
+\end{center}
+
+\subsection*{Test 28}
+\begin{itemize}
+\item Kategorie: VÍCE SPOILERŮ, VÍCE VLÁKEN.
+\item Popis: Dojde k nalezení pouze jednoho spoileru (\textit{m2() m4()}) ve vlákně $S3$, neboť v ostatních vláknech je použita správná synchronizace. 
+\item Kontrakt: \texttt{m1() m2() m3() <- { m1() m3() | m2() m4() | m5() }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+
+\item Skutečný výsledek: 1 nalezených porušení.
+\item \textbf{Test proběhl úspěšně}.
+
+... TODO spatny diagram ...
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test28.pdf}
+    %\caption{Test 28.}
+    \label{test28}
+\end{center}
+
+\subsection*{Test 29}
+\begin{itemize}
+\item Kategorie: PARAMETRY.
+\item Popis: Parametry metod se shodují s definicí kontraktu. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(C) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test29.pdf}
+    %\caption{Test 29.}
+    \label{test29}
+\end{center}
+
+\subsection*{Test 30}
+\begin{itemize}
+\item Kategorie: PARAMETRY.
+\item Popis: Metoda \textit{m2()} je zavolána bez parametru. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(C) }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+\item Skutečný výsledek: 0 nalezených porušení.
+
+\item \textbf{Test proběhl úspěšně}.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test30.pdf}
+    %\caption{Test 30.}
+    \label{test30}
+\end{center}
+
+\subsection*{Test 31}
+\begin{itemize}
+\item Kategorie: PARAMETRY.
+\item Popis: Parametry metod \textit{m1} a \textit{m3} se shodují. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(A) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test31.pdf}
+    %\caption{Test 31.}
+    \label{test31}
+\end{center}
+
+\subsection*{Test 32}
+\begin{itemize}
+\item Kategorie: PARAMETRY.
+\item Popis: Parametry metod \textit{m1} a \textit{m3} se neshodují. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(A) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test32.pdf}
+    %\caption{Test 32.}
+    \label{test32}
+\end{center}
+%\subsectition{Test 33on*{}
+
+%\begin{center}
+%    \centering
+%    \includegraphics[width=\textwidth]{obrazky-figures/tests/test33.pdf}
+%%    \caption{Test 33.}
+%    \label{test33}
+%\end{center}
+%\subsectition{Test 34on*{}
+%\begin{center}
+%    \centering
+%    \includegraphics[width=\textwidth]{obrazky-figures/tests/test34.pdf}
+%%    \caption{Test 34.}
+%    \label{test34}
+%\end{center}
+\subsection*{Test 35}
+\begin{itemize}
+\item Kategorie: RŮZNÉ TYPY PARAMETRŮ.
+\item Popis: Parametry v metodách \textit{m1} a \textit{m3} jsou typu \textit{String}, oproti tomu parametr metody \textit{m2(2)} je primitivního typu \textit{int}. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(A) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test35.pdf}
+    %\caption{Test 35.}
+    \label{test35}
+\end{center}
+
+\subsection*{Test 36}
+\begin{itemize}
+\item Kategorie: RŮZNÉ TYPY PARAMETRŮ.
+\item Popis: Parametry v metodách \textit{m1} a \textit{m3} jsou typu \textit{Double}, oproti tomu parametr metody \textit{m2} je primitivního typu \textit{int}. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(A) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test36.pdf}
+    %\caption{Test 36.}
+    \label{test36}
+\end{center}
+
+\subsection*{Test 37}
+\begin{itemize}
+\item Kategorie: RŮZNÉ TYPY PARAMETRŮ.
+\item Popis: Parametry v metodách \textit{m1} a \textit{m3} jsou instance nové třídy \textit{MyObject} s definovanou \textit{equals} metodou, oproti tomu parametr metody \textit{m2} je primitivního typu \textit{int}. 
+\item Kontrakt: \texttt{m1(A) m2(B) <- { m3(A) }}
+
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test37.pdf}
+    %\caption{Test 37.}
+    \label{test37}
+\end{center}
+\subsection*{Test 38}
+\begin{itemize}
+\item Kategorie: IGNOROVÁNÍ PARAMETRŮ.
+\item Popis: Parametr metod \textit{m1} a \textit{m3} je ignorován, takže nezáleží na jeho hodnotě. 
+\item Kontrakt: \texttt{m1(_) m2(X) <- { m3(_) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test38.pdf}
+    %\caption{Test 38.}
+    \label{test38}
+\end{center}
+\subsection*{Test 39}
+\begin{itemize}
+\item Kategorie: IGNOROVÁNÍ PARAMETRŮ.
+\item Popis: Parametr metody \textit{m1} není zadán. Hodnota a typ parametru jsou ignorovány, ale počet musí souhlasit. Tím pádem není nalezena žádná instance targetu. 
+\item Kontrakt: \texttt{m1(_) m2(X) <- { m3(_) }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test39.pdf}
+    %\caption{Test 39.}
+    \label{test39}
+\end{center}
+\subsection*{Test 40}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ.
+\item Popis: Parametry mezi targetem a spoilerem souhlasí, takže porušení je nalezeno. 
+\item Kontrakt: \texttt{m1(A,B) m2(A,C) <- { m3(A,B,C) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test40.pdf}
+    %\caption{Test 40.}
+    \label{test40}
+\end{center}
+\subsection*{Test 41}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ.
+\item Popis: V tagetu, ve vlákně $T$, se neshoduje první parametr u metod \textit{m1} a \textit{m2}, takže neexistuje instance targetu. 
+\item Kontrakt: \texttt{m1(A,B) m2(A,C) <- { m3(A,B,C) }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test41.pdf}
+    %\caption{Test 41.}
+    \label{test41}
+\end{center}
+\subsection*{Test 42}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ.
+\item Popis: Dokončená instance tagetu obsahuje až druhou metodu \textit{m1}, protože u první metody \textit{m1} se neshodují parametry s metodou \textit{m2} a ani s metodou \textit{m3} ve vláknu spoileru $S$. 
+\item Kontrakt: \texttt{m1(A,B) m2(A,C) <- { m3(A,B,C) }}
+
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test42.pdf}
+    %\caption{Test 42.}
+    \label{test42}
+\end{center}
+
+\subsection*{Test 43}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ, IGNOROVÁNÍ PARAMETRŮ, NÁVRATOVÝ PARAMETR.
+\item Popis: Návratový parametr metody \textit{m1} je shodný s parametry metod \textit{m2} a \textit{m3}. 
+\item Kontrakt: \texttt{A:m1(_) m2(A) <- { m3(A) }}
+\item Očekávaný výsledek: 1 nalezených porušení.
+
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test43.pdf}
+    %\caption{Test 43.}
+    \label{test43}
+\end{center}
+\subsection*{Test 44}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ, IGNOROVÁNÍ PARAMETRŮ, NÁVRATOVÝ PARAMETR.
+\item Popis: Návratový parametr metody \textit{m1} není shodný s parametrem metody \textit{m3} ve vláknu spoileru $S$. 
+\item Kontrakt: \texttt{A:m1(_) m2(A) <- { m3(A) }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test44.pdf}
+    %\caption{Test 44.}
+    \label{test44}
+\end{center}
+\subsection*{Test 45}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ, IGNOROVÁNÍ PARAMETRŮ, NÁVRATOVÝ PARAMETR.
+\item Popis: Parametry jsou shodné, ale je použita správná synchronizace a proto k porušení nedojde. 
+\item Kontrakt: \texttt{A:m1(_) m2(A) <- { m3(A) }}
+\item Očekávaný výsledek: 0 nalezených porušení.
+
+\item Skutečný výsledek: 0 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test45.pdf}
+    %\caption{Test 45.}
+    \label{test45}
+\end{center}
+\subsection*{Test 46}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ, IGNOROVÁNÍ PARAMETRŮ, NÁVRATOVÝ PARAMETR.
+\item Popis: Návratový parametr je kontrolován u dvou metod targetu a parametry z obou metod jsou použity jako vstupní parametry do metody ve spoileru. Metody ve vláknu targetu $T$ jsou volány se správnou synchronizací, ale ve vláknu spoileru $S$, jsou volány bez synchronizace. 
+\item Kontrakt: \texttt{X:m1() Y:m2() <- { m3(X,Y) }}
+
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test46.pdf}
+    %\caption{Test 46.}
+    \label{test46}
+\end{center}
+\subsection*{Test 47}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ, IGNOROVÁNÍ PARAMETRŮ, NÁVRATOVÝ PARAMETR.
+\item Popis: Je definováno více spoilerů na jeden target s kombinací parametrů a návratového parametru. 
+\item Kontrakt: \texttt{X:m1(_) m2(A, X) <- { m3(_,X) | m1(A) X:m4(A) }}
+\item Očekávaný výsledek: 2 nalezených porušení.
+\item Skutečný výsledek: 2 nalezených porušení.
+
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test47.pdf}
+    %\caption{Test 47.}
+    \label{test47}
+\end{center}
+\subsection*{Test 48}
+\begin{itemize}
+\item Kategorie: VÍCE PARAMETRŮ, IGNOROVÁNÍ PARAMETRŮ, NÁVRATOVÝ PARAMETR.
+\item Popis: Dokončená instance tageru, ve vláknu $S$, je tvořena až druhými metodami \textit{m1} a \textit{m2}, protože by jinak nesouhlasí parametry s ohledem na definici kontraktu. Totéž platí u metody \textit{m3} ve vláknu targetu $T$. 
+\item Kontrakt: \texttt{X:m1(_) m2(A, X) <- { m3(_,X) | m1(A) X:m4(A) }}
+
+\item Očekávaný výsledek: 1 nalezených porušení.
+\item Skutečný výsledek: 1 nalezených porušení.
+\end{itemize}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{obrazky-figures/tests/test48.pdf}
+    %\caption{Test 48.}
+    \label{test48}
+\end{center}
+
+
+\section{Testování SearchBestie}
+
+[Poznamky z konzultace] Cim vic testu, tim lip - bud kapitola, nebo priloha. Popsat samotny test co co znamena a pak vytvorit reprezentaci jednotlivych testu a ty tam dat. Idealne diagram + kratky popis. Vstupy + vystupy a jak to dopadlo.
+40 nebo i 100 ruznych testu - jak mi zbude cas
+Kdyz toho bude moc, tak to bude priloha, ale musi tam byt to, jak se to cte. Vymyslet reprezentaci jak budou ty testy reprezentovany v dokumentaci. Dat tam diagram a popsat co se tam deje. (co je na vstupu)
+
+\chapter{Závěr}
+
+[Poznamky z konzultace] Dalsi pokracovani v projektu, sebekritiky! (co to neumi, jak by se to melo upravit aby to umelo, kde je slaba stranka, neni to optimalizovane na velke programy atd.), cim vic se priznam, ze neco neni dodelane, tim lip
+Nedostatek je treba, ze se nevypousti ty metody z toho okna.
+
+kdyz je provede target se spoilerem ve stejnem vlakne, tak to nezdetekuje
+velke mnozstvi instanci muze byt problem - nezahazuji se
+
+\chapter{SP: 1. Testování paralelních programů}
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+%!!!! SEMESTRALNI PROJEKT !!!!\\
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+
+%Dříve, než budou popisovány samotné dynamické analyzátory, kterými se tato práce zabývá, je nutné představit testování paralelních programů v~obecnějším pohledu. Tato kapitola se tedy zabývá obecně problematikou paralelních programů, představením základních chyb v~paralelních programech a vysvětlením některých pojmů, které budou důležité pro pochopení dalších částí této práce. Na některých místech budou uvedeny informace související s~jazykem Java, jelikož tento jazyk bude použit pro implementaci vybraných dynamických analyzátorů.
+
+\section{Paralelní program}\label{paralel-program}
+%V~dnešní době nalezneme v~běžných počítačích procesory, které mají 2 nebo více jader. S~rostoucí popularitou těchto procesorů také roste popularita paralelních programů, které tyto jádra mohou současně využívat. Využívání více jader procesoru (při běhu jednoho paralelního programu) lze dosáhnout dvěma způsoby. Prvním způsobem je vytvořit více procesů. V~tomto kontextu lze proces chápat jako sekvenčně prováděný program ve vlastním adresovém prostoru. Nevýhodou tohoto řešení je rychlost přepínání kontextu a rychlost synchronizace mezi procesy. Typickým způsobem komunikace mezi vlákny je \textit{IPC} (Inter Process Communication) \cite{cite:IPC, cite:paralel-programming}.
+
+%Druhý způsob, je použití jednoho procesu obsahujícího několik vláken\footnote{V jazyce Java je program chápán jako proces s~vlákny, přestože lze vytvořit i programy, které budou obsahovat více procesů. Nicméně každý proces obsahuje minimálně jedno vlákno \cite{cite:java}.}. V~tomto kontextu proces chápeme jako sadu souběžně prováděných vláken v~jednom adresovém prostoru a proces je tedy obálkou těchto vláken. Toto řešení přináší několik výhod. Zejména se jedná o~rychlost přepínání kontextu a synchronizace mezi vlákny. Další výhodou je sdílení prostředků (paměť, otevřené soubory, atd.), což je umožněno díky společnému adresovému prostoru vláken stejného procesu. Přestože použití vláken přináší řadu výhod, přináší také problémy, a to právě v~podobě souběžného přístupu ke zmíněným sdíleným prostředkům. Tento přístup musí být řízen pomocí tzv. \textit{synchronizace} \cite{cite:paralel-programming}.
+%Rozdíl mezi výše zmíněnými způsoby je znázorněn na obrázku \ref{}.
+%...obrazek...
+
+%Základním požadavkem v~dnešních operačních systémech\footnote{Dnešními operačními systémy jsou myšleny multiprogramové operační systémy, kde uživatel požaduje souběžný běh více programů a tedy souběžný běh více procesů a vláken.} je souběžné provádění více programů. Vzhledem k~tomu, že počet procesů a vláken, které mají běžet souběžně, je většinou vyšší než počet fyzických jader počítače, musí být výpočetní čas procesoru rozprostřen mezi všechny tyto procesy a vlákna. Rozprostření výpočetního času zajišťuje \textit{plánovač}, který plánuje přepínání kontextu procesů a vláken. Plánovač je v~běžných počítačích typicky preemptivní\footnote{Při preemptivním plánování může být procesor procesu odebrán bez jeho přičinění (ukončení procesu, zahájení čekání, atd.).} a zohledňuje několik vlastností procesů a vláken, jako je například priorita, čas strávený na procesu, doba čekání, paměťové požadavky, atd. Díky plánovači a dalším zdrojům nedeterminismu (obsluha přerušení, blokující operace, atd.) je paralelní provádění programu také nedeterministické, tj. procesy a vlákna jsou různě \textit{proloženy}. Tento nedeterminismus způsobuje, že chyby vzniklé paralelním prováděním programu se v~jednom běhu mohou vyskytnout, zatímco v~jiném ne. Z~hlediska testování paralelních programů je tedy důležité najít takové proložení, při kterém se daná chyba vyskytne \cite{cite:OS1}. 
+
+%DAL PSAT O VLAKNECH.
+%V dalším textu bude uvažováno použití jednoho procesu s více vlákny, protože právě tento způsob je nebezpečný z hlediska souběžného přístupu vláken ke sdíleným prostředkům.  
+
+
+
+%\chapter{Návrh dynamických analyzátorů pro SearchBestie}
+
+
+%\section{Analyzátor kontraktů}
+
+%Analyzátor kontraktů, popsaný v~kapitole \ref{contract-def-ext}, bude implementovat rozšířenou definici kontraktu. Analyzátor bude implementován jako nástroj v~projektu RoadRunner, tj. hlavní třída \texttt{ContractTool} tohoto analyzátoru bude rozšiřovat třídu \texttt{Tool} nástroje \textit{RoadRunner}. Dynamický analyzátor bude redefinovat zejména následující metody:
+%\begin{itemize}
+%\item \texttt{create(...)}, \texttt{preJoin(...)} -- metody odchytávající události vytvoření a ukončení vlákna,
+%\item \texttt{acquire(...)}, \texttt{release(...)} -- metody odchytávající události přístupu k~zámkům,
+%\item \texttt{access(...)}, \texttt{volatileAccess(...)} -- metody odchytávající události přístupu k~paměti, 
+%\item \texttt{enter(...)}, \texttt{exit(...)} -- metody odchytávající události vstupu a výstupu do/z metod.
+%\end{itemize} 
+
+%Dále bude tento dynamický analyzátor ukládat a využívat informace v~\textit{shadow} objektech. Do objektu \texttt{ShadowThread} bude přidáno pole obsahující sekvenci posledních vykonaných metod daným vláknem a v~objektu \texttt{ShadowVar}, uloženém v~\textit{shadow location} každého místa v~paměti, budou uloženy všechny instance targetů a spoilerů kontraktu, definovaném pro objekt uložený na tomto paměťovém místě. Instance targetů a spoilerů jednotlivých kontraktů musí podporovat metody s~parametry (a návratovou hodnotou) a proto objekty \texttt{Contract} (reprezentující zadaný kontrakt) a \texttt{Instance} (reprezentující instance targetů) budou mít níže popsanou strukturu.
+
+%Struktura objektu \texttt{Contract} bude obsahovat následující parametry:
 %udelt jako tabulku
-\begin{itemize}
-\item \texttt{objectType} -- typ objektu, nad kterým je definován kontrakt,
-\item \texttt{target} -- sekvence metod targetu,
-\item \texttt{spoilers} -- seznam sekvencí metod spoilerů.
-\end{itemize}
+%\begin{itemize}
+%\item \texttt{objectType} -- typ objektu, nad kterým je definován kontrakt,
+%\item \texttt{target} -- sekvence metod targetu,
+%\item \texttt{spoilers} -- seznam sekvencí metod spoilerů.
+%\end{itemize}
 
-Struktura objektu \texttt{Instance} bude obsahovat následující parametry:
-\begin{itemize}
-\item \texttt{pattern} -- odkaz na target/spoiler, jehož je tento objekt instancí,
-\item \texttt{methodSequence} -- sekvence metod targetu/spoileru, které již byly zpozorovány,
-\item \texttt{position} -- pozice v~targetu/spoileru,
-\item \texttt{parameters} -- mapa parametrů v~metodách. Klíčem je definovaný název v~kontraktu a hodnotou dosazená hodnota při výskytu události.
-\end{itemize}
+%Struktura objektu \texttt{Instance} bude obsahovat následující parametry:
+%\begin{itemize}
+%\item \texttt{pattern} -- odkaz na target/spoiler, jehož je tento objekt instancí,
+%\item \texttt{methodSequence} -- sekvence metod targetu/spoileru, které již byly zpozorovány,
+%\item \texttt{position} -- pozice v~targetu/spoileru,
+%\item \texttt{parameters} -- mapa parametrů v~metodách. Klíčem je definovaný název v~kontraktu a hodnotou dosazená hodnota při výskytu události.
+%\end{itemize}
 
-Ve výše zmíněných objektech se vyskytují seznamy metod. Každá tato metoda bude reprezentována třídou \texttt{method}, která bude obsahovat mimo jiné názvy parametrů, které jsou uvedeny při definici kontraktu a které poté budou vytvářet klíče v~mapě \texttt{parameters} v~instancích targetů a~spoilerů.
+%Ve výše zmíněných objektech se vyskytují seznamy metod. Každá tato metoda bude reprezentována třídou \texttt{method}, která bude obsahovat mimo jiné názvy parametrů, které jsou uvedeny při definici kontraktu a které poté budou vytvářet klíče v~mapě \texttt{parameters} v~instancích targetů a~spoilerů.
 
-V~dynamickém analyzátoru budou využívány hlavně metody \texttt{enter(...)} a \texttt{exit(...)}. V~první jmenované metodě bude zjištěno, na jakém objektu byla metoda vykonána a bude provedena operace \textit{advance} na všech instancích targetu a spoilerů uložených v~\textit{shadow location} daného objektu. V~metodě \texttt{exit(...)} bude testováno, zda mezi instancemi targetů a spoilerů nedošlo, nebo nemohlo dojít, k~porušení kontraktu podle pravidel definovaných v~kapitole \ref{contract-hb}.
+%V~dynamickém analyzátoru budou využívány hlavně metody \texttt{enter(...)} a \texttt{exit(...)}. V~první jmenované metodě bude zjištěno, na jakém objektu byla metoda vykonána a bude provedena operace \textit{advance} na všech instancích targetu a spoilerů uložených v~\textit{shadow location} daného objektu. V~metodě \texttt{exit(...)} bude testováno, zda mezi instancemi targetů a spoilerů nedošlo, nebo nemohlo dojít, k~porušení kontraktu podle pravidel definovaných v~kapitole \ref{contract-hb}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555

@@ -91,6 +91,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{txfonts}
+\usepackage{rotating}
 \usepackage{centernot}
 \makeatletter
 \newcommand{\strokearrow}{\mathrel{\mathpalette\stroke@arrow{/}}}
@@ -116,6 +117,15 @@
   %moredelim=[il][\textcolor{pgrey}]{$$},
   %moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
 }
+\let\openbox\relax
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definice} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Příklad} % same for example numbers
 
 
 % Informace o práci/projektu / Information about the thesis
@@ -192,6 +202,12 @@ Uvedl jsem všechny literární prameny a publikace, ze kterých jsem čerpal.}
 % solves first/last row of the paragraph on the previous/next page
 \clubpenalty=10000
 \widowpenalty=10000
+
+
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+\usepackage{syntax}
 
 \begin{document}
   % Vysazeni titulnich stran / Typesetting of the title pages
